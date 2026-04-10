@@ -1,0 +1,318 @@
+{
+    "ariveLoanId": 16541669,
+    "sysGUID": "deadfcfb-d737-4f77-9813-6c109991be4a",
+    "leadSource": "",
+    "referralContactSourceName": null,
+    "referralContactSourceEmail": null,
+    "interestOnlyTermMonthsCount": null,
+    "interestOnlyInd": null,
+    "loanCreatedFrom": "Mismo34",
+    "industryChannel": "Broker",
+    "loanBorrowers": [
+        {
+            "firstName": "JordanTest01Sept29",
+            "lastName": "LayTest01Sept29",
+            "nickName": null,
+            "emailAddressText": "jordan.lay+test01sept29@onerealmortgage.com",
+            "maritalStatusType": "Unmarried",
+            "mobilePhone10digit": "7047559404",
+            "workPhone": null,
+            "homePhone": null,
+            "applicantType": "Borrower",
+            "borrowerPairLoanAppSequence": 1,
+            "dayOfBirth": "25",
+            "monthOfBirth": "04",
+            "birthDate": "1995-04-25",
+            "posAppSubmissionDate": null,
+            "currentResidence": {
+                "addressLineText": "1315 Yellow Springs Drive",
+                "addressUnitIdentifier": null,
+                "addressCity": "Indian Land",
+                "addressState": "SC",
+                "addressPostalCode": "29707",
+                "addressCountry": "US",
+                "durationTermMonths": 66,
+                "residencyBasisType": "LivingRentFree"
+            },
+            "preferedLanguages": "",
+            "firstTimeHomeBuyer": true,
+            "borrowerIncome": 0,
+            "employments": []
+        }
+    ],
+    "subjectTBDIndicator": true,
+    "subjectProperty": {
+        "addressLineText": "TBD",
+        "addressUnitIdentifier": null,
+        "city": "Indian Land",
+        "county": "LANCASTER",
+        "state": "SC",
+        "postalCode": "29707",
+        "salesContractAmt": 500000,
+        "totalConcessionAmt": null,
+        "housingType": "SingleFamily",
+        "propertyUsageType": "PrimaryResidence",
+        "financedUnitCount": 1,
+        "attachmentType": "Detached"
+    },
+    "keyDates": {
+        "appraisalOrderedDate": null,
+        "appraisalDeliveryDate": null,
+        "taxTranscriptOrderedDate": null,
+        "taxTranscriptReceivedDate": null,
+        "titleOrderedDate": null,
+        "titleReceivedDate": null,
+        "hoiOrderedDate": null,
+        "hoiReceivedDate": null,
+        "intentToProceedDate": null,
+        "tridDate": null,
+        "initialCDSentDate": null,
+        "initialCDSignedDate": null,
+        "preApprovalExpiryDate": null,
+        "loanContingency": null,
+        "appraisalContingency": null,
+        "estFirstPaymentDate": null,
+        "firstPaymentDate": null,
+        "closingContingency": null,
+        "initialLESentDate": null,
+        "initialLESignedDate": null,
+        "mostRecentLESentDate": null,
+        "mostRecentLESignedDate": null,
+        "mostRecentCDSentDate": null,
+        "mostRecentCDSignedDate": null,
+        "dateToAvoidEPO": null,
+        "creditOrderDate": null,
+        "creditImportDate": null,
+        "creditExpirationDate": null,
+        "estimatedFundingDate": null,
+        "salesContractDate": null
+    },
+    "currentLoanStatus": {
+        "status": "APPLICATION_INTAKE",
+        "date": "2026-04-09",
+        "adverseReason": null
+    },
+    "modifiedDateTime": "2026-04-09T23:04:34.236Z",
+    "createDateTime": "2026-04-09T23:04:32.114Z",
+    "loanOriginatorEmail": "brandon.snider@onerealmortgage.com",
+    "loanOriginatorName": "Brandon Snider",
+    "loanOriginatorPhone": null,
+    "loanProcessorEmail": "",
+    "loanProcessorName": "",
+    "loanOfficerAssistantEmail": "",
+    "loanOfficerAssistantName": "",
+    "creditRepairIndicator": false,
+    "archiveIndicator": false,
+    "archiveDate": null,
+    "loanPurpose": "Purchase",
+    "refinanceType": null,
+    "cashoutPurpose": null,
+    "mortgageType": "Conventional",
+    "baseLoanAmount": null,
+    "purchasePriceOrEstimatedValue": 500000,
+    "lenderName": null,
+    "lenderNMLS": null,
+    "earnestMoneyDeposit": 0,
+    "sellerCredit": null,
+    "homeownersInsuranceMonthlyAmt": 0,
+    "mIPremiumMonthlyAmt": null,
+    "homeownersAssociationDuesAndCondominiumFeesMonthlyAmt": 0,
+    "realEstateTaxMonthlyAmt": 0,
+    "totalMonthlyHousingExpenseAmt": 0,
+    "firstMortgagePrincipalAndInterestMonthlyAmt": null,
+    "floodInsuranceMonthlyAmt": null,
+    "principalInterestAndPMI": 0,
+    "downPayment": 0,
+    "amortizationTerm": 360,
+    "compensation": 0,
+    "compensationType": "",
+    "discountPoints": 0,
+    "lockStatus": "None",
+    "lockDate": null,
+    "lockExpirationDate": null,
+    "lenderLoanIdentifier": "",
+    "mersNumberforNonDel": "",
+    "initialFixedPeriodEffectiveMonthsCount": null,
+    "normalRateAdjustmentPeriod": null,
+    "amortizationType": "Fixed",
+    "lienPosition": "FirstLien",
+    "lenderProductName": null,
+    "loanTerm": 360,
+    "buyDown": "",
+    "impoundWaiver": "None Waived",
+    "ltv": 0,
+    "cltv": 0,
+    "hcltv": 0,
+    "financedFees": 0,
+    "reimbursements": null,
+    "toleranceCures": 0,
+    "brokerFee": 0,
+    "grossLoanRevenue": 0,
+    "netLoanRevenue": 0,
+    "deepLinkURL": "https://onerealmortgage.myarive.com/app/loans/16541669",
+    "crmReferenceId": null,
+    "loanStatusHistory": [
+        {
+            "status": "APPLICATION_INTAKE",
+            "date": "2026-04-09",
+            "adverseReason": null
+        }
+    ],
+    "CreditReportFee": 0,
+    "fico": null,
+    "noteRate": 0,
+    "totalLoanAmount": 0,
+    "loanTeam": [
+        {
+            "emailAddressText": "brandon.snider@onerealmortgage.com",
+            "firstName": "Brandon",
+            "lastName": "Snider",
+            "mobilePhone10digit": null,
+            "primary": true,
+            "loanRole": "Originator"
+        }
+    ],
+    "employment": [],
+    "businessContacts": [],
+    "loanTrackers": [
+        {
+            "name": "APPRAISAL",
+            "displayName": "Appraisal",
+            "currentTrackerStatus": {
+                "name": "NOT_ORDERED",
+                "displayName": "Not Ordered",
+                "Date": null
+            },
+            "trackerStatusesHistory": [
+                {
+                    "name": "NOT_ORDERED",
+                    "displayName": "Not Ordered",
+                    "Date": null
+                }
+            ]
+        },
+        {
+            "name": "CD",
+            "displayName": "CD Status",
+            "currentTrackerStatus": {
+                "name": "NOT_SENT",
+                "displayName": "Not Sent",
+                "Date": null
+            },
+            "trackerStatusesHistory": [
+                {
+                    "name": "NOT_SENT",
+                    "displayName": "Not Sent",
+                    "Date": null
+                }
+            ]
+        },
+        {
+            "name": "FUNDING_WIRE",
+            "displayName": "Funding Wire",
+            "currentTrackerStatus": {
+                "name": "NOT_ORDERED",
+                "displayName": "Not Ordered",
+                "Date": null
+            },
+            "trackerStatusesHistory": [
+                {
+                    "name": "NOT_ORDERED",
+                    "displayName": "Not Ordered",
+                    "Date": null
+                }
+            ]
+        },
+        {
+            "name": "PAYROLL",
+            "displayName": "Commissions / Payroll",
+            "currentTrackerStatus": {
+                "name": "NOT_COMPLETE",
+                "displayName": "Not Complete",
+                "Date": null
+            },
+            "trackerStatusesHistory": [
+                {
+                    "name": "NOT_COMPLETE",
+                    "displayName": "Not Complete",
+                    "Date": null
+                }
+            ]
+        },
+        {
+            "name": "CLIENT_REVIEW",
+            "displayName": "Client Review",
+            "currentTrackerStatus": {
+                "name": "NOT_REQUESTED",
+                "displayName": "Not Requested",
+                "Date": null
+            },
+            "trackerStatusesHistory": [
+                {
+                    "name": "NOT_REQUESTED",
+                    "displayName": "Not Requested",
+                    "Date": null
+                }
+            ]
+        },
+        {
+            "name": "TITLE",
+            "displayName": "Title",
+            "currentTrackerStatus": {
+                "name": "NOT_ORDERED",
+                "displayName": "Not Ordered",
+                "Date": null
+            },
+            "trackerStatusesHistory": [
+                {
+                    "name": "NOT_ORDERED",
+                    "displayName": "Not Ordered",
+                    "Date": null
+                }
+            ]
+        },
+        {
+            "name": "HOI",
+            "displayName": "HOI",
+            "currentTrackerStatus": {
+                "name": "NOT_ORDERED",
+                "displayName": "Not Ordered",
+                "Date": null
+            },
+            "trackerStatusesHistory": [
+                {
+                    "name": "NOT_ORDERED",
+                    "displayName": "Not Ordered",
+                    "Date": null
+                }
+            ]
+        },
+        {
+            "name": "SIGNED_DOCS_WITH_LENDER",
+            "displayName": "Final Loan Docs",
+            "currentTrackerStatus": {
+                "name": "NOT_REQUESTED",
+                "displayName": "Not Requested",
+                "Date": null
+            },
+            "trackerStatusesHistory": [
+                {
+                    "name": "NOT_REQUESTED",
+                    "displayName": "Not Requested",
+                    "Date": null
+                }
+            ]
+        }
+    ],
+    "estCashToClose": null,
+    "orgUnitDisplayName": "One Real Mortgage Corp",
+    "orgUnitId": "3426256b-d687-4dcb-a7e3-e8ee48afe4a5",
+    "leadProvidedBy": null,
+    "purchaseDate": null,
+    "receivedPayments": null,
+    "backEndDTI": 0,
+    "frontEndDTI": 0,
+    "documentationType": "FULL_DOC",
+    "prepayPenalty": "No",
+    "settlementNumber": null
+}
