@@ -66,8 +66,36 @@ class SalesforceAuth {
   }
 
   private normalizePrivateKey(key: string): string {
-    // Replace literal \n strings with actual newlines (common when storing in env vars)
-    return key.replace(/\\n/g, '\n');
+    let normalized = key.trim();
+
+    // Strip wrapping quotes often introduced in hosted env variable UIs.
+    if (
+      (normalized.startsWith('"') && normalized.endsWith('"')) ||
+      (normalized.startsWith("'") && normalized.endsWith("'"))
+    ) {
+      normalized = normalized.slice(1, -1);
+    }
+
+    // Replace escaped CR/LF sequences (common when storing multiline keys in env vars).
+    normalized = normalized.replace(/\\r\\n/g, "\n").replace(/\\n/g, "\n").replace(/\r\n/g, "\n");
+
+    // If a PEM header exists, return as-is after newline normalization.
+    if (normalized.includes("BEGIN") && normalized.includes("PRIVATE KEY")) {
+      return normalized;
+    }
+
+    // Some deployments store the PEM as base64 to avoid newline formatting issues.
+    // Try decoding and return decoded PEM when recognizable.
+    try {
+      const decoded = Buffer.from(normalized, "base64").toString("utf8").trim();
+      if (decoded.includes("BEGIN") && decoded.includes("PRIVATE KEY")) {
+        return decoded.replace(/\r\n/g, "\n");
+      }
+    } catch {
+      // Ignore decode errors and fall through to raw value.
+    }
+
+    return normalized;
   }
 
   private loadPrivateKey(): string {
@@ -118,6 +146,11 @@ class SalesforceAuth {
     const signingInput = `${encodedHeader}.${encodedPayload}`;
     
     try {
+      if (this.privateKey.includes("BEGIN ENCRYPTED PRIVATE KEY")) {
+        throw new Error(
+          "Encrypted private keys are not supported without a passphrase. Provide an unencrypted RSA private key in SALESFORCE_PRIVATE_KEY."
+        );
+      }
       const keyObject = crypto.createPrivateKey(this.privateKey);
       const signature = crypto
         .createSign('RSA-SHA256')
@@ -127,6 +160,7 @@ class SalesforceAuth {
       return `${signingInput}.${signature}`;
     } catch (error) {
       console.error('❌ [SalesforceAuth] JWT signing failed:', error);
+      console.error("❌ [SalesforceAuth] Ensure SALESFORCE_PRIVATE_KEY is valid PEM (or base64-encoded PEM) and includes BEGIN/END PRIVATE KEY markers.");
       throw error;
     }
   }
