@@ -57,4 +57,9 @@ export class AriveLoansClient {
   async getTransaction(loanId: number): Promise<unknown | null> {
     return this.requestJson(`/loans/${loanId}/transaction`, false);
   }
+
+  async getLeadById(leadId: number): Promise<unknown> {
+    const payload = await this.requestJson(`/leads/${leadId}`, true);
+    return payload as unknown;
+  }
 }

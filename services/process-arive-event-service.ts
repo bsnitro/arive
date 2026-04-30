@@ -1,5 +1,6 @@
 import type { AriveAuthClient } from "../api-client/arive-auth-client.js";
 import type { AriveLoansClient } from "../api-client/arive-loans-client.js";
+import { hasLeadTrigger, hasLoanTrigger } from "../events/arive-event.js";
 import type SalesforceAuth from "../api-client/salesforceAuth.js";
 import type { AriveWebhookEvent } from "../events/arive-event.js";
 import { resolveDestinationServices } from "../routes/arive-routes.js";
@@ -25,14 +26,26 @@ export function createProcessAriveEventService(deps: ProcessAriveEventServiceDep
       hasExpiry: Boolean(ariveToken.expiresAtEpochMs)
     });
 
-    const loanDetails = await deps.ariveLoansClient.getLoanById(event.sysGUID);
-    const productDetails = await deps.ariveLoansClient.getSelectedMortgageProduct(event.sysGUID);
-    const transactionDetails = await deps.ariveLoansClient.getTransaction(event.sysGUID);
-    logger.info("Arive loan details loaded.", {
+    const includesLoanTrigger = hasLoanTrigger(event.triggers);
+    const includesLeadTrigger = hasLeadTrigger(event.triggers);
+
+    const loanDetails = includesLoanTrigger ? await deps.ariveLoansClient.getLoanById(event.sysGUID) : null;
+    const productDetails = includesLoanTrigger
+      ? await deps.ariveLoansClient.getSelectedMortgageProduct(event.sysGUID)
+      : null;
+    const transactionDetails = includesLoanTrigger ? await deps.ariveLoansClient.getTransaction(event.sysGUID) : null;
+    const leadDetails =
+      includesLeadTrigger && !event.triggers.includes("LEAD_DELETED")
+        ? await deps.ariveLoansClient.getLeadById(event.sysGUID)
+        : null;
+
+    logger.info("Arive event details loaded.", {
       sysGUID: event.sysGUID,
       triggers: event.triggers,
+      hasLoanDetails: Boolean(loanDetails),
       hasProductDetails: Boolean(productDetails),
-      hasTransactionDetails: Boolean(transactionDetails)
+      hasTransactionDetails: Boolean(transactionDetails),
+      hasLeadDetails: Boolean(leadDetails)
     });
 
     const sfToken = await deps.salesforceAuthClient.getAccessToken();
@@ -50,7 +63,8 @@ export function createProcessAriveEventService(deps: ProcessAriveEventServiceDep
           receivedAtIso,
           loanDetails,
           productDetails,
-          transactionDetails
+          transactionDetails,
+          leadDetails
         })
       )
     );

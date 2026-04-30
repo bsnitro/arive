@@ -4,7 +4,8 @@ import SalesforceAuth from "../api-client/salesforceAuth.js";
 import { createWebhookController } from "../controllers/webhook-controller.js";
 import { readEnv } from "../src/env.js";
 import { createProcessAriveEventService } from "./process-arive-event-service.js";
-import { SalesforceLoanApplicationSyncService } from "./salesforce-loan-application-sync-service.js";
+import { SalesforceLeadHandler } from "./salesforce-lead-handler.js";
+import { SalesforceLoanHandler } from "./salesforce-loan-handler.js";
 import { StubOutboundSystemService } from "./outbound-system-service.js";
 
 export function bootstrapApp() {
@@ -24,9 +25,11 @@ export function bootstrapApp() {
   );
 
   const salesforceAuthClient = new SalesforceAuth();
-  const salesforceSyncService = new SalesforceLoanApplicationSyncService(salesforceAuthClient);
+  const salesforceLoanSyncService = new SalesforceLoanHandler(salesforceAuthClient);
+  const salesforceLeadSyncService = new SalesforceLeadHandler(salesforceAuthClient);
   const outboundServices = [
-    salesforceSyncService,
+    salesforceLoanSyncService,
+    salesforceLeadSyncService,
     new StubOutboundSystemService("future-third-party-system")
   ];
 

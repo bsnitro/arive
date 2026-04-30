@@ -13,6 +13,10 @@
     "dev:webhook": "tsx scripts/dev-webhook-server.ts",
     "test:arive-connection": "tsx scripts/test-arive-connection.ts",
     "test:webhook:event": "tsx scripts/test-webhook-event.ts",
+    "test:webhook:lead:created": "tsx scripts/test-webhook-lead-created.ts",
+    "test:webhook:lead:updated": "tsx scripts/test-webhook-lead-updated.ts",
+    "test:webhook:lead:deleted": "tsx scripts/test-webhook-lead-deleted.ts",
+    "test:webhook:loan:app-submitted": "tsx scripts/test-webhook-loan-app-submitted.ts",
     "test": "vitest run"
   },
   "dependencies": {

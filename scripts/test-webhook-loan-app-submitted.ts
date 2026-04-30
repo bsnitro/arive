@@ -2,8 +2,8 @@ import "dotenv/config";
 import { postWebhookEvent } from "./post-webhook-event.js";
 
 const EVENT_PAYLOAD = {
-  sysGUID: 16602527,
-  triggers: ["LOAN_CREATED"]
+  sysGUID: Number(process.env.WEBHOOK_TEST_SYS_GUID ?? "16602527"),
+  triggers: ["LOAN_APP_SUBMITTED"]
 } as const;
 
 async function run(): Promise<void> {
@@ -11,7 +11,7 @@ async function run(): Promise<void> {
 }
 
 run().catch((error) => {
-  console.error("Webhook test failed.");
+  console.error("LOAN_APP_SUBMITTED webhook test failed.");
   console.error(error instanceof Error ? error.message : error);
   process.exit(1);
 });

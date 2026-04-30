@@ -23,7 +23,7 @@ services/
   app-bootstrap.ts
   outbound-system-service.ts
   process-arive-event-service.ts
-  salesforce-loan-application-sync-service.ts
+  salesforce-loan-handler.ts
 scripts/
   dev-webhook-server.ts
 src/
@@ -57,7 +57,9 @@ src/
 ## Notes
 
 - Webhook URLs:
-  - **Vercel:** `POST https://<your-deployment>/api/webhook` (or `/api/webhooks/arive` — same handler).
+  - **Arive (recommended):** `POST https://<your-deployment>/api/webhooks/arive`
+  - **Arive (alias):** `POST https://<your-deployment>/api/webhook` (same handler as `/api/webhooks/arive`)
+  - **Twilio (v2 scaffold):** `POST https://<your-deployment>/api/webhooks/twilio` (currently returns `501 Not Implemented`)
   - **Local (`npm run dev:webhook`):** `POST http://localhost:8787/webhook` or `/api/webhook`.
 - `routes/arive-routes.ts` controls where each event type should be sent.
 - `services/process-arive-event-service.ts` handles processing logic for incoming events.

@@ -1,9 +1,11 @@
 import "dotenv/config";
 import { createServer } from "node:http";
 
+import { createTwilioWebhookController } from "../controllers/twilio-webhook-controller.js";
 import { bootstrapApp } from "../services/app-bootstrap.js";
 
 const app = bootstrapApp();
+const twilioWebhookController = createTwilioWebhookController();
 const port = Number(process.env.PORT ?? "8787");
 
 const server = createServer(async (req, res) => {
@@ -33,6 +35,9 @@ const server = createServer(async (req, res) => {
       path === "/api/webhook" ||
       path === "/webhooks/arive" ||
       path === "/api/webhooks/arive");
+  const isTwilioWebhookPost =
+    req.method === "POST" &&
+    (path === "/webhooks/twilio" || path === "/api/webhooks/twilio");
 
   if (isWebhookPost) {
     const chunks: Uint8Array[] = [];
@@ -44,6 +49,27 @@ const server = createServer(async (req, res) => {
     const body = rawBody.length > 0 ? JSON.parse(rawBody) : {};
 
     const response = await app.webhookController({
+      method: req.method,
+      headers: req.headers,
+      body,
+      rawBody
+    });
+
+    res.statusCode = response.statusCode;
+    res.setHeader("content-type", "application/json");
+    res.end(JSON.stringify(response.body));
+    return;
+  }
+
+  if (isTwilioWebhookPost) {
+    const chunks: Uint8Array[] = [];
+    for await (const chunk of req) {
+      chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
+    }
+
+    const rawBody = Buffer.concat(chunks).toString("utf8");
+    const body = rawBody.length > 0 ? JSON.parse(rawBody) : {};
+    const response = await twilioWebhookController({
       method: req.method,
       headers: req.headers,
       body,
