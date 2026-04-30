@@ -1,0 +1,3355 @@
+{
+    "loanId": "10536",
+    "externalId": "caebb022-0097-4c98-8c19-314497aba565",
+    "loanNumber": "OR010536-01",
+    "loanAmount": 356385.00,
+    "loanType": "Va",
+    "loanStatus": "Withdrawn",
+    "loanStatusReason": "You have requested that your loan application be withdrawn",
+    "leadStage": "Rate Lock",
+    "applicationDate": "2026-01-19T19:09:20.931Z",
+    "applicationMethod": "Internet",
+    "transactionType": "Purchase",
+    "downPayment": 0.00,
+    "housingRatio": 0.0,
+    "ltvRatio": 1.000000,
+    "cltvRatio": 1.000000,
+    "tltvRatio": 1.000000,
+    "dtiRatio": 0.469854,
+    "firstTimeHomeBuyer": false,
+    "vaEligible": true,
+    "hasVaLoan": false,
+    "relationshipPricing": false,
+    "includeClosingCosts": false,
+    "originationChannel": "Brokered",
+    "qualificationStatus": "QualifiedMortgage",
+    "borrowerPairs": [
+        {
+            "primaryBorrowerRef": "9632",
+            "secondaryBorrowerRef": "9633",
+            "order": 1
+        }
+    ],
+    "borrowers": [
+        {
+            "borrowerId": "9633",
+            "firstName": "Kelli",
+            "lastName": "Pierce",
+            "phone": "3602806395",
+            "email": "kkpierce2@hotmail.com",
+            "taxIdentifier": "518746472",
+            "creditScore": 812,
+            "dateOfBirth": "1965-11-24T00:00:00Z",
+            "roleType": "Borrower",
+            "titleHolderType": "None",
+            "citizenship": "USCitizen",
+            "maritalStatus": "Married",
+            "relationship": "Married",
+            "ethnicity": "NotHispanicOrLatino",
+            "gender": "Female",
+            "race": "White",
+            "verifiedEmail": false,
+            "residences": [
+                {
+                    "borrowerAddressId": "10026",
+                    "street1": "6873 West Cedarwood Circle",
+                    "city": "McCordsville",
+                    "state": "IN",
+                    "zipCode": "46055",
+                    "rentOrOwn": "Rent",
+                    "monthlyPayment": 0.00000000,
+                    "type": "Residence",
+                    "moveInDate": "2024-01-29T00:00:00Z",
+                    "unitDesignatorType": "Unspecified"
+                },
+                {
+                    "borrowerAddressId": "10027",
+                    "street1": "102 Vineland Parkway Drive",
+                    "city": "Vine Grove",
+                    "state": "KY",
+                    "zipCode": "40175",
+                    "rentOrOwn": "Rent",
+                    "monthlyPayment": 0.00000000,
+                    "type": "Residence",
+                    "moveInDate": "2022-07-03T00:00:00Z",
+                    "moveOutDate": "2024-01-28T00:00:00Z",
+                    "unitDesignatorType": "Unspecified"
+                }
+            ],
+            "consents": [
+                {
+                    "borrowerRef": "9633",
+                    "type": "CreditAuthorization",
+                    "accepted": true,
+                    "requestedDate": "0001-01-01T00:00:00Z",
+                    "acceptedDate": "2026-01-19T19:09:20.933Z"
+                },
+                {
+                    "borrowerRef": "9633",
+                    "type": "PrivacyPolicy",
+                    "accepted": true,
+                    "requestedDate": "0001-01-01T00:00:00Z",
+                    "acceptedDate": "2026-01-19T19:09:20.933Z"
+                },
+                {
+                    "borrowerRef": "9633",
+                    "type": "ElectronicCommunications",
+                    "accepted": true,
+                    "requestedDate": "0001-01-01T00:00:00Z",
+                    "acceptedDate": "2026-01-19T19:09:20.933Z"
+                },
+                {
+                    "borrowerRef": "9633",
+                    "type": "TermsOfService",
+                    "accepted": true,
+                    "requestedDate": "0001-01-01T00:00:00Z",
+                    "acceptedDate": "2026-01-19T19:09:20.933Z"
+                }
+            ],
+            "borrowerEmployment": [
+                {
+                    "borrowerEmploymentId": "10034",
+                    "borrowerRef": "9633",
+                    "title": "Mental Health Coach/Counselor",
+                    "wageType": "None",
+                    "type": "SelfEmployed",
+                    "businessPercentOwnership": 1.00,
+                    "startDate": "2021-07-01T00:00:00Z",
+                    "seasonal": false,
+                    "employer": {
+                        "employerId": "10284",
+                        "name": "KelliPierce_LLC",
+                        "type": "Corporation",
+                        "phone": "3602806469",
+                        "street1": "6873 West Cedarwood Circle",
+                        "city": "McCordsville",
+                        "state": "IN",
+                        "zipCode": "46055"
+                    }
+                }
+            ],
+            "metadata": {
+                "items": [
+                    {
+                        "key": "atlantisLoanNumber",
+                        "value": "MAI048"
+                    },
+                    {
+                        "key": "atlantisLoanId",
+                        "value": "caebb022-0097-4c98-8c19-314497aba565"
+                    }
+                ]
+            }
+        },
+        {
+            "borrowerId": "9632",
+            "firstName": "Kevin",
+            "lastName": "Pierce",
+            "phone": "3602806469",
+            "email": "kkpierce2@yahoo.com",
+            "taxIdentifier": "548472585",
+            "creditScore": 820,
+            "dateOfBirth": "1971-02-17T00:00:00Z",
+            "roleType": "Borrower",
+            "titleHolderType": "None",
+            "citizenship": "USCitizen",
+            "maritalStatus": "Married",
+            "relationship": "Married",
+            "ethnicity": "NotHispanicOrLatino",
+            "gender": "Male",
+            "race": "White",
+            "verifiedEmail": true,
+            "residences": [
+                {
+                    "borrowerAddressId": "10025",
+                    "street1": "102 Vineland Parkway Drive",
+                    "city": "Vine Grove",
+                    "state": "KY",
+                    "zipCode": "40175",
+                    "rentOrOwn": "Own",
+                    "monthlyPayment": 0.00000000,
+                    "type": "Residence",
+                    "moveInDate": "2022-07-03T00:00:00Z",
+                    "moveOutDate": "2024-01-28T00:00:00Z",
+                    "unitDesignatorType": "Unspecified"
+                },
+                {
+                    "borrowerAddressId": "10024",
+                    "street1": "6873 West Cedarwood Circle",
+                    "city": "McCordsville",
+                    "state": "IN",
+                    "zipCode": "46055",
+                    "rentOrOwn": "Own",
+                    "monthlyPayment": 0.00000000,
+                    "type": "Residence",
+                    "moveInDate": "2024-01-29T00:00:00Z",
+                    "unitDesignatorType": "Unspecified"
+                }
+            ],
+            "consents": [
+                {
+                    "borrowerRef": "9632",
+                    "type": "PrivacyPolicy",
+                    "accepted": true,
+                    "requestedDate": "0001-01-01T00:00:00Z",
+                    "acceptedDate": "2026-01-19T19:09:20.933Z"
+                },
+                {
+                    "borrowerRef": "9632",
+                    "type": "ElectronicCommunications",
+                    "accepted": true,
+                    "requestedDate": "0001-01-01T00:00:00Z",
+                    "acceptedDate": "2026-01-19T19:09:20.933Z"
+                },
+                {
+                    "borrowerRef": "9632",
+                    "type": "TermsOfService",
+                    "accepted": true,
+                    "requestedDate": "0001-01-01T00:00:00Z",
+                    "acceptedDate": "2026-01-19T19:09:20.933Z"
+                },
+                {
+                    "borrowerRef": "9632",
+                    "type": "CreditAuthorization",
+                    "accepted": true,
+                    "requestedDate": "0001-01-01T00:00:00Z",
+                    "acceptedDate": "2026-01-19T19:09:20.933Z"
+                }
+            ],
+            "borrowerEmployment": [
+                {
+                    "borrowerEmploymentId": "10033",
+                    "borrowerRef": "9632",
+                    "title": "Finance Officer",
+                    "email": "kkpierce2@yahoo.com",
+                    "phone": "8005555555",
+                    "wageType": "Salary",
+                    "type": "Employed",
+                    "startDate": "1997-01-08T00:00:00Z",
+                    "seasonal": false,
+                    "employer": {
+                        "employerId": "10283",
+                        "name": "US Army",
+                        "type": "Corporation",
+                        "phone": "8005555555",
+                        "street1": "8899 East 56th Street",
+                        "city": "Indianapolis",
+                        "state": "IN",
+                        "zipCode": "46249"
+                    }
+                }
+            ],
+            "metadata": {
+                "items": [
+                    {
+                        "key": "atlantisLoanNumber",
+                        "value": "MAI048"
+                    },
+                    {
+                        "key": "atlantisLoanId",
+                        "value": "caebb022-0097-4c98-8c19-314497aba565"
+                    }
+                ]
+            }
+        }
+    ],
+    "subjectProperty": {
+        "subjectPropertyId": "7996",
+        "street1": "4420 Grip Dr",
+        "city": "Fayetteville",
+        "state": "NC",
+        "zipCode": "28312",
+        "county": "Cumberland County",
+        "propertyType": "SingleFamily",
+        "yearBuilt": 2003,
+        "numberOfUnits": 1,
+        "estimatedValue": 0.0,
+        "purchasePrice": 345000.00,
+        "taxes": 2500.00,
+        "insurance": 1500.00,
+        "hoaFees": 0.0,
+        "otherExpenses": 0.0,
+        "escrowTaxes": true,
+        "escrowInsurance": true,
+        "escrowHOA": false,
+        "escrowOtherExpenses": false,
+        "grossRentalIncome": 0.0,
+        "grossRentalIncomeFactor": 1.00,
+        "netRentalIncome": 0.0,
+        "occupancyType": "PrimaryResidence",
+        "metadata": {
+            "items": [
+                {
+                    "key": "atlantisPropertyId",
+                    "value": "caebb022-0097-4c98-8c19-314497aba565"
+                }
+            ]
+        }
+    },
+    "assets": [
+        {
+            "loanAssetId": "11729",
+            "type": "RealEstate",
+            "amount": 355000.00,
+            "liquid": false,
+            "institution": "6873 W Cedarwood Cir REO Asset",
+            "date": "2026-01-19T19:34:39.6836385Z",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "verified": false,
+            "metadata": {}
+        },
+        {
+            "loanAssetId": "11725",
+            "type": "Savings",
+            "amount": 82000.00,
+            "liquid": true,
+            "institution": "USAA",
+            "date": "2026-01-19T19:09:20.932Z",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "account": "Unknown",
+            "verified": true,
+            "metadata": {
+                "items": [
+                    {
+                        "key": "atlantisLoanNumber",
+                        "value": "MAI048"
+                    },
+                    {
+                        "key": "atlantisLoanId",
+                        "value": "caebb022-0097-4c98-8c19-314497aba565"
+                    }
+                ]
+            }
+        },
+        {
+            "loanAssetId": "11726",
+            "type": "Checking",
+            "amount": 10000.00,
+            "liquid": true,
+            "institution": "USAA",
+            "date": "2026-01-19T19:09:20.932Z",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "account": "Unknown",
+            "verified": true,
+            "metadata": {
+                "items": [
+                    {
+                        "key": "atlantisLoanNumber",
+                        "value": "MAI048"
+                    },
+                    {
+                        "key": "atlantisLoanId",
+                        "value": "caebb022-0097-4c98-8c19-314497aba565"
+                    }
+                ]
+            }
+        },
+        {
+            "loanAssetId": "11730",
+            "type": "RealEstate",
+            "amount": 355000.00,
+            "liquid": false,
+            "institution": "2918 Sea Water Ct REO Asset",
+            "date": "2026-01-19T19:34:47.658568Z",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "verified": false,
+            "metadata": {}
+        },
+        {
+            "loanAssetId": "12375",
+            "type": "EarnestMoney",
+            "amount": 2500.00,
+            "liquid": false,
+            "institution": "Due Dilegence",
+            "date": "2026-01-30T16:43:38.676Z",
+            "borrowerRefs": [
+                "9633",
+                "9632"
+            ],
+            "verified": false,
+            "metadata": {}
+        }
+    ],
+    "liabilities": [
+        {
+            "loanLiabilityId": "93926",
+            "borrowerRefs": [
+                "9633"
+            ],
+            "accountOpenedDate": "2025-12-31T00:00:00Z",
+            "accountReportedDate": "2026-01-22T00:00:00Z",
+            "type": "AmexDiners",
+            "status": "Open",
+            "amount": 0.0,
+            "balance": 0.0,
+            "payoffAmount": 0.0,
+            "description": "AMEX",
+            "excludeFromDti": false,
+            "accountIdentifier": "-34999******22343",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93944",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "accountOpenedDate": "2020-03-20T00:00:00Z",
+            "accountReportedDate": "2021-03-30T00:00:00Z",
+            "type": "Installment",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "payoffAmount": 0.0,
+            "description": "CHRYSLER CAPITAL",
+            "excludeFromDti": false,
+            "accountIdentifier": "30000238152031000",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93930",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "accountOpenedDate": "2019-09-23T00:00:00Z",
+            "accountReportedDate": "2020-10-21T00:00:00Z",
+            "type": "Revolving",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 5000.00,
+            "payoffAmount": 0.0,
+            "description": "BK OF AMER",
+            "excludeFromDti": false,
+            "accountIdentifier": "3329",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93937",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "accountOpenedDate": "2019-05-06T00:00:00Z",
+            "accountReportedDate": "2020-10-19T00:00:00Z",
+            "type": "Mortgage",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "payoffAmount": 0.0,
+            "description": "FREEDOM MORTGAGE CORP",
+            "excludeFromDti": false,
+            "accountIdentifier": "107562753",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93932",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "accountOpenedDate": "1993-03-18T00:00:00Z",
+            "accountReportedDate": "2022-07-25T00:00:00Z",
+            "type": "Revolving",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 8000.00,
+            "payoffAmount": 0.0,
+            "description": "AMEX",
+            "excludeFromDti": false,
+            "accountIdentifier": "-34999******06043",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93924",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "accountOpenedDate": "2018-06-06T00:00:00Z",
+            "accountReportedDate": "2026-01-23T00:00:00Z",
+            "type": "AmexDiners",
+            "status": "Open",
+            "amount": 0.0,
+            "balance": 0.0,
+            "payoffAmount": 0.0,
+            "description": "AMEX",
+            "excludeFromDti": false,
+            "accountIdentifier": "-34999******62733",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93938",
+            "borrowerRefs": [
+                "9633",
+                "9632"
+            ],
+            "accountOpenedDate": "2004-05-11T00:00:00Z",
+            "accountReportedDate": "2026-01-22T00:00:00Z",
+            "type": "Revolving",
+            "status": "Open",
+            "amount": 11.00,
+            "balance": 11.00,
+            "creditLimit": 25000.00,
+            "payoffAmount": 0.0,
+            "description": "USAA FEDERAL SAVINGS B",
+            "excludeFromDti": true,
+            "accountIdentifier": "427082******0041",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93927",
+            "borrowerRefs": [
+                "9633"
+            ],
+            "accountOpenedDate": "2018-06-01T00:00:00Z",
+            "accountReportedDate": "2022-06-01T00:00:00Z",
+            "type": "Revolving",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 4500.00,
+            "payoffAmount": 0.0,
+            "description": "CFNA/BSRO",
+            "excludeFromDti": false,
+            "accountIdentifier": "538353***",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93947",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "realEstateOwnedRef": "6422",
+            "accountReportedDate": "2026-01-30T16:53:11.573809Z",
+            "type": "Mortgage",
+            "status": "Open",
+            "amount": 1452.00,
+            "balance": 196213.00,
+            "payoffAmount": 0.0,
+            "description": "FREEDOM MORTGAGE CORP",
+            "excludeFromDti": true,
+            "accountIdentifier": "119948123",
+            "currentStatusCode": "AsAgreed",
+            "remainingMonths": 135,
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93933",
+            "borrowerRefs": [
+                "9632",
+                "9633"
+            ],
+            "accountOpenedDate": "1993-07-12T00:00:00Z",
+            "accountReportedDate": "2016-07-13T00:00:00Z",
+            "type": "Revolving",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 27500.00,
+            "payoffAmount": 0.0,
+            "description": "AMEX",
+            "excludeFromDti": false,
+            "accountIdentifier": "-34999******11243",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93935",
+            "borrowerRefs": [
+                "9632",
+                "9633"
+            ],
+            "accountOpenedDate": "2008-07-12T00:00:00Z",
+            "accountReportedDate": "2020-05-11T00:00:00Z",
+            "type": "Revolving",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 27500.00,
+            "payoffAmount": 0.0,
+            "description": "CITI",
+            "excludeFromDti": false,
+            "accountIdentifier": "410039******6989",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93940",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "accountOpenedDate": "2006-12-21T00:00:00Z",
+            "accountReportedDate": "2026-01-19T00:00:00Z",
+            "type": "Revolving",
+            "status": "Open",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 11250.00,
+            "payoffAmount": 0.0,
+            "description": "MILITARY STAR",
+            "excludeFromDti": false,
+            "accountIdentifier": "650155******3274",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93936",
+            "borrowerRefs": [
+                "9633"
+            ],
+            "accountOpenedDate": "2022-12-14T00:00:00Z",
+            "accountReportedDate": "2026-01-14T00:00:00Z",
+            "type": "Revolving",
+            "status": "Open",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 5000.00,
+            "payoffAmount": 0.0,
+            "description": "AMEX",
+            "excludeFromDti": false,
+            "accountIdentifier": "-34999******76053",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93931",
+            "borrowerRefs": [
+                "9633"
+            ],
+            "accountOpenedDate": "2018-06-09T00:00:00Z",
+            "accountReportedDate": "2026-01-23T00:00:00Z",
+            "type": "AmexDiners",
+            "status": "Open",
+            "amount": 0.0,
+            "balance": 0.0,
+            "payoffAmount": 0.0,
+            "description": "AMEX",
+            "excludeFromDti": false,
+            "accountIdentifier": "-34999******62743",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93943",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "accountOpenedDate": "2012-06-06T00:00:00Z",
+            "accountReportedDate": "2016-08-21T00:00:00Z",
+            "type": "Revolving",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 3000.00,
+            "payoffAmount": 0.0,
+            "description": "CFNA/BSRO",
+            "excludeFromDti": false,
+            "accountIdentifier": "662467***",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93929",
+            "borrowerRefs": [
+                "9632",
+                "9633"
+            ],
+            "accountOpenedDate": "2010-11-22T00:00:00Z",
+            "accountReportedDate": "2026-01-12T00:00:00Z",
+            "type": "Revolving",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 12000.00,
+            "payoffAmount": 0.0,
+            "description": "AMEX",
+            "excludeFromDti": false,
+            "accountIdentifier": "-34999******22773",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93923",
+            "borrowerRefs": [
+                "9633",
+                "9632"
+            ],
+            "accountOpenedDate": "2015-07-19T00:00:00Z",
+            "accountReportedDate": "2026-01-15T00:00:00Z",
+            "type": "Revolving",
+            "status": "Open",
+            "amount": 30.00,
+            "balance": 96.00,
+            "creditLimit": 7000.00,
+            "payoffAmount": 0.0,
+            "description": "TD BANK USA/TARGETCRED",
+            "excludeFromDti": false,
+            "accountIdentifier": "511786******6413",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93925",
+            "borrowerRefs": [
+                "9633"
+            ],
+            "accountOpenedDate": "2021-02-19T00:00:00Z",
+            "accountReportedDate": "2026-01-21T00:00:00Z",
+            "type": "Revolving",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 20000.00,
+            "payoffAmount": 0.0,
+            "description": "AMEX",
+            "excludeFromDti": false,
+            "accountIdentifier": "-34999******70193",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93922",
+            "borrowerRefs": [
+                "9633"
+            ],
+            "accountOpenedDate": "1993-03-18T00:00:00Z",
+            "accountReportedDate": "2022-07-25T00:00:00Z",
+            "type": "Revolving",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 8000.00,
+            "payoffAmount": 0.0,
+            "description": "AMEX",
+            "excludeFromDti": false,
+            "accountIdentifier": "349990******3443",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93948",
+            "borrowerRefs": [
+                "9633",
+                "9632"
+            ],
+            "accountOpenedDate": "2013-06-01T00:00:00Z",
+            "accountReportedDate": "2017-05-01T00:00:00Z",
+            "type": "Revolving",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 8000.00,
+            "payoffAmount": 0.0,
+            "description": "SYNCB/SAMS",
+            "excludeFromDti": false,
+            "accountIdentifier": "521333******",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93939",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "accountOpenedDate": "2021-03-20T00:00:00Z",
+            "accountReportedDate": "2026-01-21T00:00:00Z",
+            "type": "Revolving",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 20000.00,
+            "payoffAmount": 0.0,
+            "description": "AMEX",
+            "excludeFromDti": false,
+            "accountIdentifier": "349992******1443",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93946",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "accountOpenedDate": "2021-02-19T00:00:00Z",
+            "accountReportedDate": "2026-01-21T00:00:00Z",
+            "type": "Revolving",
+            "status": "Open",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 12000.00,
+            "payoffAmount": 0.0,
+            "description": "AMEX",
+            "excludeFromDti": false,
+            "accountIdentifier": "-34999******62213",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93928",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "accountOpenedDate": "2017-11-03T00:00:00Z",
+            "accountReportedDate": "2023-11-17T00:00:00Z",
+            "type": "Revolving",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 12100.00,
+            "payoffAmount": 0.0,
+            "description": "AMEX",
+            "excludeFromDti": false,
+            "accountIdentifier": "349992******4383",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93942",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "accountOpenedDate": "2015-02-01T00:00:00Z",
+            "accountReportedDate": "2019-02-28T00:00:00Z",
+            "type": "Installment",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "payoffAmount": 0.0,
+            "description": "FIDELITY BANK",
+            "excludeFromDti": false,
+            "accountIdentifier": "8413677342",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93941",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "realEstateOwnedRef": "6423",
+            "accountReportedDate": "2026-01-30T16:53:24.1415197Z",
+            "type": "Mortgage",
+            "status": "Open",
+            "amount": 2437.00,
+            "balance": 283293.00,
+            "payoffAmount": 0.0,
+            "description": "LOANCARE",
+            "excludeFromDti": true,
+            "accountIdentifier": "6230066440207",
+            "currentStatusCode": "AsAgreed",
+            "remainingMonths": 116,
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93945",
+            "borrowerRefs": [
+                "9632"
+            ],
+            "accountOpenedDate": "2024-01-29T00:00:00Z",
+            "accountReportedDate": "2024-07-01T00:00:00Z",
+            "type": "Mortgage",
+            "status": "Paid",
+            "amount": 0.0,
+            "balance": 0.0,
+            "payoffAmount": 0.0,
+            "description": "SERVICEMAC/MSR",
+            "excludeFromDti": false,
+            "accountIdentifier": "4149210104462",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        },
+        {
+            "loanLiabilityId": "93934",
+            "borrowerRefs": [
+                "9633",
+                "9632"
+            ],
+            "accountOpenedDate": "2019-07-10T00:00:00Z",
+            "accountReportedDate": "2026-01-13T00:00:00Z",
+            "type": "Revolving",
+            "status": "Open",
+            "amount": 0.0,
+            "balance": 0.0,
+            "creditLimit": 19000.00,
+            "payoffAmount": 0.0,
+            "description": "CAPITAL ONE",
+            "excludeFromDti": false,
+            "accountIdentifier": "510875******",
+            "currentStatusCode": "AsAgreed",
+            "metadata": {}
+        }
+    ],
+    "realEstatesOwned": [
+        {
+            "realEstateOwnedId": "6422",
+            "ownership": [
+                {
+                    "realEstateOwnedRef": "6422",
+                    "borrowerRef": "6422",
+                    "percentOwnership": 1.00
+                }
+            ],
+            "street1": "2918 Sea Water Ct",
+            "city": "Fayetteville",
+            "state": "NC",
+            "zipCode": "28306",
+            "type": "Residential",
+            "marketValue": 355000.00,
+            "taxes": 0.0,
+            "taxesEscrowed": true,
+            "insurance": 0.0,
+            "insuranceEscrowed": true,
+            "hoaEscrowed": false,
+            "otherEscrowed": false,
+            "miscellaneous": 0.0,
+            "maintenance": 0.0,
+            "grossRentalIncome": 0.0,
+            "grossRentalIncomeFactor": 1.00,
+            "propertyType": "SingleFamily",
+            "proposedOccupancyType": "InvestmentProperty",
+            "currentOccupancyType": "InvestmentProperty",
+            "planToSell": false,
+            "liabilityRefs": [
+                "93947"
+            ],
+            "metadata": {
+                "items": [
+                    {
+                        "key": "atlantisLoanNumber",
+                        "value": "MAI048"
+                    },
+                    {
+                        "key": "atlantisLoanId",
+                        "value": "caebb022-0097-4c98-8c19-314497aba565"
+                    }
+                ]
+            }
+        },
+        {
+            "realEstateOwnedId": "6423",
+            "ownership": [
+                {
+                    "realEstateOwnedRef": "6423",
+                    "borrowerRef": "6423",
+                    "percentOwnership": 1.00
+                }
+            ],
+            "street1": "6873 W Cedarwood Cir",
+            "city": "McCordsville",
+            "state": "IN",
+            "zipCode": "46055",
+            "type": "Residential",
+            "marketValue": 355000.00,
+            "taxes": 0.0,
+            "taxesEscrowed": true,
+            "insurance": 0.0,
+            "insuranceEscrowed": true,
+            "hoaEscrowed": false,
+            "otherEscrowed": false,
+            "miscellaneous": 0.0,
+            "maintenance": 0.0,
+            "grossRentalIncome": 0.0,
+            "grossRentalIncomeFactor": 1.00,
+            "propertyType": "SingleFamily",
+            "proposedOccupancyType": "InvestmentProperty",
+            "currentOccupancyType": "PrimaryResidence",
+            "planToSell": false,
+            "liabilityRefs": [
+                "93941"
+            ],
+            "metadata": {
+                "items": [
+                    {
+                        "key": "atlantisLoanId",
+                        "value": "caebb022-0097-4c98-8c19-314497aba565"
+                    },
+                    {
+                        "key": "atlantisLoanNumber",
+                        "value": "MAI048"
+                    }
+                ]
+            }
+        }
+    ],
+    "conditions": [
+        {
+            "loanConditionId": "19771",
+            "borrowerRef": "9632",
+            "name": "Title Cleared",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19772",
+            "borrowerRef": "9632",
+            "name": "VA Amendatory Clause",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19764",
+            "borrowerRef": "9632",
+            "name": "Assets Verified",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19768",
+            "borrowerRef": "9632",
+            "name": "Please contact a pest inspection company to complete a wood destroying insect report. This must be on a NPMA-33 or a Qualified and Professional Pest Control Company form. Once completed, please provide a signed copy of the inspection and invoice, by both the inspector and the veteran.",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19763",
+            "borrowerRef": "9632",
+            "name": "Appraisal Cleared",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19776",
+            "borrowerRef": "9632",
+            "name": "Well and Septic Inspection",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "20008",
+            "name": " January LES ",
+            "scope": "Borrower",
+            "type": "Document",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "20012",
+            "name": "Homeowners Insurance Quote",
+            "scope": "Borrower",
+            "type": "Document",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19774",
+            "borrowerRef": "9632",
+            "name": "Please visit the following website to apply for your VA Certificate of Eligibility: Apply For Certificate Of Eligibility | Veterans Affairs",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19765",
+            "borrowerRef": "9632",
+            "name": "Income Verified",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19917",
+            "borrowerRef": "9633",
+            "name": "Earnest Money Deposit Cleared",
+            "description": "Please provide a bank statement that shows the check clearing your account for $2500, as well as the 30-day history prior to the check clearing your account.\nPlease note that any large deposits totaling more than 50% of your monthly income will need to be sourced",
+            "scope": "Borrower",
+            "type": "Document",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "20011",
+            "name": "Copy Military Deployment Orders",
+            "scope": "Borrower",
+            "type": "Document",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "20010",
+            "name": "6873 Cedarwood - HOA Bil",
+            "scope": "Borrower",
+            "type": "Document",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19770",
+            "borrowerRef": "9632",
+            "name": "Processor Approval Call",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19767",
+            "borrowerRef": "9632",
+            "name": "OFAC AML Check Completed",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": true,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19766",
+            "borrowerRef": "9632",
+            "name": "Insurance Verified",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "20009",
+            "name": "2918 Sea Water - HOA Bill",
+            "scope": "Borrower",
+            "type": "Document",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19773",
+            "borrowerRef": "9632",
+            "name": "VA Appraisal Acknowledgement",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": true,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19769",
+            "borrowerRef": "9632",
+            "name": "Post Funding Review",
+            "scope": "Internal",
+            "type": "PostClosing",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19775",
+            "borrowerRef": "9632",
+            "name": "Verification of Consents and Authorizations in file",
+            "scope": "Internal",
+            "type": "Underwriting",
+            "completed": true,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19919",
+            "borrowerRef": "9633",
+            "name": "Homeowners Insurance",
+            "description": "Please provide us with your insurance agents contact Information so we can help get your policy finalize.",
+            "scope": "Borrower",
+            "type": "Document",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        },
+        {
+            "loanConditionId": "19918",
+            "borrowerRef": "9633",
+            "name": "Earnest Money Deposit Copy",
+            "description": "Please provide a copy of the check for $2500 that was given to your attorney or settlement agent towards your down payment.",
+            "scope": "Borrower",
+            "type": "Document",
+            "completed": false,
+            "critical": false,
+            "metadata": {}
+        }
+    ],
+    "income": [
+        {
+            "loanIncomeId": "10566",
+            "borrowerRef": "9633",
+            "type": "ScheduleC",
+            "taxExempt": false,
+            "amount": 0.0,
+            "primary": false,
+            "metadata": {
+                "items": [
+                    {
+                        "key": "atlantisLoanId",
+                        "value": "caebb022-0097-4c98-8c19-314497aba565"
+                    },
+                    {
+                        "key": "atlantisLoanNumber",
+                        "value": "MAI048"
+                    }
+                ]
+            }
+        },
+        {
+            "loanIncomeId": "10565",
+            "borrowerRef": "9632",
+            "type": "Salary",
+            "description": "Base Salary",
+            "taxExempt": false,
+            "amount": 161000.00,
+            "primary": false,
+            "metadata": {
+                "items": [
+                    {
+                        "key": "atlantisLoanId",
+                        "value": "caebb022-0097-4c98-8c19-314497aba565"
+                    },
+                    {
+                        "key": "atlantisLoanNumber",
+                        "value": "MAI048"
+                    }
+                ]
+            }
+        }
+    ],
+    "notes": [
+        {
+            "loanNoteId": "18092",
+            "text": "LO worked on this approval - I will get him to update me so I can speak with the client",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "17858",
+            "text": "Loan Submitted to Underwriting\nTitle ordered\nConfirmed from LO to order Appraisal therefore sent email to processor to order appraisal weblgy.\nForecast conditions have been set",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "17854",
+            "text": "Borrower wants to add his middle initial \"D\" to all loan forms. Please submit a CIC to update upon submission",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "17855",
+            "text": "All disclosures now signed - all docs in file.",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "17963",
+            "text": "submitted a CIC to remove all self employment income and to remove conditions",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "18412",
+            "text": "Loan will be terminated - I called the VA and had the appraisal cancelled with them. The two sides couldn't come to an agreement on repairs from home inspection. They have offers out on several other properties so we will get this one re-registered once that happens.",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "18413",
+            "text": "KIND was notified as well",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "17999",
+            "text": "I have sent LOX's for 4723 Caterwood Dr and intent to occupy as primary residence to borrowers for esignature through Real Signature",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "17991",
+            "text": "Borrower wants to add his middle initial \"D\" to all loan forms. Please submit a CIC to update upon submission",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "17832",
+            "text": "Loan not ready for submission as Initial Disclosures are not signed",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "18096",
+            "text": "Appraisal Ordered in the VA portal",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "17698",
+            "text": "Sent ORM disclosure.",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "17692",
+            "text": "Registered with Kind\nAUS was approved\nRate was floated\n** sent the VA Appraisal Acknowledgement form via docusign",
+            "metadata": {}
+        },
+        {
+            "loanNoteId": "17708",
+            "text": "VA Appraisal Acknowledgement form has been signed and saved to Sonar",
+            "metadata": {}
+        }
+    ],
+    "keyDates": [
+        {
+            "name": "RateLockExpirationDate",
+            "displayName": "Rate Lock Expiration",
+            "value": "2026-03-02T00:00:00Z"
+        },
+        {
+            "name": "AssetExpiration",
+            "displayName": "Asset Expiration"
+        },
+        {
+            "name": "DisclosuresSigned",
+            "displayName": "Disclosures Signed",
+            "value": "2026-02-02T00:00:00Z"
+        },
+        {
+            "name": "ClosingDate",
+            "displayName": "Closed Date"
+        },
+        {
+            "name": "AppraisalWaivedDate",
+            "displayName": "Appraisal Waived Date"
+        },
+        {
+            "name": "TitleReportReceivedDate",
+            "displayName": "Title Report Received"
+        },
+        {
+            "name": "AppraisalReceivedDate",
+            "displayName": "Appraisal Received Date"
+        },
+        {
+            "name": "IncomeExpiration",
+            "displayName": "Income Expiration"
+        },
+        {
+            "name": "ContractDate",
+            "displayName": "Contract Date",
+            "value": "2026-01-30T00:00:00Z"
+        },
+        {
+            "name": "ApplicationDate",
+            "displayName": "Application Submission",
+            "value": "2026-01-19T00:00:00Z"
+        },
+        {
+            "name": "AppraisalContingencyDate",
+            "displayName": "Appraisal Contingency Date"
+        },
+        {
+            "name": "UnderwrittenPreApproval",
+            "displayName": "Pre-Approved Date",
+            "value": "2026-01-20T00:00:00Z"
+        },
+        {
+            "name": "ClosingDisclosureSent",
+            "displayName": "Closing Disclosure Sent"
+        },
+        {
+            "name": "TitleReportOrderDate",
+            "displayName": "Title Report Order",
+            "value": "2026-02-02T00:00:00Z"
+        },
+        {
+            "name": "CloseOutCheck",
+            "displayName": "Close Out Check"
+        },
+        {
+            "name": "ReadyToRegisterDate",
+            "displayName": "Ready to Register Date",
+            "value": "2026-01-30T00:00:00Z"
+        },
+        {
+            "name": "ApprovedDate",
+            "displayName": "Conditional Approval Date",
+            "value": "2026-02-03T00:00:00Z"
+        },
+        {
+            "name": "VvoeExpirationDate",
+            "displayName": "VVOE Expiration"
+        },
+        {
+            "name": "FundedDate",
+            "displayName": "Funded Date"
+        },
+        {
+            "name": "TridDate",
+            "displayName": "TRID Date",
+            "value": "2026-01-30T00:00:00Z"
+        },
+        {
+            "name": "AppraisalOrderedDate",
+            "displayName": "Appraisal Ordered Date"
+        },
+        {
+            "name": "RateLockRequestedDate",
+            "displayName": "Rate Lock Requested",
+            "value": "2026-01-30T00:00:00Z"
+        },
+        {
+            "name": "Processing",
+            "displayName": "Sent to Processing",
+            "value": "2026-02-02T00:00:00Z"
+        },
+        {
+            "name": "EstimatedClosingDate",
+            "displayName": "Estimated Closing Date",
+            "value": "2026-02-27T00:00:00Z"
+        },
+        {
+            "name": "ClearToCloseDate",
+            "displayName": "Clear to Close Date"
+        },
+        {
+            "name": "OrmDisclosureSentDate",
+            "displayName": "ORM Disclosure Sent Date",
+            "value": "2026-01-31T00:00:00Z"
+        },
+        {
+            "name": "LastActionDate",
+            "displayName": "Last Action Date",
+            "value": "2026-02-09T00:00:00Z"
+        },
+        {
+            "name": "RateLockDate",
+            "displayName": "Rate Lock Date",
+            "value": "2026-01-30T00:00:00Z"
+        },
+        {
+            "name": "AppraisalScheduledDate",
+            "displayName": "Appraisal Scheduled Date"
+        },
+        {
+            "name": "EstimatedFundingDate",
+            "displayName": "Estimated Funding Date",
+            "value": "2026-02-27T00:00:00Z"
+        },
+        {
+            "name": "AppraisalDueDate",
+            "displayName": "Appraisal Due Date"
+        },
+        {
+            "name": "FinalActionDate",
+            "displayName": "Final Action Date",
+            "value": "2026-02-09T00:00:00Z"
+        },
+        {
+            "name": "DisclosuresSent",
+            "displayName": "Disclosures Sent",
+            "value": "2026-01-30T00:00:00Z"
+        },
+        {
+            "name": "Underwriting",
+            "displayName": "Underwriting",
+            "value": "2026-02-02T00:00:00Z"
+        },
+        {
+            "name": "InitialLoanEstimate",
+            "displayName": "Initial Loan Estimate"
+        },
+        {
+            "name": "LoanContingencyDate",
+            "displayName": "Loan Contingency Date",
+            "value": "2026-02-20T00:00:00Z"
+        },
+        {
+            "name": "ClosingDisclosureSigned",
+            "displayName": "Closing Disclosure Signed"
+        }
+    ],
+    "declarations": [
+        {
+            "borrowerRef": "9633",
+            "completedDate": "2026-01-19T19:09:20.932Z",
+            "outstandingJudgementsIndicator": false,
+            "bankruptcyIndicator": false,
+            "propertyForeclosedPastSevenYearsIndicator": false,
+            "partyToLawsuitIndicator": false,
+            "loanForeclosureOrJudgementIndicator": false,
+            "presentlyDelinquentIndicator": false,
+            "alimonyChildSupportObligationIndicator": false,
+            "borrowedDownPaymentIndicator": false,
+            "coMakerEndorserOfNoteIndicator": false,
+            "usCitizenIndicator": true,
+            "permanentResidentAlienIndicator": false,
+            "intentToOccupyIndicator": true,
+            "homeownerPastThreeYearsIndicator": false,
+            "priorPropertyUsage": "PrimaryResidence",
+            "priorPropertyTitle": "JointWithSpouse",
+            "sellerIsFamilyOrAffiliateIndicator": false,
+            "borrowedDownPaymentAmount": 0.00000000,
+            "otherMortgageLoanIndicator": false,
+            "newCreditIndicator": false,
+            "cleanEnergyLienIndicator": false,
+            "conveyedTitleInLieuOfForeclosureIndicator": false,
+            "preForeclosureShortSalePastSevenYearsIndicator": false,
+            "bankruptcyType": "Unknown",
+            "militaryServiceIndicator": false
+        },
+        {
+            "borrowerRef": "9632",
+            "completedDate": "2026-01-19T19:09:20.932Z",
+            "outstandingJudgementsIndicator": false,
+            "bankruptcyIndicator": false,
+            "propertyForeclosedPastSevenYearsIndicator": false,
+            "partyToLawsuitIndicator": false,
+            "loanForeclosureOrJudgementIndicator": false,
+            "presentlyDelinquentIndicator": false,
+            "alimonyChildSupportObligationIndicator": false,
+            "borrowedDownPaymentIndicator": false,
+            "coMakerEndorserOfNoteIndicator": false,
+            "usCitizenIndicator": true,
+            "permanentResidentAlienIndicator": false,
+            "intentToOccupyIndicator": true,
+            "homeownerPastThreeYearsIndicator": true,
+            "priorPropertyUsage": "PrimaryResidence",
+            "priorPropertyTitle": "JointWithSpouse",
+            "sellerIsFamilyOrAffiliateIndicator": false,
+            "borrowedDownPaymentAmount": 0.00000000,
+            "otherMortgageLoanIndicator": false,
+            "newCreditIndicator": false,
+            "cleanEnergyLienIndicator": false,
+            "conveyedTitleInLieuOfForeclosureIndicator": false,
+            "preForeclosureShortSalePastSevenYearsIndicator": false,
+            "bankruptcyType": "Unknown",
+            "militaryServiceIndicator": true,
+            "militaryServiceType": "ActiveDuty",
+            "militaryServiceExpirationDate": "2027-10-01T00:00:00Z"
+        }
+    ],
+    "teamMembers": [
+        {
+            "email": "michael.panek@onerealmortgage.com",
+            "role": "Originator",
+            "primary": true
+        },
+        {
+            "email": "ariana.vitello@onerealmortgage.com",
+            "role": "Processor",
+            "primary": true
+        }
+    ],
+    "contacts": [
+        {
+            "contactRef": "1513",
+            "role": "Buyer",
+            "contactType": "RealEstateAgent",
+            "companyName": "Real Broker, LLC",
+            "firstName": "James",
+            "lastName": "Duke",
+            "email": "duke01james@gmail.com",
+            "phone": "9123359455",
+            "country": "US"
+        },
+        {
+            "contactRef": "5887",
+            "role": "Unspecified",
+            "contactType": "Attorney",
+            "companyName": "Lakhiani Law, PLLC",
+            "firstName": "Ashish",
+            "lastName": "Lakhiani",
+            "email": "Ashish@Lakhianilaw.com",
+            "phone": "9102224535",
+            "country": "US"
+        },
+        {
+            "contactRef": "5886",
+            "role": "Seller",
+            "contactType": "RealEstateAgent",
+            "companyName": "premier real estate of the sandhills llc",
+            "firstName": "Ashley",
+            "lastName": "Mckinney",
+            "email": "ashleymckinneypremierbroker@gmail.com",
+            "phone": "9103154045",
+            "country": "US"
+        }
+    ],
+    "creditReports": [
+        {
+            "creditReportRef": "4867",
+            "documentRef": "145682",
+            "borrowerRefs": [
+                "9632",
+                "9633"
+            ],
+            "timestamp": "2026-01-30T16:51:47.0919275Z",
+            "type": "Hard",
+            "action": "Submit",
+            "status": "Success",
+            "result": "FileReturned",
+            "bureaus": [
+                "TransUnion",
+                "Equifax",
+                "Experian"
+            ]
+        },
+        {
+            "creditReportRef": "4621",
+            "documentRef": "135182",
+            "borrowerRefs": [
+                "9632",
+                "9633"
+            ],
+            "timestamp": "2026-01-19T19:28:52.0305481Z",
+            "type": "Soft",
+            "action": "Submit",
+            "status": "Success",
+            "result": "FileReturned",
+            "bureaus": [
+                "TransUnion",
+                "Experian"
+            ]
+        }
+    ],
+    "documents": [
+        {
+            "documentId": "154188",
+            "filename": "LoanWithdrawalLetter_Kevin_Pierce_20260209.pdf",
+            "size": 82373,
+            "type": "application/pdf",
+            "metadata": {}
+        },
+        {
+            "documentId": "145842",
+            "filename": "OFAC AML Kevin Pierce.pdf",
+            "size": 180010,
+            "type": "application/pdf",
+            "category": "Miscellaneous",
+            "metadata": {}
+        },
+        {
+            "documentId": "145841",
+            "filename": "OFAC AML Kelli Pierce.pdf",
+            "size": 180003,
+            "type": "application/pdf",
+            "category": "Miscellaneous",
+            "metadata": {}
+        },
+        {
+            "documentId": "154168",
+            "filename": "AUS 2026-02-05.pdf",
+            "size": 209925,
+            "type": "application/pdf",
+            "category": "AUS",
+            "metadata": {}
+        },
+        {
+            "documentId": "135182",
+            "filename": "SoftCredit_20260119.pdf",
+            "size": 93710,
+            "type": "application/pdf",
+            "metadata": {}
+        },
+        {
+            "documentId": "145843",
+            "filename": "certificate - sent VA appraisal acknowledgement form.pdf",
+            "size": 256154,
+            "type": "application/pdf",
+            "category": "Miscellaneous",
+            "metadata": {}
+        },
+        {
+            "documentId": "145673",
+            "filename": "UL- OFFER TO PURCHASE AND CONTRACT.pdf",
+            "size": 3432028,
+            "type": "application/pdf",
+            "category": "Property",
+            "metadata": {}
+        },
+        {
+            "documentId": "135312",
+            "filename": "Self-Employment Results - Pierce.pdf",
+            "size": 99724,
+            "type": "application/pdf",
+            "category": "Income",
+            "metadata": {}
+        },
+        {
+            "documentId": "135188",
+            "filename": "2026-01-01_Certificate_of_Deposit_Statement.pdf",
+            "size": 122074,
+            "type": "application/pdf",
+            "category": "Assets",
+            "metadata": {}
+        },
+        {
+            "documentId": "135081",
+            "filename": "UL- W2_2024_DFAS_KEVIN.pdf",
+            "size": 47911,
+            "type": "application/pdf",
+            "category": "Income",
+            "metadata": {}
+        },
+        {
+            "documentId": "147090",
+            "filename": "Kelli Signed Certification_and_Autorization.pdf",
+            "size": 323288,
+            "type": "application/pdf",
+            "category": "Miscellaneous",
+            "metadata": {}
+        },
+        {
+            "documentId": "146001",
+            "filename": "SIGNED VA_Appraisal_Acknowledgement.pdf",
+            "size": 186775,
+            "type": "application/pdf",
+            "category": "Property",
+            "metadata": {}
+        },
+        {
+            "documentId": "145669",
+            "filename": "1003.pdf",
+            "size": 504541,
+            "type": "application/pdf",
+            "metadata": {}
+        },
+        {
+            "documentId": "154189",
+            "filename": "LoanWithdrawalLetter_Kelli_Pierce_20260209.pdf",
+            "size": 82369,
+            "type": "application/pdf",
+            "metadata": {}
+        },
+        {
+            "documentId": "135185",
+            "filename": "PNC_#4381_11/29/2025 to 12/31/2025_KELLI.pdf",
+            "size": 203158,
+            "type": "application/pdf",
+            "category": "Assets",
+            "metadata": {}
+        },
+        {
+            "documentId": "150205",
+            "filename": "Letter Of Intent - Primary Residence LOX_signed.pdf",
+            "size": 159350,
+            "type": "application/pdf",
+            "category": "LoanDocuments",
+            "metadata": {}
+        },
+        {
+            "documentId": "145844",
+            "filename": "certificate - sent cert & auth to Kelli.pdf",
+            "size": 256191,
+            "type": "application/pdf",
+            "category": "LoanDocuments",
+            "metadata": {}
+        },
+        {
+            "documentId": "135196",
+            "filename": "USAA_#8957_10/11/2025 to 11/13/2025_KEVIN & KELLI.pdf",
+            "size": 209300,
+            "type": "application/pdf",
+            "category": "Assets",
+            "metadata": {}
+        },
+        {
+            "documentId": "145667",
+            "filename": "LoanWorksheet_OR010536-01_20260130.xlsx",
+            "size": 63965,
+            "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "metadata": {}
+        },
+        {
+            "documentId": "135187",
+            "filename": "UL- USAA_#3800_12/13/2025 to 01/14/2026_KEVIN.pdf",
+            "size": 98849,
+            "type": "application/pdf",
+            "category": "Assets",
+            "metadata": {}
+        },
+        {
+            "documentId": "169028",
+            "filename": "Lock Confirmation.pdf",
+            "size": 91376,
+            "type": "application/pdf",
+            "category": "LoanDocuments",
+            "metadata": {}
+        },
+        {
+            "documentId": "154166",
+            "filename": "Change Request Form.pdf",
+            "size": 9712,
+            "type": "application/pdf",
+            "category": "Miscellaneous",
+            "metadata": {}
+        },
+        {
+            "documentId": "149653",
+            "filename": "LES_Jan_2026.pdf",
+            "size": 54946,
+            "type": "application/pdf",
+            "category": "Income",
+            "metadata": {}
+        },
+        {
+            "documentId": "135274",
+            "filename": "UL- 2023TaxReturn_Kevin_Kelli.PDF",
+            "size": 623335,
+            "type": "application/pdf",
+            "category": "Income",
+            "metadata": {}
+        },
+        {
+            "documentId": "154167",
+            "filename": "COCForm-2026-02-04T15.07.43.609Z.pdf",
+            "size": 9663,
+            "type": "application/pdf",
+            "category": "LoanDocuments",
+            "metadata": {}
+        },
+        {
+            "documentId": "135160",
+            "filename": "UL- Freedom_Dec_Pierce.pdf",
+            "size": 153096,
+            "type": "application/pdf",
+            "category": "LiabilitiesAndDebts",
+            "metadata": {}
+        },
+        {
+            "documentId": "145666",
+            "filename": "OrderTitle_OR010536-01_20260130.pdf",
+            "size": 51443,
+            "type": "application/pdf",
+            "metadata": {}
+        },
+        {
+            "documentId": "145847",
+            "filename": "Signed-Electronic_Disclosure_and_Consent.pdf",
+            "size": 61175,
+            "type": "application/pdf",
+            "category": "LoanDocuments",
+            "metadata": {}
+        },
+        {
+            "documentId": "135198",
+            "filename": "UL- USAA_#3800_11/15/2025 to 12/12/2025_KEVIN & KELLI.pdf",
+            "size": 158750,
+            "type": "application/pdf",
+            "category": "Assets",
+            "metadata": {}
+        },
+        {
+            "documentId": "154170",
+            "filename": "VA CAIVRS Authorization.pdf",
+            "size": 64171,
+            "type": "application/pdf",
+            "category": "Miscellaneous",
+            "metadata": {}
+        },
+        {
+            "documentId": "135197",
+            "filename": "USAA_#3797_11/01/2025 to 11/30/2025_KEVIN & KELLI.pdf",
+            "size": 99479,
+            "type": "application/pdf",
+            "category": "Assets",
+            "metadata": {}
+        },
+        {
+            "documentId": "145668",
+            "filename": "LoanWorksheet_OR010536-01_20260130.pdf",
+            "size": 105477,
+            "type": "application/pdf",
+            "metadata": {}
+        },
+        {
+            "documentId": "145845",
+            "filename": "Desktop Underwriter Findings, Kevin   Pierce.pdf",
+            "size": 321311,
+            "type": "application/pdf",
+            "category": "AUS",
+            "metadata": {}
+        },
+        {
+            "documentId": "149684",
+            "filename": "HOA_McCordsville_Pierce.pdf",
+            "size": 155898,
+            "type": "application/pdf",
+            "category": "Property",
+            "metadata": {}
+        },
+        {
+            "documentId": "151139",
+            "filename": "Real Broker LLC Mail - 18-18-6-1578745.pdf",
+            "size": 149098,
+            "type": "application/pdf",
+            "category": "Property",
+            "metadata": {}
+        },
+        {
+            "documentId": "149651",
+            "filename": "IMG_2423.PNG",
+            "size": 204979,
+            "type": "image/png",
+            "metadata": {}
+        },
+        {
+            "documentId": "145809",
+            "filename": "UL- W2_2025_DFAS_KEVIN.pdf",
+            "size": 47940,
+            "type": "application/pdf",
+            "category": "Income",
+            "metadata": {}
+        },
+        {
+            "documentId": "154171",
+            "filename": "Signed Kind Initial Disclosure.pdf",
+            "size": 5238269,
+            "type": "application/pdf",
+            "category": "LoanDocuments",
+            "metadata": {}
+        },
+        {
+            "documentId": "135317",
+            "filename": "VA BONUS ENTITLEMENT CALC.jpg",
+            "size": 145694,
+            "type": "image/jpeg",
+            "metadata": {}
+        },
+        {
+            "documentId": "154055",
+            "filename": "Real Broker LLC Mail - Withdrawn 18-18-6-1578745.pdf",
+            "size": 116012,
+            "type": "application/pdf",
+            "category": "Property",
+            "metadata": {}
+        },
+        {
+            "documentId": "135159",
+            "filename": "UL- Freedom_1098_2025_Pierce.pdf",
+            "size": 114278,
+            "type": "application/pdf",
+            "category": "Income",
+            "metadata": {}
+        },
+        {
+            "documentId": "135080",
+            "filename": "ul- Paystub_1-31 DEC 25_DFAS_KEVIN.pdf",
+            "size": 55180,
+            "type": "application/pdf",
+            "category": "Income",
+            "metadata": {}
+        },
+        {
+            "documentId": "135222",
+            "filename": "Paystub_1-30 NOV 25_DFAS_KEVIN.pdf",
+            "size": 56050,
+            "type": "application/pdf",
+            "category": "Income",
+            "metadata": {}
+        },
+        {
+            "documentId": "145656",
+            "filename": "UL- Multiple Documents-8.pdf",
+            "size": 3432028,
+            "type": "application/pdf",
+            "category": "Property",
+            "metadata": {}
+        },
+        {
+            "documentId": "135093",
+            "filename": "UL- LoanCare_IN_1098_2025_Pierce.pdf",
+            "size": 146271,
+            "type": "application/pdf",
+            "category": "Income",
+            "metadata": {}
+        },
+        {
+            "documentId": "144344",
+            "filename": "PreApproval_20260129.pdf",
+            "size": 118092,
+            "type": "application/pdf",
+            "metadata": {}
+        },
+        {
+            "documentId": "145846",
+            "filename": "Signed-Credit_Authorization.pdf",
+            "size": 61220,
+            "type": "application/pdf",
+            "category": "LoanDocuments",
+            "metadata": {}
+        },
+        {
+            "documentId": "150204",
+            "filename": "4723 Caterwood Dr LOX_signed.pdf",
+            "size": 128529,
+            "type": "application/pdf",
+            "category": "Property",
+            "metadata": {}
+        },
+        {
+            "documentId": "135092",
+            "filename": "UL- LoanCare_IN_Dec_Pierce.pdf",
+            "size": 52248,
+            "type": "application/pdf",
+            "category": "LiabilitiesAndDebts",
+            "metadata": {}
+        },
+        {
+            "documentId": "145682",
+            "filename": "HardCredit_20260130.pdf",
+            "size": 124737,
+            "type": "application/pdf",
+            "metadata": {}
+        },
+        {
+            "documentId": "149674",
+            "filename": "HOA_SummerGrove_Seawater.pdf",
+            "size": 276695,
+            "type": "application/pdf",
+            "category": "Property",
+            "metadata": {}
+        },
+        {
+            "documentId": "154169",
+            "filename": "UWAPPVDOC-2026-02-03T21.08.53.244Z.pdf",
+            "size": 70572,
+            "type": "application/pdf",
+            "category": "Miscellaneous",
+            "metadata": {}
+        },
+        {
+            "documentId": "135184",
+            "filename": "USAA_#8957_11/14/2025 to 12/12/2025_KEVIN & KELLI.pdf",
+            "size": 195395,
+            "type": "application/pdf",
+            "category": "Assets",
+            "metadata": {}
+        },
+        {
+            "documentId": "153083",
+            "filename": "350-T - Notice of Unilateral Termination - From Buyer to Seller.pdf",
+            "size": 445969,
+            "type": "application/pdf",
+            "category": "Property",
+            "metadata": {}
+        },
+        {
+            "documentId": "145840",
+            "filename": "Signed-Borrower_Certification_and_Authorization.pdf",
+            "size": 71262,
+            "type": "application/pdf",
+            "category": "LoanDocuments",
+            "metadata": {}
+        },
+        {
+            "documentId": "135318",
+            "filename": "VA BONUS ENTITLEMENT CALC.pdf",
+            "size": 329444,
+            "type": "application/pdf",
+            "category": "Miscellaneous",
+            "metadata": {}
+        },
+        {
+            "documentId": "149652",
+            "filename": "IMG_2423.pdf",
+            "size": 657121,
+            "type": "application/pdf",
+            "category": "Assets",
+            "metadata": {}
+        },
+        {
+            "documentId": "135194",
+            "filename": "PNC_#4381_11/01/2025 to 11/28/2025_KELLI.pdf",
+            "size": 203437,
+            "type": "application/pdf",
+            "category": "Assets",
+            "metadata": {}
+        },
+        {
+            "documentId": "135214",
+            "filename": "DL_Kelli_Pierce.jpg",
+            "size": 829187,
+            "type": "image/jpeg",
+            "metadata": {}
+        },
+        {
+            "documentId": "145990",
+            "filename": "Docusign cert.pdf",
+            "size": 260227,
+            "type": "application/pdf",
+            "category": "LoanDocuments",
+            "metadata": {}
+        },
+        {
+            "documentId": "135189",
+            "filename": "USAA_#3797_12/01/2025 to 12/31/2025_KEVIN & KELLI.pdf",
+            "size": 118221,
+            "type": "application/pdf",
+            "category": "Assets",
+            "metadata": {}
+        },
+        {
+            "documentId": "135162",
+            "filename": "UL- 2024TaxReturn.PDF",
+            "size": 924159,
+            "type": "application/pdf",
+            "category": "Income",
+            "metadata": {}
+        },
+        {
+            "documentId": "135084",
+            "filename": "DL_Pierce.jpg",
+            "size": 131431,
+            "type": "image/jpeg",
+            "metadata": {}
+        },
+        {
+            "documentId": "135263",
+            "filename": "Kevin W2 2023.pdf",
+            "size": 47952,
+            "type": "application/pdf",
+            "category": "Income",
+            "metadata": {}
+        },
+        {
+            "documentId": "145986",
+            "filename": "ORM_Disclosures_OR010536-01_Kevin_Pierce_Kelli_Pierce_20260130",
+            "size": 13937963,
+            "type": "application/pdf",
+            "metadata": {}
+        },
+        {
+            "documentId": "145664",
+            "filename": "Disclosures_General_OR010536-01_20260130.pdf",
+            "size": 258995,
+            "type": "application/pdf",
+            "metadata": {}
+        },
+        {
+            "documentId": "135085",
+            "filename": "DL_Pierce.pdf",
+            "size": 329426,
+            "type": "application/pdf",
+            "category": "BorrowerID",
+            "metadata": {}
+        },
+        {
+            "documentId": "135215",
+            "filename": "Kelli DL.pdf",
+            "size": 1312477,
+            "type": "application/pdf",
+            "category": "BorrowerID",
+            "metadata": {}
+        },
+        {
+            "documentId": "169029",
+            "filename": "Signed VA_Appraisal_Acknowledgement.pdf",
+            "size": 175865,
+            "type": "application/pdf",
+            "category": "Property",
+            "metadata": {}
+        },
+        {
+            "documentId": "145665",
+            "filename": "Disclosures_Internal_OR010536-01_20260130.pdf",
+            "size": 86171,
+            "type": "application/pdf",
+            "metadata": {}
+        },
+        {
+            "documentId": "135292",
+            "filename": "UL- download_coe_Pierce.pdf",
+            "size": 3786,
+            "type": "application/pdf",
+            "category": "Miscellaneous",
+            "metadata": {}
+        }
+    ],
+    "milestones": [
+        {
+            "name": "DisclosuresSigned",
+            "displayName": "Disclosures Signed",
+            "completed": true,
+            "completedDate": "2026-02-02T21:06:52.7853123Z",
+            "order": 5
+        },
+        {
+            "name": "ApplicationSubmitted",
+            "displayName": "Application Submitted",
+            "completed": true,
+            "completedDate": "2026-01-19T19:09:21.9292983Z",
+            "order": 2
+        },
+        {
+            "name": "Approved",
+            "displayName": "Conditional Approval",
+            "completed": true,
+            "completedDate": "2026-02-03T21:31:33.1315514Z",
+            "order": 8
+        },
+        {
+            "name": "ClearToClose",
+            "displayName": "Clear to Close",
+            "completed": false,
+            "order": 9
+        },
+        {
+            "name": "ClosingScheduled",
+            "displayName": "Closed",
+            "completed": false,
+            "order": 11
+        },
+        {
+            "name": "ReadyToRegister",
+            "displayName": "Ready to Register",
+            "completed": true,
+            "completedDate": "2026-01-30T16:48:39.3078021Z",
+            "order": 3
+        },
+        {
+            "name": "DisclosuresSent",
+            "displayName": "Disclosures Sent",
+            "completed": true,
+            "completedDate": "2026-01-30T18:15:49.8291891Z",
+            "order": 4
+        },
+        {
+            "name": "Funded",
+            "displayName": "Funded",
+            "completed": false,
+            "order": 12
+        },
+        {
+            "name": "Underwriting",
+            "displayName": "Underwriting",
+            "completed": true,
+            "completedDate": "2026-02-02T21:19:14.5955016Z",
+            "order": 7
+        },
+        {
+            "name": "Processing",
+            "displayName": "Processing",
+            "completed": true,
+            "completedDate": "2026-02-02T21:06:53.6229767Z",
+            "order": 6
+        }
+    ],
+    "fees": [
+        {
+            "loanFeeId": "170854",
+            "feeType": "CreditReportFee",
+            "feeTemplateId": 2,
+            "section": "BC",
+            "borrowerPacAmount": 275.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Broker",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "CreditReportCost=275.00;"
+        },
+        {
+            "loanFeeId": "170845",
+            "feeType": "TitleTaxCertification",
+            "description": "Tax Certification",
+            "section": "BC",
+            "borrowerPacAmount": 18.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": true,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170852",
+            "feeType": "DeedPreperationFee",
+            "description": "Deed Prep",
+            "section": "BC",
+            "borrowerPacAmount": 125.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": true,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170847",
+            "feeType": "TitleFee",
+            "description": "Admin Support",
+            "section": "BC",
+            "borrowerPacAmount": 250.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": true,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170849",
+            "feeType": "TitleWireTransferFee",
+            "description": "Wire",
+            "section": "BC",
+            "borrowerPacAmount": 25.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170859",
+            "feeType": "MersFee",
+            "feeTemplateId": 3,
+            "section": "BC",
+            "borrowerPacAmount": 24.95,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "176261",
+            "feeType": "HomeownersInsurancePremium",
+            "section": "F",
+            "borrowerPacAmount": 1500.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "Months=12;Amount=125.00;"
+        },
+        {
+            "loanFeeId": "170846",
+            "feeType": "TitleSearch",
+            "description": "Search / Exam",
+            "section": "BC",
+            "borrowerPacAmount": 295.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": true,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170853",
+            "feeType": "BrokerFee",
+            "feeTemplateId": 2,
+            "section": "A",
+            "borrowerPacAmount": 0.0,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 8343.75,
+            "paidTo": "Broker",
+            "paidBy": "Lender",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "FeePct=0.02375;FlatFee=150;LenderPaid=True;"
+        },
+        {
+            "loanFeeId": "170868",
+            "feeType": "HomeownersInsurance",
+            "feeTemplateId": 1,
+            "section": "G",
+            "borrowerPacAmount": 250.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "Months=2;Amount=125;"
+        },
+        {
+            "loanFeeId": "170858",
+            "feeType": "FloodServiceFee",
+            "feeTemplateId": 3,
+            "section": "BC",
+            "borrowerPacAmount": 5.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170848",
+            "feeType": "TitleSettlement",
+            "description": "Settlement or Closing",
+            "section": "BC",
+            "borrowerPacAmount": 595.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": true,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170851",
+            "feeType": "TitleLendersPolicyGuarantyFee",
+            "description": "Lender Title Premium",
+            "section": "BC",
+            "borrowerPacAmount": 820.50,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170855",
+            "feeType": "UnderwritingFee",
+            "feeTemplateId": 2,
+            "section": "A",
+            "borrowerPacAmount": 1095.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170826",
+            "feeType": "VaFundingFee",
+            "section": "BC",
+            "borrowerPacAmount": 11385.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": false,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "FeeFactor=0.0330000000;AmountFinanced=11385.000000000000;"
+        },
+        {
+            "loanFeeId": "170860",
+            "feeType": "TaxServiceFee",
+            "feeTemplateId": 17,
+            "section": "BC",
+            "borrowerPacAmount": 50.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "176263",
+            "feeType": "SellerCredits",
+            "section": "J",
+            "borrowerPacAmount": 0.0,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 7500.00,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Borrower",
+            "paidBy": "Seller",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170867",
+            "feeType": "PrepaidInterest",
+            "feeTemplateId": 1,
+            "section": "F",
+            "borrowerPacAmount": 910.21,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "Days=15;Amount=60.680650684931506849315068493;Rate=0.0625000000;"
+        },
+        {
+            "loanFeeId": "170866",
+            "feeType": "EscrowedPropertyTaxes",
+            "feeTemplateId": 1,
+            "section": "G",
+            "borrowerPacAmount": 1250.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "Months=6;Amount=208.33333333333334;"
+        },
+        {
+            "loanFeeId": "170856",
+            "feeType": "FloodCertificateFee",
+            "feeTemplateId": 3,
+            "section": "BC",
+            "borrowerPacAmount": 8.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170865",
+            "feeType": "AppraisalFee",
+            "feeTemplateId": 1,
+            "section": "BC",
+            "borrowerPacAmount": 650.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Broker",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170857",
+            "feeType": "TaxCertificateFee",
+            "feeTemplateId": 3,
+            "section": "BC",
+            "borrowerPacAmount": 0.0,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170843",
+            "feeType": "RecordingFeeForMortgage",
+            "description": "Recording Mortgage Fee",
+            "section": "E",
+            "borrowerPacAmount": 64.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170850",
+            "feeType": "TitleFee",
+            "description": "Seller Closing",
+            "section": "BC",
+            "borrowerPacAmount": 300.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": true,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170844",
+            "feeType": "RecordingFeeForDeed",
+            "description": "Recording Deed Fee",
+            "section": "E",
+            "borrowerPacAmount": 26.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 700.00,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "176262",
+            "feeType": "LoanDiscountPoints",
+            "section": "A",
+            "borrowerPacAmount": 950.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": false,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170854",
+            "feeType": "CreditReportFee",
+            "feeTemplateId": 2,
+            "section": "BC",
+            "borrowerPacAmount": 275.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Broker",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "CreditReportCost=275.00;"
+        },
+        {
+            "loanFeeId": "170845",
+            "feeType": "TitleTaxCertification",
+            "description": "Tax Certification",
+            "section": "BC",
+            "borrowerPacAmount": 18.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": true,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170852",
+            "feeType": "DeedPreperationFee",
+            "description": "Deed Prep",
+            "section": "BC",
+            "borrowerPacAmount": 125.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": true,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170847",
+            "feeType": "TitleFee",
+            "description": "Admin Support",
+            "section": "BC",
+            "borrowerPacAmount": 250.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": true,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170849",
+            "feeType": "TitleWireTransferFee",
+            "description": "Wire",
+            "section": "BC",
+            "borrowerPacAmount": 25.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170859",
+            "feeType": "MersFee",
+            "feeTemplateId": 3,
+            "section": "BC",
+            "borrowerPacAmount": 24.95,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "176261",
+            "feeType": "HomeownersInsurancePremium",
+            "section": "F",
+            "borrowerPacAmount": 1500.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "Months=12;Amount=125.00;"
+        },
+        {
+            "loanFeeId": "170846",
+            "feeType": "TitleSearch",
+            "description": "Search / Exam",
+            "section": "BC",
+            "borrowerPacAmount": 295.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": true,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170853",
+            "feeType": "BrokerFee",
+            "feeTemplateId": 2,
+            "section": "A",
+            "borrowerPacAmount": 0.0,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 8343.75,
+            "paidTo": "Broker",
+            "paidBy": "Lender",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "FeePct=0.02375;FlatFee=150;LenderPaid=True;"
+        },
+        {
+            "loanFeeId": "170868",
+            "feeType": "HomeownersInsurance",
+            "feeTemplateId": 1,
+            "section": "G",
+            "borrowerPacAmount": 250.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "Months=2;Amount=125;"
+        },
+        {
+            "loanFeeId": "170858",
+            "feeType": "FloodServiceFee",
+            "feeTemplateId": 3,
+            "section": "BC",
+            "borrowerPacAmount": 5.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170848",
+            "feeType": "TitleSettlement",
+            "description": "Settlement or Closing",
+            "section": "BC",
+            "borrowerPacAmount": 595.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": true,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170851",
+            "feeType": "TitleLendersPolicyGuarantyFee",
+            "description": "Lender Title Premium",
+            "section": "BC",
+            "borrowerPacAmount": 820.50,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170855",
+            "feeType": "UnderwritingFee",
+            "feeTemplateId": 2,
+            "section": "A",
+            "borrowerPacAmount": 1095.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170826",
+            "feeType": "VaFundingFee",
+            "section": "BC",
+            "borrowerPacAmount": 11385.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": false,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "FeeFactor=0.0330000000;AmountFinanced=11385.000000000000;"
+        },
+        {
+            "loanFeeId": "170860",
+            "feeType": "TaxServiceFee",
+            "feeTemplateId": 17,
+            "section": "BC",
+            "borrowerPacAmount": 50.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "176263",
+            "feeType": "SellerCredits",
+            "section": "J",
+            "borrowerPacAmount": 0.0,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 7500.00,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Borrower",
+            "paidBy": "Seller",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170867",
+            "feeType": "PrepaidInterest",
+            "feeTemplateId": 1,
+            "section": "F",
+            "borrowerPacAmount": 910.21,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "Days=15;Amount=60.680650684931506849315068493;Rate=0.0625000000;"
+        },
+        {
+            "loanFeeId": "170866",
+            "feeType": "EscrowedPropertyTaxes",
+            "feeTemplateId": 1,
+            "section": "G",
+            "borrowerPacAmount": 1250.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false,
+            "feeBuilderArgs": "Months=6;Amount=208.33333333333334;"
+        },
+        {
+            "loanFeeId": "170856",
+            "feeType": "FloodCertificateFee",
+            "feeTemplateId": 3,
+            "section": "BC",
+            "borrowerPacAmount": 8.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170865",
+            "feeType": "AppraisalFee",
+            "feeTemplateId": 1,
+            "section": "BC",
+            "borrowerPacAmount": 650.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Broker",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170857",
+            "feeType": "TaxCertificateFee",
+            "feeTemplateId": 3,
+            "section": "BC",
+            "borrowerPacAmount": 0.0,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": true,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170843",
+            "feeType": "RecordingFeeForMortgage",
+            "description": "Recording Mortgage Fee",
+            "section": "E",
+            "borrowerPacAmount": 64.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170850",
+            "feeType": "TitleFee",
+            "description": "Seller Closing",
+            "section": "BC",
+            "borrowerPacAmount": 300.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": true,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": true,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "170844",
+            "feeType": "RecordingFeeForDeed",
+            "description": "Recording Deed Fee",
+            "section": "E",
+            "borrowerPacAmount": 26.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 700.00,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "ThirdParty",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": true,
+            "refundable": false,
+            "optional": false
+        },
+        {
+            "loanFeeId": "176262",
+            "feeType": "LoanDiscountPoints",
+            "section": "A",
+            "borrowerPacAmount": 950.00,
+            "borrowerPocAmount": 0.0,
+            "sellerPacAmount": 0.0,
+            "sellerPocAmount": 0.0,
+            "othersPaidAmount": 0.0,
+            "paidTo": "Lender",
+            "paidBy": "Borrower",
+            "borrowerCanShop": false,
+            "borrowerDidShop": false,
+            "borrowerDidSelect": false,
+            "includeInApr": false,
+            "canFinance": false,
+            "refundable": false,
+            "optional": false
+        }
+    ],
+    "attributes": [
+        {
+            "name": "TitleCompanyFileNumber"
+        },
+        {
+            "name": "LenderLoanNumber",
+            "value": "7000180369"
+        }
+    ],
+    "selectedProduct": {
+        "loanRef": "10536",
+        "lenderId": 508,
+        "productCode": "Shepherd:2521",
+        "productName": "30 Year Fixed",
+        "productTypeId": 12,
+        "mortgageType": "Va",
+        "loanTerm": 360,
+        "lockPeriod": 30,
+        "price": 99.7250000000,
+        "rate": 0.0562500000,
+        "apr": 0.0571817136,
+        "rebate": 0.0,
+        "discount": 950.00,
+        "principalAndInterest": 2051.55,
+        "monthlyMortgageInsurance": 0.0,
+        "payment": 2051.55,
+        "timestamp": "2026-01-29T00:15:00.6703922Z",
+        "upfrontFeeFactor": 0.0330000000,
+        "mortgageInsuranceFactor": 0.0000000000,
+        "lenderName": "Kind Lending",
+        "compensation": "LenderPaid",
+        "escrowTaxes": true,
+        "escrowInsurance": true,
+        "amortizationTerm": 360
+    },
+    "metadata": {
+        "items": [
+            {
+                "key": "atlantisLoanId",
+                "value": "caebb022-0097-4c98-8c19-314497aba565"
+            },
+            {
+                "key": "atlantisLoanNumber",
+                "value": "MAI048"
+            }
+        ]
+    }
+}

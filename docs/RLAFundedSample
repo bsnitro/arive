@@ -1,0 +1,2560 @@
+Field API Name	Label	Type	Value	
+ABA_Received__c
+ABA Received?
+boolean, required
+false
+
+ABA_Sent__c
+ABA Sent?
+boolean, required
+false
+
+ABA_Sent_Date__c
+ABA Sent Date
+date
+(Blank)
+
+Account__c
+Account
+Account	
+001Qo00001MhpTYIAZ
+
+Accounting_Post_Funding_Review_Completed__c
+Accounting Post-Funding Review Completed
+boolean, required, calculated
+false
+
+Actual_Days_To_Complete__c
+Actual Days To Complete
+double (18, 0), calculated
+(Blank)
+
+Additional_Appraisal_Instructions__c
+Additional Appraisal Instructions
+textarea (1000)
+(Blank)
+
+Additional_Loan_Product_Details__c
+Additional Loan Product Details
+string (255)
+30 Year Fixed
+
+Adverse_Action_Letter_Uploaded__c
+Adverse Action Letter Uploaded?
+boolean, required
+false
+
+Advised_Client_to_Sign_Initial_CD__c
+Advised Client to Sign Initial CD?
+boolean, required
+false
+
+All_Parties_Signed_Initial_CD__c
+All Parties Signed Initial CD?
+boolean, required
+false
+
+AmortizationTerm__c
+Loan Duration in Months
+double (18, 0)
+(Blank)
+
+API_Details__c
+API Details
+textarea (255)
+Loan updated by API 2026-04-13 12:18:06
+
+APLD_Due_Date__c
+APLD Due Date
+date, calculated
+2026-02-28
+
+APLD_Registration_Number__c
+APLD Registration Number
+string (255), case sensitive, unique
+(Blank)
+
+APLD_Required__c
+APLD Required
+boolean, required
+false
+
+Application_Date__c
+Application Date
+date
+2026-02-18
+
+ApplicationExtIdentifier__c
+External Application ID
+string (255), unique
+OR010536-01
+
+Appraisal_Cleared_by_Investor__c
+Appraisal Cleared by Investor
+boolean, required
+false
+
+Appraisal_Contingency_Date__c
+Appraisal Contingency Date
+date
+(Blank)
+
+Appraisal_Order_Date__c
+Appraisal Order Date
+date
+2026-02-20
+
+Appraisal_Payment_Received_Date__c
+Appraisal Payment Received
+date
+(Blank)
+
+Appraisal_Received_Date__c
+Appraisal Received Date
+date
+2026-03-02
+
+Appraisal_Report_Invoice_Uploaded__c
+Appraisal Report & Invoice Uploaded?
+boolean, required
+false
+
+Appraisal_Title_Insurance_Rate_Locked__c
+Appraisal, Title, Insurance, Rate Locked
+boolean, required
+false
+
+Approval_Contingency_Date__c
+Approval Contingency Date
+date
+(Blank)
+
+Approved_Date__c
+Approved Date
+date
+(Blank)
+
+Approved_for_REAL_Fast_14__c
+Approved for REAL Fast 14?
+picklist (255), restricted
+(Blank)
+
+Assets_Notes_Assets_Held_by_Borrower__c
+Assets Notes - Assets Held by Borrower
+textarea (1000)
+(Blank)
+
+Assets_Verified_by_Investor__c
+Assets Verified by Investor
+boolean, required
+false
+
+Assistant__c
+Assistant
+Contact	
+(Blank)
+
+Associated_Performance_Mortgage_Sales__c
+Associated Performance: Mortgage Sales
+Performance__c	
+a0kQo00000RZyZoIAL
+
+At_What_Rate_Should_Operations_Lock__c
+At What Rate Should Operations Lock?
+double (15, 3)
+(Blank)
+
+AUS_Findings_Received__c
+AUS Findings Received?
+boolean, required
+false
+
+BalloonTermMonths__c
+Balloon Term Months
+double (18, 0)
+(Blank)
+
+Borrower__c
+Borrower
+Contact	
+003Qo00001SXXhOIAX
+
+Borrower_Address__c
+Borrower Address
+string (1300), html, calculated
+6873 West Cedarwood Circle<br>McCordsville, Indiana 46055<br>United States
+
+Borrower_Comments_Credit__c
+Borrower Comments Credit
+textarea (32768)
+(Blank)
+
+Borrower_Completed_E_Signs__c
+Borrower Completed E-Signs?
+picklist (255), restricted
+(Blank)
+
+Borrower_Goals_Notes__c
+Borrower Goals Notes
+textarea (1000)
+(Blank)
+
+Borrower_Military_Indicator__c
+Borrower Military Indicator
+string (255)
+(Blank)
+
+Borrower_Paid_Compensation_Approved__c
+Borrower-Paid Compensation Approved?
+boolean, required
+false
+
+Borrower_Paid_Compensation_Decision__c
+Borrower-Paid Compensation Decision
+picklist (255), restricted
+(Blank)
+
+Borrower_Paid_Compensation_Explanation__c
+Borrower-Paid Compensation Explanation
+string (255)
+(Blank)
+
+Borrower_Paid_Compensation_Reason__c
+Borrower-Paid Compensation Reason
+picklist (255), restricted
+(Blank)
+
+Borrower_Paid_Compensation_Requested__c
+Borrower-Paid Compensation Requested?
+boolean, required
+false
+
+Borrower_Served_in_Military__c
+Borrower Served in Military
+boolean, required
+false
+
+Borrower_Uploaded_Documents__c
+Borrower Uploaded Documents?
+picklist (255), restricted
+(Blank)
+
+BorrowerAuthorizedCreditReportc__c
+Borrower Authorized Credit Report
+boolean, required
+true
+
+BorrowerCellc__c
+Borrower Cell
+phone (40)
+(Blank)
+
+BorrowerCommentsCreditc__c
+Borrower Comments Credit
+textarea (255)
+(Blank)
+
+BorrowerDaysConsentc__c
+Borrower Days Consent
+string (255)
+(Blank)
+
+Borrowerdobc__c
+Borrower birthday
+date
+1971-02-17
+
+BorrowerEmailc__c
+Borrower Email
+email (80)
+kkpierce2@yahoo.com
+
+BorrowerEquifaxc__c
+Borrower Equifax
+string (255)
+(Blank)
+
+BorrowerExperianFICOc__c
+Borrower Experian FICO
+string (255)
+(Blank)
+
+BorrowerFirstNamec__c
+Borrower First Name
+string (255)
+Kevin
+
+BorrowerHomePhonec__c
+Borrower Home Phone
+phone (40)
+3602806469
+
+BorrowerLastNamec__c
+Borrower Last Name
+string (255)
+Pierce
+
+BorrowerMaritalStatusc__c
+Borrower Marital Status
+string (255)
+Married
+
+BorrowerMinimumFICOc__c
+Borrower Minimum FICO
+string (255)
+(Blank)
+
+BorrowerMortgageServicec__c
+Borrower Mortgage Service
+boolean, required
+false
+
+BorrowerSSNc__c
+Borrower SSN
+string (255)
+548472585
+
+BorrowerTransactionPurposec__c
+Borrower Transaction Purpose
+string (255)
+(Blank)
+
+BorrowerTransUnionc__c
+Borrower TransUnion
+string (255)
+(Blank)
+
+BorrowerTypec__c
+Borrower Type
+string (255)
+(Blank)
+
+Bottom_End_Debt_to_Income__c
+Bottom-End Debt-to-Income
+percent (15, 3)
+(Blank)
+
+BP_Comp_Documentation_Provided__c
+BP Comp Documentation Provided
+picklist (255), restricted
+(Blank)
+
+BP_Comp_Documentation_Uploaded__c
+BP Comp Documentation Uploaded
+picklist (255), restricted
+(Blank)
+
+Branch_of_Military_Service__c
+Branch of Military Service
+string (255)
+(Blank)
+
+Broker_Compensation_Percentage__c
+Broker Compensation Percentage
+percent (15, 3)
+2.3750012661433275
+
+Broker_Compensation_String__c
+Broker Compensation String
+string (255)
+(Blank)
+
+Business_Entity_Status_Report_Fee__c
+Business Entity Status Report Fee
+currency (16, 2)
+(Blank)
+
+Buyer_Agent_Company__c
+Buyer Agent Company
+string (255)
+Real Broker, LLC
+
+Buyer_Agent_Email__c
+Buyer Agent Email
+string (255)
+duke01james@gmail.com
+
+Buyer_Agent_First_Name__c
+Buyer Agent First Name
+string (1300), calculated
+James
+
+Buyer_Agent_Name__c
+Buyer Agent Name
+string (255)
+James Duke
+
+Buyer_Agent_Phone__c
+Buyer Agent Phone
+string (255)
+9123359455
+
+Buyer_s_Agent__c
+Buyer's Agent
+Lead	
+(Blank)
+
+Buyer_s_Real_Estate_Agent__c
+Buyer's Real Estate Agent
+Contact	
+003Qo00000mIfR7IAK
+
+Cert_and_Auth_Received__c
+Cert and Auth Received?
+boolean, required
+false
+
+Channelc__c
+Channel
+string (255)
+Brokered
+
+CIC_Requests_Uploaded__c
+CIC Requests Uploaded?
+boolean, required
+false
+
+Clear_to_Close_Date__c
+Clear to Close Date
+date
+2026-03-12
+
+Closed_Check__c
+Closed Check
+double (18, 0), calculated
+1
+
+Closing_Calendar_Name__c
+Closing Calendar Name
+string (1300), calculated
+7000184826 - Pierce, 414 Lyman Dr (Purchase) | Michael Panek | $381868.3
+
+Closing_Date__c
+Closing Date
+date
+2026-03-13
+
+Closing_Disclosure_Send_Date__c
+Closing Disclosure Send Date
+date
+2026-03-09
+
+closingCostProgram__c
+Closing Cost Program
+string (255)
+(Blank)
+
+Co_Borrower__c
+Co-Borrower
+Contact	
+003Qo00001SXWv0IAH
+
+Co_Borrower_Branch_of_Service__c
+Co-Borrower Branch of Service
+string (255)
+(Blank)
+
+CoBorrowerAuthorizedCreditReportc__c
+CoBorrower Authorized Credit Report
+boolean, required
+false
+
+CoBorrowerCellc__c
+CoBorrower Cell
+phone (40)
+3602806395
+
+CoBorrowerDaysConsentc__c
+CoBorrower Days Consent
+string (255)
+(Blank)
+
+CoBorrowerdobc__c
+CoBorrower Birthday
+date
+1965-11-24
+
+CoBorrowerEmailc__c
+CoBorrower Email
+email (80)
+kkpierce2@hotmail.com
+
+CoBorrowerEquifaxc__c
+CoBorrower Equifax
+string (255)
+(Blank)
+
+CoBorrowerExperianFICOc__c
+CoBorrower Experian FICO
+string (255)
+(Blank)
+
+CoBorrowerFirstNamec__c
+CoBorrower First Name
+string (255)
+Kelli
+
+CoBorrowerHomePhonec__c
+CoBorrower Home Phone
+phone (40)
+(Blank)
+
+CoBorrowerLastNamec__c
+CoBorrower Last Name
+string (255)
+Pierce
+
+CoBorrowerMaritalStatusc__c
+CoBorrower Marital Status
+string (255)
+(Blank)
+
+CoBorrowerMinimumFICOc__c
+CoBorrower Minimum FICO
+string (255)
+(Blank)
+
+CoBorrowerMortgageServicec__c
+CoBorrower Mortgage Service
+boolean, required
+false
+
+CoBorrowerSSNc__c
+CoBorrower SSN
+string (255)
+(Blank)
+
+CoBorrowerTransactionPurposec__c
+CoBorrower Transaction Purpose
+string (255)
+(Blank)
+
+CoBorrowerTransUnionc__c
+CoBorrower TransUnion
+string (255)
+(Blank)
+
+COE_Indicator__c
+COE Indicator
+picklist (255), restricted
+(Blank)
+
+Combined_Loan_to_Value__c
+Combined Loan-to-Value
+percent (15, 3)
+1
+
+Compensation_Type__c
+Compensation Type
+picklist (255), restricted
+Lender Paid
+
+Completed_Income_Calculation__c
+Completed Income Calculation
+boolean, required
+false
+
+Condition_Due_Date__c
+Condition Due Date
+date, calculated
+2026-03-03
+
+Conditional_Approval_Date__c
+Conditional Approval Date
+date
+2026-02-24
+
+Conditional_Approval_Letter_Uploaded__c
+Conditional Approval Letter Uploaded?
+boolean, required
+false
+
+Correspondent_Eligible__c
+Correspondent Eligible?
+picklist (255), restricted
+(Blank)
+
+CreatedById
+Created By ID
+User	
+005Qo00000MJxHVIA1
+
+CreatedDate
+Created Date
+datetime, required
+2026-02-09T14:39:00.000+0000
+
+Credit_Approval_Date__c
+Credit Approval Date
+date
+2026-02-24
+
+Credit_Pull_Check__c
+Credit Pull Check
+double (18, 0), calculated
+1
+
+Credit_Reference_Number__c
+Credit Reference Number
+string (255)
+(Blank)
+
+Credit_Report_Invoice_Received__c
+Credit Report Invoice Received?
+boolean, required
+false
+
+Credit_Report_Received__c
+Credit Report Received?
+boolean, required
+false
+
+Credit_Score__c
+Credit Score
+double (18, 0)
+812
+
+Credit_Supplement_Fee__c
+Credit Supplement Fee
+currency (16, 2)
+(Blank)
+
+Cross_Object_Sync__c
+Cross-Object Sync?
+boolean, required
+false
+
+Current_Mortgage_Interest_Rate__c
+Current Mortgage Interest Rate
+double (15, 3)
+(Blank)
+
+Current_Residence_Details__c
+Current Residence Details
+string (255)
+(Blank)
+
+CUST01FV__c
+CUST01FV
+string (255)
+(Blank)
+
+Date_Address_Found__c
+Date Address Found
+date
+2026-02-18
+
+Date_Completed__c
+Date Completed
+date
+(Blank)
+
+Date_File_Started__c
+Date File Started
+date
+2026-01-19
+
+Date_of_Denial_Letter__c
+Date of Denial Letter
+date
+(Blank)
+
+Date_of_NOI_Letter__c
+Date of NOI Letter
+date
+(Blank)
+
+Date_of_Withdrawal_Letter__c
+Date of Withdrawal Letter?
+date
+(Blank)
+
+Date_Removed_from_Suspense__c
+Date Removed from Suspense
+date
+(Blank)
+
+Days_Since_Application_Date__c
+Days Since - Application Date
+double (18, 0), calculated
+(Blank)
+
+Days_since_Last_Credit_Pull__c
+Days since Last Credit Pull
+double (18, 0), calculated
+(Blank)
+
+Days_Since_Last_Finished_Milestone__c
+Days Since - Last Finished Milestone
+double (18, 0), calculated
+(Blank)
+
+Days_until_Closing_Date__c
+Days until Closing Date
+double (18, 0), calculated
+0
+
+Dead_Loan__c
+Dead Loan
+boolean, required, calculated
+false
+
+Denial_Letter_Sent__c
+Denial Letter Sent?
+boolean, required
+false
+
+Did_Client_Pay_EMD__c
+Did Client Pay EMD?
+boolean, required
+false
+
+Disclosures_Sent_Date__c
+Disclosures Sent Date
+date
+2026-02-18
+
+Does_Loan_Need_to_Be_Cancelled__c
+Does Loan Need to Be Cancelled?
+picklist (255), restricted
+(Blank)
+
+Does_Loan_Need_to_be_Duplicated__c
+Does Loan Need to be Duplicated?
+picklist (255), restricted
+(Blank)
+
+Does_the_Borrower_Have_a_HELOC__c
+Does the Borrower Have a HELOC?
+picklist (255), restricted
+(Blank)
+
+Does_the_Borrower_Have_Solar_Panels__c
+Does the Borrower Have Solar Panels?
+picklist (255), restricted
+(Blank)
+
+Does_the_Borrower_Pay_Land_or_Lot_Rent__c
+Does the Borrower Pay Land or Lot Rent?
+picklist (255), restricted
+(Blank)
+
+Encompass_Id__c
+Encompass Id
+string (255), external id, unique
+(Blank)
+
+Encompass_Is_Deleted__c
+Encompass Is Deleted
+boolean, required
+false
+
+Encompass_Lead_Sub_Source__c
+Encompass Lead Sub-Source
+string (255)
+(Blank)
+
+EstateHoldType__c
+Lender's Lien Type
+picklist (255), restricted
+(Blank)
+
+Estimated_Closing_Date__c
+Estimated Closing Date
+date
+2026-03-12
+
+Estimated_Days_To_Close__c
+Estimated Days To Close
+double (18, 0), calculated
+22
+
+Expected_Discount_Rebate_Dollars__c
+Expected Discount / Rebate - Dollars
+double (16, 2)
+(Blank)
+
+Expected_Discount_Rebate_Points__c
+Expected Discount / Rebate - Points
+double (15, 3)
+(Blank)
+
+External_System_Sync__c
+External System Sync
+boolean, required
+false
+
+ExternalBorrowerID__c
+External Borrower ID
+string (255), unique
+(Blank)
+
+ExternalCoBorrowerID__c
+External CoBorrower ID
+string (255), unique
+(Blank)
+
+Final_CD_Uploaded__c
+Final CD Uploaded?
+boolean, required
+false
+
+Final_Processor__c
+Final Processor
+string (255)
+(Blank)
+
+Final_Processor_Check__c
+Final Processor Check
+boolean, required
+false
+
+Final_Processor_First_Touch_Date_Time__c
+Final Processor First Touch Date/Time
+datetime
+(Blank)
+
+Finance_the_Funding_Fee__c
+Finance the Funding Fee?
+picklist (255), restricted
+(Blank)
+
+Finding_UFMIP_Indicator__c
+Finding UFMIP Indicator
+picklist (255), restricted
+(Blank)
+
+First_Time_Homebuyer__c
+First-Time Homebuyer?
+boolean, required
+false
+
+For_How_Long_Should_the_Rate_Be_Locked__c
+For How Long Should the Rate Be Locked?
+string (255)
+(Blank)
+
+Found_Address_for_Pre_Qual__c
+Found Address for Pre-Qual
+picklist (255), restricted
+(Blank)
+
+Foundation_within_12_Months_Indicator__c
+Foundation within 12 Months Indicator
+picklist (255), restricted
+(Blank)
+
+Frequency_of_Tax_Payment__c
+Frequency of Tax Payment
+string (255)
+(Blank)
+
+Fresh_Start_Indicator__c
+Fresh Start Indicator
+string (255)
+(Blank)
+
+Funded_Date__c
+Funded Date
+date
+2026-03-13
+
+Funded_Helper_Value__c
+Funded Helper Value
+double (18, 0), calculated
+1
+
+Hard_Credit_Pull_Request_Status__c
+Hard Credit Pull Request Status
+picklist (255), restricted
+Not Requested
+
+Has_Borrower_Paid_Earnest_Money_Deposit__c
+Has Borrower Paid Earnest Money Deposit?
+picklist (255), restricted
+(Blank)
+
+HasCoborrowerc__c
+Has_Coborrower__c
+boolean, required
+true
+
+HasOtherLoanFeature__c
+Other Loan Feature
+boolean, required
+false
+
+HasPrepaymentPenalty__c
+Penalty for Prepayment
+boolean, required
+false
+
+HELOC_Initial_Draw_Amount__c
+HELOC Initial Draw Amount
+double (16, 2)
+(Blank)
+
+High_Credit_Loan_to_Value__c
+High Credit Loan-to-Value
+percent (15, 3)
+(Blank)
+
+HUD_Plate_Indicator__c
+HUD Plate Indicator
+picklist (255), restricted
+(Blank)
+
+Id
+Record ID
+id (18), required
+a1HQo00000DVHY9MAP
+
+ImprovementCost__c
+Cost of Construction or Improvement
+currency (16, 2)
+(Blank)
+
+Income_Assets_Verified__c
+Income & Assets Verified
+boolean, required
+false
+
+Income_Verified_by_Investor__c
+Income Verified by Investor
+boolean, required
+false
+
+Initial_CD_Reminder_Date__c
+Initial CD Reminder Date
+date
+(Blank)
+
+Initial_CD_Signature_Date__c
+Initial CD Signature Date
+date
+2026-03-09
+
+Initial_CD_Uploaded__c
+Initial CD Uploaded?
+boolean, required
+false
+
+Initial_Credit_Pull_Date__c
+Initial Credit Pull Date
+date
+(Blank)
+
+Initial_Loan_Estimate_Received__c
+Initial Loan Estimate Received?
+boolean, required
+false
+
+Initial_Post_Funding_Review_Completed__c
+Initial Post-Funding Review Completed
+boolean, required
+true
+
+Initial_Processor__c
+Initial Processor
+string (255)
+(Blank)
+
+Initial_Processor_Assignment_Date__c
+Initial Processor Assignment Date
+date
+(Blank)
+
+Initial_Processor_Check__c
+Initial Processor Check
+boolean, required
+false
+
+Initial_Processor_First_Touch_Date__c
+Initial Processor First Touch Date
+date
+(Blank)
+
+InitialBuydownRate__c
+Initial Buydown Rate
+double (15, 3)
+(Blank)
+
+Inspection_Based_Waiver_Indicator__c
+Inspection Based Waiver Indicator
+picklist (255), restricted
+(Blank)
+
+Insurance_Cleared_by_Investor__c
+Insurance Cleared by Investor
+boolean, required
+false
+
+Intent_to_Proceed_Received__c
+Intent to Proceed Received?
+boolean, required
+false
+
+InterestRate__c
+Interest Rate
+double (15, 3)
+5.25
+
+Internal_MLO__c
+Internal MLO
+Contact	
+(Blank)
+
+Internal_MLO_Email__c
+Internal MLO Email
+email (80)
+(Blank)
+
+Internal_MLO_Name__c
+Internal MLO Name
+string (255)
+(Blank)
+
+IntOnlyTermMonthCount__c
+Interest-Only Term Months
+double (18, 0)
+(Blank)
+
+IPAC_Notes_Additional_Income__c
+IPAC Notes Additional Income
+textarea (1000)
+(Blank)
+
+IPAC_Notes_Credit_Profile__c
+IPAC Notes Credit Profile
+textarea (1000)
+(Blank)
+
+IPAC_Notes_Qualifying_Income__c
+IPAC Notes Qualifying Income
+textarea (1000)
+(Blank)
+
+IPAC_Notes_Subject_Property__c
+IPAC Notes Subject Property
+textarea (1000)
+(Blank)
+
+Is_Loan_New_Construction__c
+Is Loan New Construction?
+picklist (255), restricted
+(Blank)
+
+Is_Property_Manufactured_Housing__c
+Is Property Manufactured Housing?
+boolean, required
+false
+
+Is_the_Property_a_Leasehold__c
+Is the Property a Leasehold?
+picklist (255), restricted
+(Blank)
+
+Is_There_a_Property_Contingency__c
+Is There a Property Contingency?
+picklist (255), restricted
+(Blank)
+
+IsBalloon__c
+Balloon
+boolean, required
+false
+
+IsBorrowerCommPropState__c
+Borrower Lives in Community Property Sta
+boolean, required
+false
+
+IsConstructionConversion__c
+Construction-Conversion or Construction-
+boolean, required
+false
+
+IsContractConversion__c
+Conversion of Contract for Deed or Land
+boolean, required
+false
+
+IsDeleted
+Deleted
+boolean, required
+false
+
+IsEnergyRelImprovement__c
+Energy-Related Improvement
+boolean, required
+false
+
+IsInterestOnly__c
+Interest Only
+boolean, required
+false
+
+IsNegativeAmortization__c
+Allows Negative Amortization
+boolean, required
+false
+
+IsPropertyCommPropState__c
+Property in Community Property State
+boolean, required
+false
+
+IsRenovation__c
+Renovation
+boolean, required
+false
+
+IsSingleClosing__c
+Single Closing
+boolean, required
+false
+
+IsSubjectToPriorityLien__c
+Subject to Priority Lien
+boolean, required
+false
+
+IsTempIntRateBuydown__c
+Temporary Interest Rate Buydown
+boolean, required
+false
+
+Last_Activity_Date_Time__c
+Last Activity Date/Time
+datetime, calculated
+2026-02-20T19:19:14.000+0000
+
+Last_Call_Date_Time__c
+Last Call Date/Time
+datetime
+(Blank)
+
+Last_Call_Date_Time_Client_Ambassador__c
+Last Call Date/Time - Client Ambassador
+datetime
+(Blank)
+
+Last_Call_Date_Time_Contact_Owner__c
+Last Call Date/Time - Contact Owner
+datetime, calculated
+2026-02-03T22:04:44.000+0000
+
+Last_Credit_Pull_Date__c
+Last Credit Pull Date
+date
+(Blank)
+
+Last_Finished_Date__c
+Last Finished Date
+date
+(Blank)
+
+Last_Finished_Milestone_Date__c
+Last Finished Milestone Date
+date
+(Blank)
+
+Last_SMS_Date_Time__c
+Last SMS Date/Time
+datetime
+(Blank)
+
+Last_Task_Date_Time__c
+Last Task Date/Time
+datetime
+2026-02-20T19:19:14.000+0000
+
+LastActivityDate
+Last Activity Date
+date
+2026-03-03
+
+LastModifiedById
+Last Modified By ID
+User	
+005Qo00000MJxHVIA1
+
+LastModifiedDate
+Last Modified Date
+datetime, required
+2026-04-13T12:18:41.000+0000
+
+LastReferencedDate
+Last Referenced Date
+datetime
+2026-04-13T17:45:59.000+0000
+
+LastViewedDate
+Last Viewed Date
+datetime
+2026-04-13T17:45:59.000+0000
+
+LBI_Eligibility_Check__c
+LBI Eligibility Check
+boolean, required, calculated
+true
+
+LBI_Eligible__c
+LBI Eligible
+string (2)
+(Blank)
+
+LE_with_Rate_Lock_Uploaded__c
+LE with Rate Lock Uploaded?
+boolean, required
+false
+
+Lead_Cost__c
+Lead Cost
+currency (16, 2), calculated
+0
+
+Lead_Create_Date__c
+Lead Create Date
+date, calculated
+(Blank)
+
+Lead_Origin__c
+Lead Origin
+string (1300), calculated
+(Blank)
+
+Lead_Source__c
+Lead Source
+string (1300), calculated
+Self Gen
+
+Lead_Sub_Source__c
+Lead Sub-Source
+string (1300), calculated
+Real Estate Agent
+
+LeaseHoldExpirationDate__c
+Leasehold Expiration
+datetime
+(Blank)
+
+Lender_Loan_Number_Date__c
+Lender Loan Number Date
+date
+2026-02-18
+
+Lender_Name__c
+Lender Name
+string (255)
+Kind Lending
+
+Lien_Position__c
+Lien Position
+string (255)
+FirstLien
+
+Lien_Position_Number__c
+Lien Position Number
+string (255)
+1
+
+Listed_Revenue__c
+Listed Revenue
+currency (16, 2)
+9528.88
+
+Loan_Amount__c
+Loan Amount
+currency (16, 2)
+381868.3
+
+Loan_Cancellation_Approved__c
+Loan Cancellation Approved?
+boolean, required
+false
+
+Loan_Cancellation_Category__c
+Loan Cancellation Category
+picklist (255), restricted
+(Blank)
+
+Loan_Cancellation_Request_Date__c
+Loan Cancellation Request Date
+date
+(Blank)
+
+Loan_Folder__c
+Loan Folder
+string (255)
+(Blank)
+
+Loan_Folder_Name__c
+Loan Folder Name
+string (255)
+(Blank)
+
+Loan_Has_Appraisal_Contingency__c
+Loan Has Appraisal Contingency
+boolean, required
+false
+
+Loan_Has_Approval_Contingency__c
+Loan Has Approval Contingency
+boolean, required
+false
+
+Loan_Identity__c
+Loan Identity
+string (255)
+(Blank)
+
+Loan_Number__c
+Loan Number
+string (255), external id
+7000184826
+
+Loan_Officer__c
+Loan Officer
+string (255)
+Michael Panek
+
+Loan_Officer_Assistant_Email__c
+Loan Officer Assistant Email
+email (80)
+(Blank)
+
+Loan_Officer_Email__c
+Loan Officer Email
+email (80)
+michael.panek@onerealmortgage.com
+
+Loan_Originator__c
+Loan Originator
+Contact	
+0035w00003dOJO8AAO
+
+Loan_Originator_NMLS__c
+Loan Originator NMLS
+string (1300), calculated
+1037788
+
+Loan_Priority__c
+Loan Priority
+double (18, 0), calculated
+100
+
+Loan_Processor__c
+Loan Processor
+Contact	
+003Qo00001TUr8mIAD
+
+Loan_Processor_Email_Signature__c
+Loan Processor Email Signature
+textarea (32768), html
+<a href="https://hihello.com/p/ff3ecc7a-2cca-49af-84cd-4de9223a379f?referer=email_signature&amp;source=manual" target="_blank"><img alt="This is Nicole Szyperski&#39;s card. Their email is nicole.szyperski@onerealmortgage.com. Their phone number is +1 949 669 5739. Their phone number is +1 732 203 5275." src="https://cdn.hihello.me/cards/ff3ecc7a-2cca-49af-84cd-4de9223a379f/signature_imagelogo.png?generated=1776074920299" style="width: 360px;"></img></a>
+
+Loan_Processor_Name__c
+Loan Processor Name
+string (1300), calculated
+Nicole Szyperski
+
+Loan_Product__c
+Loan Product
+string (255)
+VA
+
+Loan_Promotion_Name__c
+Loan Promotion Name
+string (255)
+(Blank)
+
+Loan_Purpose_Additional_Details__c
+Loan Purpose Additional Details
+string (255)
+(Blank)
+
+Loan_Qualifies_for_Appraisal_Waiver__c
+Loan Qualifies for Appraisal Waiver
+picklist (255), restricted
+(Blank)
+
+Loan_Ready_to_Register__c
+Loan Ready to Register?
+boolean, required
+false
+
+Loan_Source__c
+Loan Source
+string (255)
+(Blank)
+
+Loan_Started_as_Pre_Qual_or_VAL__c
+Loan Started as Pre-Qual or VAL?
+picklist (255), restricted
+(Blank)
+
+Loan_Term_Months__c
+Loan Term Months
+double (18, 0)
+360
+
+Loan_Terms_Completion_Date_Time__c
+Loan Terms Completion Date/Time
+datetime
+(Blank)
+
+Loan_Terms_Received__c
+Loan Terms Received?
+boolean, required
+false
+
+Loan_to_Value__c
+Loan-to-Value
+percent (15, 3)
+1
+
+Loan_Withdrawal_Reasons__c
+Loan Withdrawal Reasons
+textarea (32768)
+(Blank)
+
+loanAmortizationType__c
+Amortization Type
+picklist (255)
+Fixed Rate
+
+LoanPurpose__c
+Loan Purpose
+picklist (255)
+Purchase
+
+LoanSubStatus__c
+Loan Sub-Status
+string (255)
+Loan has been funded
+
+LoanSubStatusDate__c
+Loan Sub-Status Date
+date
+2026-03-13
+
+Lock_at_Registration_Indicator__c
+Lock at Registration Indicator
+picklist (255), restricted
+(Blank)
+
+Lock_Confirmation_Received__c
+Lock Confirmation Received?
+boolean, required
+false
+
+Lock_Date__c
+Lock Date
+date
+2026-02-18
+
+Lock_Expiration_Date__c
+Lock Expiration Date
+date
+2026-03-20
+
+Lock_Status__c
+Lock Status
+string (255)
+Expired
+
+LOS_ID__c
+LOS ID
+string (255), external id, unique
+(Blank)
+
+LotAcquiredDate__c
+Date Acquired
+datetime
+(Blank)
+
+LotOriginalCost__c
+Original Cost
+currency (16, 2)
+(Blank)
+
+lt_Funded_Loan_Program__c
+Funded Loan Program
+double (18, 0), calculated
+(Blank)
+
+lt_Funded_Loan_Purpose__c
+Funded Loan Purpose
+double (18, 0), calculated
+1
+
+lt_Funded_LTV__c
+Funded LTV
+double (18, 0), calculated
+1
+
+lt_Funded_Product_Type__c
+Funded Product Type
+double (18, 0), calculated
+1
+
+lt_Funded_Tier__c
+Funded Tier
+double (18, 0), calculated
+3
+
+lt_Funding_Mortgage_Type__c
+Funding Mortgage Type
+double (18, 0), calculated
+3
+
+Manager_Post_Funding_Review_Completed__c
+Manager Post-Funding Review Completed
+boolean, required
+true
+
+Milestone_Achieved__c
+Milestone Achieved?
+boolean, required
+false
+
+milestoneCurrentName__c
+Current Milestone
+picklist (255)
+Funded
+
+MLO_1003_Signature_Date__c
+MLO 1003 Signature Date
+date
+(Blank)
+
+Monthly_Childcare_Expenses__c
+Monthly Childcare Expenses
+double (16, 2)
+(Blank)
+
+MonthsBeforeFirstAdj__c
+Initial Period Prior to First Adjustment
+double (18, 0)
+(Blank)
+
+MonthsBetweenAdjustments__c
+Subsequent Adjustment Period in months
+double (18, 0)
+(Blank)
+
+Mortgage_Central_Application__c
+Mortgage Central Application
+boolean, required
+true
+
+Mortgage_Insurance_Preference__c
+Mortgage Insurance Preference
+string (255)
+(Blank)
+
+Mortgage_Note_Uploaded__c
+Mortgage Note Uploaded?
+boolean, required
+false
+
+MortgageLienType__c
+Mortgage Lien Type
+picklist (255)
+(Blank)
+
+MortgageProgramType__c
+Mortgage Program Type
+picklist (255)
+(Blank)
+
+Multiple_Properties_Owned_Indicator__c
+Multiple Properties Owned Indicator
+picklist (255), restricted
+(Blank)
+
+Name
+Residential Loan Application ID
+string (80), auto number, required
+RLA-45966
+
+Name__c
+Name
+string (255)
+(Blank)
+
+NativeLandTenure__c
+Indian Country Land Tenure
+picklist (255)
+(Blank)
+
+Next_Expected_Milestone__c
+Next Expected Milestone
+string (255)
+(Blank)
+
+Next_Expected_Milestone_Date__c
+Next Expected Milestone Date
+date
+(Blank)
+
+NOI_Sent__c
+NOI Sent?
+boolean, required
+false
+
+Non_Borrowing_Spouse_Date_of_Birth__c
+Non-Borrowing Spouse Date of Birth
+date
+(Blank)
+
+Non_Borrowing_Spouse_Email_Address__c
+Non-Borrowing Spouse Email Address
+email (80)
+(Blank)
+
+Non_Borrowing_Spouse_Full_Name__c
+Non-Borrowing Spouse Full Name
+string (255)
+(Blank)
+
+Non_Borrowing_Spouse_Phone_Number__c
+Non-Borrowing Spouse Phone Number
+phone (40)
+(Blank)
+
+Non_Borrowing_Spouse_SSN__c
+Non-Borrowing Spouse SSN
+string (11)
+(Blank)
+
+Notice_of_Incompleteness_Sent_Date__c
+Notice of Incompleteness Sent Date
+date
+(Blank)
+
+Number_of_People_Living_in_the_Home__c
+Number of People Living in the Home
+double (18, 0)
+(Blank)
+
+Number_of_Sections_in_the_Home__c
+Number of Sections in the Home
+double (18, 0)
+(Blank)
+
+Occupancy_Type__c
+Occupancy Type
+picklist (255)
+Primary
+
+of_Related_Loan_Applications__c
+# of Related Loan Applications
+double (18, 0)
+0
+
+Operations_Review_of_Loan_Completed__c
+Operations Review of Loan Completed?
+picklist (255)
+(Blank)
+
+Opportunity_Stage_Name__c
+Opportunity Stage Name
+string (1300), calculated
+Funded
+
+Ordered_Condo_Documents__c
+Ordered Condo Documents?
+boolean, required
+false
+
+Ordered_Payoff__c
+Ordered Payoff?
+boolean, required
+false
+
+OtherAmortizationType__c
+Other Amortization Type Description
+string (255)
+(Blank)
+
+OtherLoanFeature__c
+Other Loan Feature Description
+string (255)
+(Blank)
+
+OtherLoanPurpose__c
+Other Loan Purpose
+string (255)
+(Blank)
+
+OtherMortgageProgramType__c
+Other Mortgage Program Type Description
+string (255)
+(Blank)
+
+OtherRefinanceProgType__c
+Other Refinance Program Type
+string (255)
+(Blank)
+
+OwnerId
+Owner ID
+User	
+005Qo00000BBZgsIAH
+
+Party_Responsible_for_Childcare__c
+Party Responsible for Childcare
+string (255)
+(Blank)
+
+Pending_Sale_Proceeds_Indicator__c
+Pending Sale Proceeds Indicator
+picklist (255), restricted
+(Blank)
+
+PipelineId__c
+Opportunity
+Opportunity	
+006Qo00001DiWvSIAV
+
+POD_Leader__c
+POD Leader
+string (1300), calculated
+Dylan Harlacker
+
+Power_of_Attorney_Indicator__c
+Power of Attorney Indicator
+picklist (255), restricted
+(Blank)
+
+Pre_Approval_Date__c
+Pre-Approval Date
+date
+2026-02-11
+
+PrepayPenaltyTermMonth__c
+Prepayment Penalty Term Months
+double (18, 0)
+(Blank)
+
+Previous_Encompass_ID__c
+Previous Encompass ID
+string (255)
+(Blank)
+
+Previous_VA_Benefits_Indicator__c
+Previous VA Benefits Indicator
+picklist (255), restricted
+(Blank)
+
+Primary_Residence_Square_Footage__c
+Primary Residence Square Footage
+double (16, 2)
+(Blank)
+
+Privacy_Policy_Sent__c
+Privacy Policy Sent?
+boolean, required
+false
+
+Privacy_Policy_Sent_Date__c
+Privacy Policy Sent Date
+date
+(Blank)
+
+Processor_Email__c
+Processor Email
+string (255)
+nicole.szyperski@onerealmortgage.com
+
+ProjectType__c
+Project Type
+picklist (255)
+(Blank)
+
+Property_Address__c
+Property Address
+textarea (255)
+414 Lyman Dr
+
+Property_City__c
+Property City
+string (255)
+Fayetteville
+
+Property_Full_Address__c
+Property Full Address
+string (1300), html, calculated
+414 Lyman Dr<br>Fayetteville, NC 28312
+
+Property_Review_Type__c
+Property Review Type
+string (255)
+(Blank)
+
+Property_State__c
+Property State
+string (255)
+NC
+
+Property_Type__c
+Property Type
+string (255)
+1 Unit
+
+Property_Value__c
+Property Value
+currency (18, 0)
+394900
+
+Property_Zip_Code__c
+Property Zip Code
+string (255)
+28312
+
+Proposed_Payment_First_Mortgage__c
+Proposed Payment First Mortgage
+double (16, 2)
+2180.65
+
+Proposed_Payment_HOA_Dues__c
+Proposed Payment HOA Dues
+string (255)
+8.33
+
+Proposed_Payment_Homeowners_Insurance__c
+Proposed Payment Homeowners Insurance
+string (255)
+82.67
+
+Proposed_Payment_Mortgage_Insurance__c
+Proposed Payment Mortgage Insurance
+string (255)
+0.0
+
+Proposed_Payment_Other_Expenses__c
+Proposed Payment Other Expenses
+double (16, 2)
+0
+
+Proposed_Payment_Property_Taxes__c
+Proposed Payment Property Taxes
+string (255)
+326.42
+
+Proposed_Payment_Subordinate_Lien__c
+Proposed Payment Subordinate Lien
+double (16, 2)
+(Blank)
+
+Proposed_Supplemental_Insurance__c
+Proposed Supplemental Insurance
+double (16, 2)
+(Blank)
+
+Purchase_Contract_Date__c
+Purchase Contract Date
+date
+2026-02-16
+
+Push_reZEN_Update__c
+Push reZEN Update
+boolean, required
+false
+
+Push_Team_Member_Update__c
+Push Team Member Update?
+boolean, required
+false
+
+Qualifying_Credit_Score__c
+Qualifying Credit Score
+double (18, 0)
+(Blank)
+
+Qualifying_Rate__c
+Qualifying Rate
+double (15, 3)
+(Blank)
+
+Ran_AML__c
+Ran AML
+boolean, required
+false
+
+Rate_Lock_Confirmation_Uploaded__c
+Rate Lock Confirmation Uploaded
+boolean, required
+false
+
+Rate_Lock_Days__c
+Rate Lock # Days
+double (18, 0)
+(Blank)
+
+Rate_Quote_Provided_to_Borrower__c
+Rate Quote Provided to Borrower
+string (255)
+(Blank)
+
+Ready_to_Register_Date__c
+Ready to Register Date
+date
+2026-02-18
+
+Ready_to_Submit_Date__c
+Ready to Submit Date
+date
+2026-02-19
+
+Real_Property_Indicator__c
+Real Property Indicator
+picklist (255), restricted
+(Blank)
+
+Reason_for_Loan_Cancellation__c
+Reason for Loan Cancellation
+string (255)
+(Blank)
+
+Received_Real_Fast_14_Form__c
+Received Real Fast 14 Form?
+boolean, required
+false
+
+Refinance_Purpose__c
+Refinance Purpose
+string (255)
+(Blank)
+
+RefinanceProgramType__c
+Refinance Program Type
+picklist (255)
+(Blank)
+
+RefinanceType__c
+Refinance Type
+picklist (255), restricted
+(Blank)
+
+RefreshAssets__c
+Refresh Assets
+boolean, required
+false
+
+RefreshEmployment__c
+Refresh Employment
+boolean, required
+false
+
+RefreshLiabilities__c
+Refresh Liabilities
+boolean, required
+false
+
+RefreshResidence__c
+Refresh Residence
+boolean, required
+false
+
+Registered_Helper_Value__c
+Registered Helper Value
+double (18, 0), calculated
+1
+
+Registration_Date__c
+Registration Date
+date
+2026-02-18
+
+Registration_Team_Member__c
+Registration Team Member
+Contact	
+(Blank)
+
+Registration_Type__c
+Registration Type
+string (255)
+(Blank)
+
+Related_SLA__c
+Related SLA
+StagedLoanApplication__c	
+(Blank)
+
+Relationship_between_Borrowers__c
+Relationship between Borrowers
+string (255)
+(Blank)
+
+Reported_Approval_Date__c
+Reported Approval Date
+date, calculated
+2026-02-24
+
+Reported_Closing_Date__c
+Reported Closing Date
+date, calculated
+2026-03-13
+
+Request_Encompass_3_4_File__c
+Request Encompass 3.4 File
+boolean, required
+false
+
+Requested_Update_to_Mortgagee_Clause__c
+Requested Update to Mortgagee Clause?
+boolean, required
+false
+
+requestedInterestRatePercent__c
+Note Rate
+double (15, 3)
+(Blank)
+
+Residents_Under_12_Years__c
+Residents Under 12 Years
+double (18, 0)
+(Blank)
+
+Resubmitted_Date__c
+Resubmitted Date
+date
+(Blank)
+
+ReZEN_Milestone__c
+ReZEN Milestone
+string (255)
+FUNDING
+
+Seller_Agent_Company__c
+Seller Agent Company
+string (255)
+Coldwell Banker Advantage-Fayetteville
+
+Seller_Agent_Email__c
+Seller Agent Email
+string (255)
+teamthompsonnc@gmail.com
+
+Seller_Agent_Name__c
+Seller Agent Name
+string (255)
+Danny and dawn Thompson
+
+Seller_Agent_Phone__c
+Seller Agent Phone
+string (255)
+9106442342
+
+Seller_Credit_Amount__c
+Seller Credit Amount
+double (16, 2)
+(Blank)
+
+Seller_s_Real_Estate_Agent__c
+Seller's Real Estate Agent
+Contact	
+(Blank)
+
+Sellers_Agent__c
+Seller's Agent
+Lead	
+(Blank)
+
+Sent_Application_Registered__c
+Sent: Application Registered?
+boolean, required
+false
+
+Sent_Conditionally_Approved__c
+Sent: Conditionally Approved?
+boolean, required
+false
+
+Sent_Credit_Card_Authorization__c
+Sent Credit Card Authorization
+boolean, required
+false
+
+Sent_Insurance_Introduction_Email__c
+Sent Insurance Introduction Email?
+boolean, required
+false
+
+Sent_Notification_Application_Received__c
+Sent Notification: Application Received?
+boolean, required
+false
+
+Sent_Notification_Application_Submitted__c
+Sent Notification: Application Submitted
+boolean, required
+false
+
+Sent_Notification_Appraisal_Ordered__c
+Sent Notification: Appraisal Ordered?
+boolean, required
+false
+
+Sent_Notification_Appraisal_Received__c
+Sent Notification: Appraisal Received?
+boolean, required
+false
+
+Sent_Notification_CD_Sent__c
+Sent Notification: CD Sent?
+boolean, required
+false
+
+Sent_Notification_Clear_to_Close__c
+Sent Notification: Clear to Close?
+boolean, required
+false
+
+Sent_Notification_Post_Closing__c
+Sent Notification: Post-Closing?
+boolean, required
+false
+
+Sent_Ops_EmailAddress_Found__c
+Sent Ops Email: Address Found
+boolean, required
+false
+
+Sent_Ops_EmailFunded__c
+Sent Ops Email: Funded
+boolean, required
+false
+
+Sent_Ops_EmailReady_to_Register__c
+Sent Ops Email: Ready to Register
+boolean, required
+false
+
+Sent_Ops_EmailRegistered__c
+Sent Ops Email: Registered
+boolean, required
+true
+
+Sent_Ops_EmailSubmitted__c
+Sent Ops Email: Submitted
+boolean, required
+false
+
+Sent_Real_Fast_14_Form__c
+Sent Real Fast 14 Form?
+boolean, required
+false
+
+Sent_South_Carolina_Disclosures__c
+Sent South Carolina Disclosures?
+boolean, required
+false
+
+Settlement_Case_Number__c
+Settlement Case Number
+string (255)
+(Blank)
+
+Should_Operations_Order_the_Appraisal__c
+Should Operations Order the Appraisal?
+picklist (255), restricted
+(Blank)
+
+Signed_ADP_Received__c
+Signed ADP Received?
+boolean, required
+false
+
+Signed_Final_1003_Uploaded__c
+Signed Final 1003 Uploaded?
+boolean, required
+false
+
+Signed_Final_Disclosures_Uploaded__c
+Signed Final Disclosures Uploaded?
+boolean, required
+false
+
+Signed_Initial_1003_Received__c
+Signed Initial 1003 Received?
+boolean, required
+false
+
+Signed_Initial_Disclosures_Received__c
+Signed Initial Disclosures Received?
+boolean, required
+false
+
+SimpleNexus_GUID__c
+SimpleNexus GUID
+string (255), case sensitive, external id, unique
+(Blank)
+
+SLA_GUID__c
+SLA GUID
+string (255)
+(Blank)
+
+Sonar_GUID__c
+Sonar GUID
+string (255)
+OR010536-01_11051
+
+SonarLoanID__c
+Sonar Loan ID
+string (255), external id, unique
+11051
+
+Started_Helper_Value__c
+Started Helper Value
+double (18, 0), calculated
+1
+
+Status__c
+Last Finished Milestone
+picklist (255)
+Closed
+
+Status_Date__c
+Status Date
+date
+(Blank)
+
+Subject_Property_Appraised_Value__c
+Subject Property Appraised Value
+double (18, 0)
+(Blank)
+
+Subject_Property_Co_Op__c
+Subject Property Co-Op
+boolean, required
+false
+
+Subject_Property_Condo__c
+Subject Property Condo
+boolean, required
+false
+
+Subject_Property_Construction_Type__c
+Subject Property Construction Type
+string (255)
+(Blank)
+
+Subject_Property_County__c
+Subject Property County
+string (255)
+Cumberland
+
+Subject_Property_Current_Title__c
+Subject Property Current Title
+string (255)
+(Blank)
+
+Subject_Property_Down_Payment_Amount__c
+Subject Property Down Payment Amount
+double (16, 2)
+(Blank)
+
+Subject_Property_Down_Payment_Percentage__c
+Subject Property Down Payment Percentage
+double (15, 3)
+(Blank)
+
+Subject_Property_Gross_Rental_Income__c
+Subject Property Gross Rental Income
+double (16, 2)
+(Blank)
+
+Subject_Property_Not_in_Project__c
+Subject Property Not in Project
+boolean, required
+false
+
+Subject_Property_Number_of_Units__c
+Subject Property Number of Units
+double (18, 0)
+1
+
+Subject_Property_Occupancy_Percentage__c
+Subject Property Occupancy Percentage
+double (15, 3)
+(Blank)
+
+Subject_Property_PUD__c
+Subject Property PUD
+boolean, required
+false
+
+Subject_Property_Purchase_Price__c
+Subject Property Purchase Price
+double (16, 2)
+394900
+
+Subject_Property_Type__c
+Subject Property Type
+string (255)
+(Blank)
+
+Subject_Property_Unit_Number__c
+Subject Property Unit Number
+string (255)
+(Blank)
+
+Subject_Property_Unit_Type__c
+Subject Property Unit Type
+string (255)
+(Blank)
+
+Submission_Date__c
+Submission Date
+date
+2026-02-19
+
+Submitted_Check__c
+Submitted Check
+double (18, 0), calculated
+1
+
+Submitted_Helper_Value__c
+Submitted Helper Value
+double (18, 0), calculated
+1
+
+Subordinate_Financing_Amount__c
+Subordinate Financing Amount
+double (16, 2)
+(Blank)
+
+Suspended_Date__c
+Suspended Date
+date
+(Blank)
+
+SystemModstamp
+System Modstamp
+datetime, required
+2026-04-13T12:18:41.000+0000
+
+SystemTranslation__c
+System Translation
+string (255)
+(Blank)
+
+Team_Member_Requesting_Cancellation__c
+Team Member Requesting Cancellation
+string (255)
+(Blank)
+
+Time_Zone__c
+Time Zone
+string (1300), calculated
+EST
+
+Title_Cleared_by_Investor__c
+Title Cleared by Investor
+boolean, required
+false
+
+Title_Company_Email_Address__c
+Title Company Email Address
+email (80)
+pinkteam@lakhianilaw.com
+
+Title_Company_File_Number__c
+Title Company File Number
+string (255)
+2026-ORCS-NC-224
+
+Title_Company_Name__c
+Title Company Name
+string (255)
+Single Source Real Estate Services Inc.
+
+Title_Currently_Held_By_Whom__c
+Title Currently Held By Whom?
+string (255)
+(Blank)
+
+Title_Documents_Uploaded__c
+Title Documents Uploaded?
+boolean, required
+false
+
+Title_Order_Date__c
+Title Order Date
+date
+2026-02-19
+
+Title_Order_Placed__c
+Title Order Placed?
+boolean, required
+false
+
+TitleType__c
+Title Hold Method
+picklist (255)
+(Blank)
+
+Top_End_Debt_to_Income__c
+Top-End Debt-to-Income
+percent (15, 3)
+0.265128
+
+Total_Living_Expenses__c
+Total Living Expenses
+double (16, 2)
+(Blank)
+
+Total_Loan_Amount__c
+Total Loan Amount
+currency (16, 2)
+394900
+
+Total_Proposed_Monthly_Payment__c
+Total Proposed Monthly Payment
+double (16, 2)
+2598.07
+
+TotalFinancialAssetAmount__c
+Total Financial Assets
+currency (16, 2)
+(Blank)
+
+TotalFinLiabilityMonthlyAmt__c
+Total Monthly Financial Liabilities
+currency (16, 2)
+(Blank)
+
+TotalOtherAssetAmount__c
+Total Other Assets
+currency (16, 2)
+(Blank)
+
+TotalOtherFinLiabilityMonthlyAmt__c
+Total Monthly Other Liabilities
+currency (16, 2)
+(Blank)
+
+Transaction_Coordinator_Company_Name__c
+Transaction Coordinator - Company Name
+string (255)
+(Blank)
+
+Transaction_Coordinator_Contact_Name__c
+Transaction Coordinator - Contact Name
+string (255)
+(Blank)
+
+Transaction_Coordinator_Email_Address__c
+Transaction Coordinator - Email Address
+email (80)
+(Blank)
+
+Transaction_Coordinator_Phone_Number__c
+Transaction Coordinator - Phone Number
+phone (40)
+(Blank)
+
+TrustTitleType__c
+Title Held in Trust
+picklist (255)
+(Blank)
+
+Using_Inspection_Based_Waiver__c
+Using Inspection-Based Waiver
+boolean, required
+false
+
+VA_Character_of_Discharge__c
+VA Character of Discharge
+string (255)
+(Blank)
+
+Validated_NB_Spouse_Information__c
+Validated NB Spouse Information?
+boolean, required
+false
+
+Veteran_Served_6_Years_Indicator__c
+Veteran Served 6 Years Indicator
+picklist (255), restricted
+(Blank)
+
+Viewer_Is_Record_Owner__c
+Viewer Is Record Owner?
+boolean, required, calculated
+false
+
+Waive_Escrows__c
+Waive Escrows?
+string (255)
+(Blank)
+
+Waive_the_Underwriting_Fee__c
+Waive the Underwriting Fee?
+picklist (255), restricted
+(Blank)
+
+Was_the_Veteran_Injured_on_Duty__c
+Was the Veteran Injured on Duty?
+picklist (255), restricted
+(Blank)
+
+Which_Escrows_Should_Be_Included__c
+Which Escrows Should Be Included?
+string (255)
+(Blank)
+
+Will_Liabilities_on_Credit_Be_Paid_Off__c
+Will Liabilities on Credit Be Paid Off?
+string (255)
+(Blank)
+
+Will_the_HELOC_Be_Subordinated__c
+Will the HELOC Be Subordinated?
+string (255)
+(Blank)
+
+Will_the_Solar_Panels_Be_Subordinated__c
+Will the Solar Panels Be Subordinated?
+string (255)
+(Blank)
+
+Wire_Check_Amount_Received__c
+Wire/Check Amount Received
+currency (14, 2)
+(Blank)
+
+Wire_Check_Date_Received__c
+Wire/Check Date Received
+date
+(Blank)
+
+Withdrawal_Letter_Sent__c
+Withdrawal Letter Sent?
+boolean, required
+false
+
+Written_VOE_Fee__c
+Written VOE Fee
+currency (16, 2)
+(Blank)
+
+X1008_Uploaded__c
+1008 Uploaded?
+boolean, required
+false
+
+X30_Miles_from_Military_Base_Indicator__c
+30 Miles from Military Base Indicator
+picklist (255), restricted
+(Blank)
+
+X4506_C_Received__c
+4506-C Received?
+boolean, required
+false
