@@ -36,20 +36,27 @@ function findByKeyValues(root: GenericObject, keys: string[]): string | null {
 
 function normalizeLeadSource(raw: string | null): string | null {
   if (!raw) return null;
-  if (raw === "Company Provided") return "Company";
-  if (raw === "Self Sourced") return "Self Gen";
-  return raw;
+  const normalized = raw.trim().toLowerCase();
+  if (normalized === "company provided" || normalized === "company") return "Company";
+  // LeadSource picklist is restricted to Self Gen / Company.
+  return "Self Gen";
 }
 
-function normalizeLeadSubSource(raw: string | null, leadSource: string | null): string {
-  if (!raw) return "Auto-Generated";
-  if (raw === "Real Estate Agent") return "Real Estate Agent";
-  if (leadSource === "Self Gen") {
-    if (raw === "Social Media") return "Social Media";
-    if (raw === "Referral - Friend / Family") return "Family / Friend Referral";
-    if (raw === "Return Client") return "Past Client";
+function normalizeLeadSubSource(raw: string | null, leadSource: string | null, rawLeadSource: string | null): string | null {
+  const candidate = raw ?? rawLeadSource;
+  if (!candidate) {
+    // Only force Auto-Generated when no source/sub-source value is present.
+    return leadSource ? null : "Auto-Generated";
   }
-  return raw;
+
+  const normalized = candidate.trim().toLowerCase();
+  if (normalized === "real estate agent") return "Real Estate Agent";
+  if (normalized === "social media") return "Social Media";
+  if (normalized === "referral - friend / family") return "Family / Friend Referral";
+  if (normalized === "return client") return "Past Client";
+
+  // Unknown values should not be pushed into restricted picklists.
+  return null;
 }
 
 function buildLeadPayload(lead: GenericObject, event: AriveWebhookEvent): Record<string, unknown> {
@@ -64,10 +71,12 @@ function buildLeadPayload(lead: GenericObject, event: AriveWebhookEvent): Record
     subjectProperty ??
     {};
 
-  const leadSource = normalizeLeadSource(findByKeyValues(lead, ["leadSource", "source", "sourceType", "leadProvidedBy"]));
+  const rawLeadSource = findByKeyValues(lead, ["leadSource", "source", "sourceType", "leadProvidedBy"]);
+  const leadSource = normalizeLeadSource(rawLeadSource);
   const leadSubSource = normalizeLeadSubSource(
     findByKeyValues(lead, ["leadSubSource", "subSource", "sourceDetail", "leadSubSourceType", "otherSourceDesc"]),
-    leadSource
+    leadSource,
+    rawLeadSource
   );
 
   const firstName = findByKeyValues(lead, ["firstName", "borrowerFirstName", "applicantFirstName"]) ?? toStringValue(borrower.firstName);
