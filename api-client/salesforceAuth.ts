@@ -99,6 +99,26 @@ class SalesforceAuth {
   }
 
   private loadPrivateKey(): string {
+    // Preferred hosted format: base64-encoded PEM/DER in an env var.
+    const keyB64 = process.env.SALESFORCE_PRIVATE_KEY_BASE64;
+    if (keyB64 && keyB64.trim().length > 0) {
+      const normalized = keyB64.trim().replace(/[\r\n]+/g, "");
+      try {
+        const decodedUtf8 = Buffer.from(normalized, "base64").toString("utf8").trim();
+        if (decodedUtf8.includes("BEGIN") && decodedUtf8.includes("PRIVATE KEY")) {
+          return decodedUtf8.replace(/\r\n/g, "\n");
+        }
+
+        // DER fallback for PKCS#8 payloads provided in base64.
+        const der = Buffer.from(normalized, "base64");
+        const keyObj = crypto.createPrivateKey({ key: der, format: "der", type: "pkcs8" });
+        return keyObj.export({ type: "pkcs8", format: "pem" }).toString();
+      } catch (error) {
+        console.error("❌ [SalesforceAuth] Failed to decode SALESFORCE_PRIVATE_KEY_BASE64:", error);
+        throw error;
+      }
+    }
+
     // First try environment variable (for production deployment)
     const keyFromEnv = process.env.SALESFORCE_PRIVATE_KEY;
     if (keyFromEnv) {
