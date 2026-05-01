@@ -55,8 +55,8 @@ function normalizeLeadSource(raw: string | null): string | null {
   return "Self Gen";
 }
 
-function normalizeLeadSubSource(raw: string | null, leadSource: string | null, rawLeadSource: string | null): string | null {
-  const candidate = raw ?? rawLeadSource;
+function normalizeLeadSubSource(raw: string | null): string | null {
+  const candidate = raw;
   if (!candidate) {
     return "Auto-Generated";
   }
@@ -83,13 +83,21 @@ function buildLeadPayload(lead: GenericObject, event: AriveWebhookEvent): Record
     subjectProperty ??
     {};
 
-  const rawLeadSource = findByKeyValues(lead, ["leadSource", "source", "sourceType", "leadProvidedBy"]);
-  const leadSource = normalizeLeadSource(rawLeadSource);
-  const leadSubSource = normalizeLeadSubSource(
-    findByKeyValues(lead, ["leadSubSource", "subSource", "sourceDetail", "leadSubSourceType", "otherSourceDesc"]),
-    leadSource,
-    rawLeadSource
-  ) ?? "Auto-Generated";
+  // In Arive, leadProvidedBy carries top-level source classification (Company/Self),
+  // while leadSource typically carries sub-source detail (e.g. Real Estate Agent).
+  const rawLeadProvidedBy = findByKeyValues(lead, ["leadProvidedBy", "sourceType", "source"]);
+  const leadSource = normalizeLeadSource(rawLeadProvidedBy);
+  const leadSubSource =
+    normalizeLeadSubSource(
+      findByKeyValues(lead, [
+        "leadSubSource",
+        "subSource",
+        "sourceDetail",
+        "leadSubSourceType",
+        "otherSourceDesc",
+        "leadSource"
+      ])
+    ) ?? "Auto-Generated";
 
   const firstName = findByKeyValues(lead, ["firstName", "borrowerFirstName", "applicantFirstName"]) ?? toStringValue(borrower.firstName);
   const lastName =
