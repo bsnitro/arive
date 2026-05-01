@@ -103,6 +103,9 @@ function buildLeadPayload(lead: GenericObject, event: AriveWebhookEvent): Record
   const lastName =
     findByKeyValues(lead, ["lastName", "borrowerLastName", "applicantLastName"]) ?? toStringValue(borrower.lastName) ?? "Unknown";
   const householdBaseName = [firstName, lastName].filter(Boolean).join(" ").trim() || "Borrower";
+  const streetAddress =
+    findByKeyValues(address, ["addressLineText", "street1", "street", "line1", "lineText"]) ??
+    findByKeyValues(subjectProperty, ["lineText", "addressLineText"]);
 
   return {
     RecordTypeId: LENDING_BORROWER_RECORD_TYPE_ID,
@@ -121,19 +124,13 @@ function buildLeadPayload(lead: GenericObject, event: AriveWebhookEvent): Record
       findByKeyValues(borrower, ["mobilePhone10digit", "cellPhone", "CellPhone"]),
     // Salesforce Lead "Account Name" is stored in Company.
     Company: `${householdBaseName} - Household`,
-    Street: toPropertyStringOrTbd(
-      findByKeyValues(address, ["addressLineText", "street1", "street", "line1", "lineText"]) ??
-        findByKeyValues(subjectProperty, ["lineText", "addressLineText"])
-    ),
+    Street: toPropertyStringOrNull(streetAddress),
     City: findByKeyValues(address, ["city", "addressCity"]) ?? findByKeyValues(subjectProperty, ["city"]),
     State: findByKeyValues(address, ["state", "addressState"]) ?? findByKeyValues(subjectProperty, ["state"]),
     PostalCode:
       findByKeyValues(address, ["postalCode", "zipCode", "zip", "addressPostalCode"]) ??
       findByKeyValues(subjectProperty, ["postalCode", "zipCode"]),
-    Property_Address__c: toPropertyStringOrTbd(
-      findByKeyValues(address, ["addressLineText", "street1", "street", "line1", "lineText"]) ??
-        findByKeyValues(subjectProperty, ["lineText", "addressLineText"])
-    )
+    Property_Address__c: toPropertyStringOrTbd(streetAddress)
   };
 }
 

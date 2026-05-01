@@ -4,6 +4,7 @@ import { logger } from "../src/logger.js";
 import type { OutboundSystemService, ProcessingContext } from "./outbound-system-service.js";
 
 type GenericObject = Record<string, unknown>;
+const DEFAULT_RLA_OWNER_ID = "0055w00000CWpTPAA1";
 
 // ─── SECTION 1: Type coercion utilities ──────────────────────────────────────
 //
@@ -421,6 +422,23 @@ export class SalesforceLoanHandler implements OutboundSystemService {
     return result.records.length > 0 ? toStringValue(result.records[0].Id) : null;
   }
 
+  private async resolveRlaOwnerId(loan: GenericObject): Promise<string> {
+    const loanOriginatorEmail = toStringValue(loan.loanOriginatorEmail);
+    if (!loanOriginatorEmail) return DEFAULT_RLA_OWNER_ID;
+
+    const q = `SELECT Id FROM User WHERE Email = '${escapeSoql(loanOriginatorEmail)}' AND IsActive = true LIMIT 1`;
+    const result = await this.salesforceAuthClient.query(q);
+    const ownerId = result.records.length > 0 ? toStringValue(result.records[0].Id) : null;
+    if (!ownerId) {
+      logger.warn("Could not resolve Salesforce User from loanOriginatorEmail; using default RLA owner.", {
+        loanOriginatorEmail,
+        defaultOwnerId: DEFAULT_RLA_OWNER_ID
+      });
+      return DEFAULT_RLA_OWNER_ID;
+    }
+    return ownerId;
+  }
+
   async handleEvent(event: AriveWebhookEvent, context: ProcessingContext): Promise<void> {
     const loan = asObject(context.loanDetails);
     if (!loan) {
@@ -454,6 +472,7 @@ export class SalesforceLoanHandler implements OutboundSystemService {
     // ── Property ───────────────────────────────────────────────────────────────
     const subjectProperty = asObject(loan.subjectProperty);
     const propertyAddress = composePropertyAddress(subjectProperty);
+    const propertyStreetAddress = toPropertyStringOrNull(subjectProperty?.addressLineText ?? subjectProperty?.street1);
 
     // ── Key dates ──────────────────────────────────────────────────────────────
     const keyDates = asObject(loan.keyDates);
@@ -494,6 +513,7 @@ export class SalesforceLoanHandler implements OutboundSystemService {
 
     // ── Salesforce record lookup ───────────────────────────────────────────────
     const existingId = await this.findExistingRla(applicationExtId, losId);
+    const rlaOwnerId = !existingId ? await this.resolveRlaOwnerId(loan) : undefined;
 
     const isLoanArchived = event.triggers.includes("LOAN_ARCHIVED");
     if (isLoanArchived) {
@@ -570,6 +590,7 @@ export class SalesforceLoanHandler implements OutboundSystemService {
     const rlaPayload: Record<string, unknown> = {
 
       // Identifiers
+      OwnerId: rlaOwnerId,
       LOS_ID__c: losId,
       ApplicationExtIdentifier__c: applicationExtId,
       Loan_Number__c: lenderLoanIdentifier ?? ariveLoanIdStr,
@@ -579,7 +600,7 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       Status__c: findByKeyValues(currentLoanStatus, ["status"]),
       LoanSubStatus__c: findByKeyValues(currentLoanStatus, ["adverseReason"]),
       LoanSubStatusDate__c: toDateValue(currentLoanStatus.date),
-      milestoneCurrentName__c: isLoanAppSubmitted ? "ApplicationSubmitted" : undefined,
+      milestoneCurrentName__c: isLoanAppSubmitted ? "ApplicationSubmitted" : !existingId ? "Started" : undefined,
 
       // Loan purpose & type
       LoanPurpose__c: mapLoanPurpose(findByKeyValues(loan, ["transactionType", "loanPurpose"])),
@@ -596,7 +617,7 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       InterestRate__c: interestRatePercent,
       Loan_Term_Months__c: loanTerm,
       loanAmortizationType__c: findByKeyValues(loan, ["amortizationType"]) ?? "Fixed Rate",
-      IsInterestOnly__c: toBooleanValue(loan.interestOnlyInd),
+      isInterestOnly__c: toBooleanValue(loan.interestOnlyInd),
       IntOnlyTermMonthCount__c: toNumberValue(loan.interestOnlyTermMonthsCount),
       MonthsBeforeFirstAdj__c: toNumberValue(loan.initialFixedPeriodEffectiveMonthsCount),
       MonthsBetweenAdjustments__c: toNumberValue(loan.normalRateAdjustmentPeriod),
@@ -635,10 +656,10 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       Total_Proposed_Monthly_Payment__c: toNumberValue(loan.totalMonthlyHousingExpenseAmt),
 
       // Subject property
-      Property_Address__c: toPropertyStringOrTbd(propertyAddress),
-      Property_City__c: toPropertyStringOrTbd(findByKeyValues(subjectProperty ?? {}, ["city"])),
-      Property_State__c: toPropertyStringOrTbd(findByKeyValues(subjectProperty ?? {}, ["state"])),
-      Property_Zip_Code__c: toPropertyStringOrTbd(findByKeyValues(subjectProperty ?? {}, ["postalCode", "zipCode"])),
+      Property_Address__c: toPropertyStringOrTbd(propertyStreetAddress ?? propertyAddress),
+      Property_City__c: toPropertyStringOrNull(findByKeyValues(subjectProperty ?? {}, ["city"])),
+      Property_State__c: toPropertyStringOrNull(findByKeyValues(subjectProperty ?? {}, ["state"])),
+      Property_Zip_Code__c: toPropertyStringOrNull(findByKeyValues(subjectProperty ?? {}, ["postalCode", "zipCode"])),
       Subject_Property_County__c: toStringValue(subjectProperty?.county),
       Subject_Property_Unit_Number__c: toStringValue(subjectProperty?.addressUnitIdentifier),
       Subject_Property_Number_of_Units__c: toNumberValue(subjectProperty?.financedUnitCount),
