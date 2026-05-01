@@ -6,6 +6,7 @@ import type { OutboundSystemService, ProcessingContext } from "./outbound-system
 type GenericObject = Record<string, unknown>;
 
 const LENDING_BORROWER_RECORD_TYPE_ID = "0125w000000BR5PAAW";
+const DEFAULT_LEAD_OWNER_ID = "0055w00000CWpTPAA1";
 
 function asObject(value: unknown): GenericObject | null {
   return value && typeof value === "object" && !Array.isArray(value) ? (value as GenericObject) : null;
@@ -45,8 +46,7 @@ function normalizeLeadSource(raw: string | null): string | null {
 function normalizeLeadSubSource(raw: string | null, leadSource: string | null, rawLeadSource: string | null): string | null {
   const candidate = raw ?? rawLeadSource;
   if (!candidate) {
-    // Only force Auto-Generated when no source/sub-source value is present.
-    return leadSource ? null : "Auto-Generated";
+    return "Auto-Generated";
   }
 
   const normalized = candidate.trim().toLowerCase();
@@ -55,8 +55,8 @@ function normalizeLeadSubSource(raw: string | null, leadSource: string | null, r
   if (normalized === "referral - friend / family") return "Family / Friend Referral";
   if (normalized === "return client") return "Past Client";
 
-  // Unknown values should not be pushed into restricted picklists.
-  return null;
+  // Unknown values default to Auto-Generated to satisfy required flow behavior.
+  return "Auto-Generated";
 }
 
 function buildLeadPayload(lead: GenericObject, event: AriveWebhookEvent): Record<string, unknown> {
@@ -77,7 +77,7 @@ function buildLeadPayload(lead: GenericObject, event: AriveWebhookEvent): Record
     findByKeyValues(lead, ["leadSubSource", "subSource", "sourceDetail", "leadSubSourceType", "otherSourceDesc"]),
     leadSource,
     rawLeadSource
-  );
+  ) ?? "Auto-Generated";
 
   const firstName = findByKeyValues(lead, ["firstName", "borrowerFirstName", "applicantFirstName"]) ?? toStringValue(borrower.firstName);
   const lastName =
@@ -127,6 +127,23 @@ export class SalesforceLeadHandler implements OutboundSystemService {
     };
   }
 
+  private async resolveLeadOwnerId(lead: GenericObject): Promise<string> {
+    const assigneeEmail = findByKeyValues(lead, ["assigneeEmail"]);
+    if (!assigneeEmail) return DEFAULT_LEAD_OWNER_ID;
+
+    const q = `SELECT Id FROM User WHERE Email = '${escapeSoql(assigneeEmail)}' AND IsActive = true LIMIT 1`;
+    const result = await this.salesforceAuthClient.query(q);
+    const ownerId = result.records.length > 0 ? toStringValue(result.records[0].Id) : null;
+    if (!ownerId) {
+      logger.warn("Could not resolve Salesforce User from assigneeEmail; using default lead owner.", {
+        assigneeEmail,
+        defaultOwnerId: DEFAULT_LEAD_OWNER_ID
+      });
+      return DEFAULT_LEAD_OWNER_ID;
+    }
+    return ownerId;
+  }
+
   async handleEvent(event: AriveWebhookEvent, context: ProcessingContext): Promise<void> {
     const externalId = String(event.sysGUID);
     const isLeadCreated = event.triggers.includes("LEAD_CREATED");
@@ -167,6 +184,7 @@ export class SalesforceLeadHandler implements OutboundSystemService {
     }
 
     const payload = buildLeadPayload(lead, event);
+    payload.OwnerId = await this.resolveLeadOwnerId(lead);
     const existingLead = await this.findExistingLeadByExternalId(externalId);
     if (isLeadUpdated) {
       payload.Status = existingLead?.status === "Engaged" ? undefined : "Engaged";
