@@ -23,6 +23,18 @@ function toStringValue(value: unknown): string | null {
   return null;
 }
 
+function toPropertyStringOrNull(value: unknown): string | null {
+  const str = toStringValue(value);
+  if (!str) return null;
+  const normalized = str.trim().toLowerCase();
+  if (normalized === "null" || normalized === "n/a" || normalized === "na") return null;
+  return str;
+}
+
+function toPropertyStringOrTbd(value: unknown): string {
+  return toPropertyStringOrNull(value) ?? "TBD";
+}
+
 function escapeSoql(value: string): string {
   return value.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
 }
@@ -36,7 +48,7 @@ function findByKeyValues(root: GenericObject, keys: string[]): string | null {
 }
 
 function normalizeLeadSource(raw: string | null): string | null {
-  if (!raw) return null;
+  if (!raw) return "Self Gen";
   const normalized = raw.trim().toLowerCase();
   if (normalized === "company provided" || normalized === "company") return "Company";
   // LeadSource picklist is restricted to Self Gen / Company.
@@ -101,14 +113,19 @@ function buildLeadPayload(lead: GenericObject, event: AriveWebhookEvent): Record
       findByKeyValues(borrower, ["mobilePhone10digit", "cellPhone", "CellPhone"]),
     // Salesforce Lead "Account Name" is stored in Company.
     Company: `${householdBaseName} - Household`,
-    Street:
+    Street: toPropertyStringOrTbd(
       findByKeyValues(address, ["addressLineText", "street1", "street", "line1", "lineText"]) ??
-      findByKeyValues(subjectProperty, ["lineText", "addressLineText"]),
+        findByKeyValues(subjectProperty, ["lineText", "addressLineText"])
+    ),
     City: findByKeyValues(address, ["city", "addressCity"]) ?? findByKeyValues(subjectProperty, ["city"]),
     State: findByKeyValues(address, ["state", "addressState"]) ?? findByKeyValues(subjectProperty, ["state"]),
     PostalCode:
       findByKeyValues(address, ["postalCode", "zipCode", "zip", "addressPostalCode"]) ??
-      findByKeyValues(subjectProperty, ["postalCode", "zipCode"])
+      findByKeyValues(subjectProperty, ["postalCode", "zipCode"]),
+    Property_Address__c: toPropertyStringOrTbd(
+      findByKeyValues(address, ["addressLineText", "street1", "street", "line1", "lineText"]) ??
+        findByKeyValues(subjectProperty, ["lineText", "addressLineText"])
+    )
   };
 }
 
