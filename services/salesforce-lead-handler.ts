@@ -82,6 +82,7 @@ function buildLeadPayload(lead: GenericObject, event: AriveWebhookEvent): Record
   const firstName = findByKeyValues(lead, ["firstName", "borrowerFirstName", "applicantFirstName"]) ?? toStringValue(borrower.firstName);
   const lastName =
     findByKeyValues(lead, ["lastName", "borrowerLastName", "applicantLastName"]) ?? toStringValue(borrower.lastName) ?? "Unknown";
+  const householdBaseName = [firstName, lastName].filter(Boolean).join(" ").trim() || "Borrower";
 
   return {
     RecordTypeId: LENDING_BORROWER_RECORD_TYPE_ID,
@@ -98,7 +99,8 @@ function buildLeadPayload(lead: GenericObject, event: AriveWebhookEvent): Record
     MobilePhone:
       findByKeyValues(lead, ["mobilePhone", "mobilePhone10digit", "cellPhone", "workPhone"]) ??
       findByKeyValues(borrower, ["mobilePhone10digit", "cellPhone", "CellPhone"]),
-    Company: findByKeyValues(lead, ["companyName", "company"]) ?? "Borrower",
+    // Salesforce Lead "Account Name" is stored in Company.
+    Company: `${householdBaseName} - Household`,
     Street:
       findByKeyValues(address, ["addressLineText", "street1", "street", "line1", "lineText"]) ??
       findByKeyValues(subjectProperty, ["lineText", "addressLineText"]),
