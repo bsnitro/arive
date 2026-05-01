@@ -62,4 +62,41 @@ export class AriveLoansClient {
     const payload = await this.requestJson(`/leads/${leadId}`, true);
     return payload as unknown;
   }
+
+  async patchLoanStage(loanId: number, stage: string): Promise<void> {
+    const root = normalizeBaseUrl(this.baseUrl);
+    const token = await this.getAccessToken();
+    const path = `/loans/${loanId}`;
+    const url = `${root}${path}`;
+    const stageDate = new Date().toISOString().split("T")[0];
+    const payload = {
+      loanStages: [
+        {
+          stage,
+          stageDate,
+          current: true
+        }
+      ]
+    };
+
+    logger.info("Patching Arive loan stage.", { loanId, stage, stageDate, url });
+    const response = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        authorization: `Bearer ${token.accessToken}`,
+        "x-api-key": this.apiKey,
+        accept: "application/json",
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      const body = await response.text();
+      logger.error("Arive API PATCH failed.", { path, status: response.status });
+      throw new Error(`Arive PATCH ${path} failed: status=${response.status} body=${body}`);
+    }
+
+    logger.info("Arive loan stage patched.", { loanId, stage });
+  }
 }

@@ -12,6 +12,7 @@ export function resolveDestinationServices(
   return allServices.filter((service) => {
     if (service.name === "salesforce-lead-sync") return includeLead;
     if (service.name === "salesforce-loan-sync") return includeLoan;
+    if (service.name === "arive-loan-app-submitted-patch") return includeLoan;
     return true;
   });
 }

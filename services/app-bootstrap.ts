@@ -3,6 +3,7 @@ import { AriveLoansClient } from "../api-client/arive-loans-client.js";
 import SalesforceAuth from "../api-client/salesforceAuth.js";
 import { createWebhookController } from "../controllers/webhook-controller.js";
 import { readEnv } from "../src/env.js";
+import { AriveLoanAppSubmittedPatchService } from "./arive-loan-app-submitted-patch-service.js";
 import { createProcessAriveEventService } from "./process-arive-event-service.js";
 import { SalesforceLeadHandler } from "./salesforce-lead-handler.js";
 import { SalesforceLoanHandler } from "./salesforce-loan-handler.js";
@@ -27,9 +28,11 @@ export function bootstrapApp() {
   const salesforceAuthClient = new SalesforceAuth();
   const salesforceLoanSyncService = new SalesforceLoanHandler(salesforceAuthClient);
   const salesforceLeadSyncService = new SalesforceLeadHandler(salesforceAuthClient);
+  const ariveLoanAppSubmittedPatchService = new AriveLoanAppSubmittedPatchService(ariveLoansClient);
   const outboundServices = [
     salesforceLoanSyncService,
     salesforceLeadSyncService,
+    ariveLoanAppSubmittedPatchService,
     new StubOutboundSystemService("future-third-party-system")
   ];
 

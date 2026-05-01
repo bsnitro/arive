@@ -1,8 +1,23 @@
 import "dotenv/config";
 import { postWebhookEvent } from "./post-webhook-event.js";
 
+function resolveSysGuid(): number {
+  const cliArg = process.argv[2];
+  if (cliArg) {
+    const parsed = Number(cliArg);
+    if (Number.isFinite(parsed) && parsed > 0) return parsed;
+    throw new Error(`Invalid sysGUID argument: ${cliArg}`);
+  }
+
+  const fromEnv = Number(process.env.WEBHOOK_TEST_SYS_GUID ?? "16602527");
+  if (!Number.isFinite(fromEnv) || fromEnv <= 0) {
+    throw new Error(`Invalid WEBHOOK_TEST_SYS_GUID value: ${process.env.WEBHOOK_TEST_SYS_GUID}`);
+  }
+  return fromEnv;
+}
+
 const EVENT_PAYLOAD = {
-  sysGUID: Number(process.env.WEBHOOK_TEST_SYS_GUID ?? "16602527"),
+  sysGUID: resolveSysGuid(),
   triggers: ["LOAN_APP_SUBMITTED"]
 } as const;
 
