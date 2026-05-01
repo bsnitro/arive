@@ -39,6 +39,18 @@ function toStringValue(value: unknown): string | null {
   return null;
 }
 
+function toPropertyStringOrNull(value: unknown): string | null {
+  const str = toStringValue(value);
+  if (!str) return null;
+  const normalized = str.trim().toLowerCase();
+  if (normalized === "null" || normalized === "n/a" || normalized === "na") return null;
+  return str;
+}
+
+function toPropertyStringOrTbd(value: unknown): string {
+  return toPropertyStringOrNull(value) ?? "TBD";
+}
+
 function toNumberValue(value: unknown): number | null {
   if (typeof value === "number" && Number.isFinite(value)) {
     return value;
@@ -263,10 +275,10 @@ function calculateLoanAmountAfterFees(loanAmount: number | null, fees: unknown[]
 // Builds a single comma-separated property address string from subject property fields.
 function composePropertyAddress(subjectProperty: GenericObject | null): string | null {
   if (!subjectProperty) return null;
-  const line1 = toStringValue(subjectProperty.addressLineText ?? subjectProperty.street1);
-  const city = toStringValue(subjectProperty.city);
-  const state = toStringValue(subjectProperty.state);
-  const postal = toStringValue(subjectProperty.postalCode ?? subjectProperty.zipCode);
+  const line1 = toPropertyStringOrNull(subjectProperty.addressLineText ?? subjectProperty.street1);
+  const city = toPropertyStringOrNull(subjectProperty.city);
+  const state = toPropertyStringOrNull(subjectProperty.state);
+  const postal = toPropertyStringOrNull(subjectProperty.postalCode ?? subjectProperty.zipCode);
   const parts = [line1, city, state, postal].filter(Boolean) as string[];
   return parts.length > 0 ? parts.join(", ") : null;
 }
@@ -623,10 +635,10 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       Total_Proposed_Monthly_Payment__c: toNumberValue(loan.totalMonthlyHousingExpenseAmt),
 
       // Subject property
-      Property_Address__c: propertyAddress,
-      Property_City__c: findByKeyValues(subjectProperty ?? {}, ["city"]),
-      Property_State__c: findByKeyValues(subjectProperty ?? {}, ["state"]),
-      Property_Zip_Code__c: findByKeyValues(subjectProperty ?? {}, ["postalCode", "zipCode"]),
+      Property_Address__c: toPropertyStringOrTbd(propertyAddress),
+      Property_City__c: toPropertyStringOrTbd(findByKeyValues(subjectProperty ?? {}, ["city"])),
+      Property_State__c: toPropertyStringOrTbd(findByKeyValues(subjectProperty ?? {}, ["state"])),
+      Property_Zip_Code__c: toPropertyStringOrTbd(findByKeyValues(subjectProperty ?? {}, ["postalCode", "zipCode"])),
       Subject_Property_County__c: toStringValue(subjectProperty?.county),
       Subject_Property_Unit_Number__c: toStringValue(subjectProperty?.addressUnitIdentifier),
       Subject_Property_Number_of_Units__c: toNumberValue(subjectProperty?.financedUnitCount),
