@@ -67,9 +67,14 @@ function toBooleanValue(value: unknown): boolean | null {
   if (typeof value === "boolean") {
     return value;
   }
+  if (typeof value === "number") {
+    if (value === 1) return true;
+    if (value === 0) return false;
+  }
   if (typeof value === "string") {
-    if (value.toLowerCase() === "true") return true;
-    if (value.toLowerCase() === "false") return false;
+    const normalized = value.trim().toLowerCase();
+    if (normalized === "true" || normalized === "yes" || normalized === "y" || normalized === "1") return true;
+    if (normalized === "false" || normalized === "no" || normalized === "n" || normalized === "0") return false;
   }
   return null;
 }
@@ -617,7 +622,7 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       InterestRate__c: interestRatePercent,
       Loan_Term_Months__c: loanTerm,
       loanAmortizationType__c: findByKeyValues(loan, ["amortizationType"]) ?? "Fixed Rate",
-      isInterestOnly__c: toBooleanValue(loan.interestOnlyInd),
+      IsInterestOnly__c: toBooleanValue(loan.interestOnlyInd) ?? false,
       IntOnlyTermMonthCount__c: toNumberValue(loan.interestOnlyTermMonthsCount),
       MonthsBeforeFirstAdj__c: toNumberValue(loan.initialFixedPeriodEffectiveMonthsCount),
       MonthsBetweenAdjustments__c: toNumberValue(loan.normalRateAdjustmentPeriod),
