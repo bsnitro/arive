@@ -35,6 +35,65 @@ function toPropertyStringOrTbd(value: unknown): string {
   return toPropertyStringOrNull(value) ?? "TBD";
 }
 
+function mapStateToFullName(raw: string | null): string | null {
+  if (!raw) return null;
+  const normalized = raw.trim().toUpperCase();
+  const stateMap: Record<string, string> = {
+    AL: "Alabama",
+    AK: "Alaska",
+    AZ: "Arizona",
+    AR: "Arkansas",
+    CA: "California",
+    CO: "Colorado",
+    CT: "Connecticut",
+    DE: "Delaware",
+    FL: "Florida",
+    GA: "Georgia",
+    HI: "Hawaii",
+    ID: "Idaho",
+    IL: "Illinois",
+    IN: "Indiana",
+    IA: "Iowa",
+    KS: "Kansas",
+    KY: "Kentucky",
+    LA: "Louisiana",
+    ME: "Maine",
+    MD: "Maryland",
+    MA: "Massachusetts",
+    MI: "Michigan",
+    MN: "Minnesota",
+    MS: "Mississippi",
+    MO: "Missouri",
+    MT: "Montana",
+    NE: "Nebraska",
+    NV: "Nevada",
+    NH: "New Hampshire",
+    NJ: "New Jersey",
+    NM: "New Mexico",
+    NY: "New York",
+    NC: "North Carolina",
+    ND: "North Dakota",
+    OH: "Ohio",
+    OK: "Oklahoma",
+    OR: "Oregon",
+    PA: "Pennsylvania",
+    RI: "Rhode Island",
+    SC: "South Carolina",
+    SD: "South Dakota",
+    TN: "Tennessee",
+    TX: "Texas",
+    UT: "Utah",
+    VT: "Vermont",
+    VA: "Virginia",
+    WA: "Washington",
+    WV: "West Virginia",
+    WI: "Wisconsin",
+    WY: "Wyoming",
+    DC: "District of Columbia"
+  };
+  return stateMap[normalized] ?? raw;
+}
+
 function escapeSoql(value: string): string {
   return value.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
 }
@@ -106,6 +165,8 @@ function buildLeadPayload(lead: GenericObject, event: AriveWebhookEvent): Record
   const streetAddress =
     findByKeyValues(address, ["addressLineText", "street1", "street", "line1", "lineText"]) ??
     findByKeyValues(subjectProperty, ["lineText", "addressLineText"]);
+  const stateAbbreviation = findByKeyValues(address, ["state", "addressState"]) ?? findByKeyValues(subjectProperty, ["state"]);
+  const fullStateName = mapStateToFullName(stateAbbreviation);
 
   return {
     RecordTypeId: LENDING_BORROWER_RECORD_TYPE_ID,
@@ -126,11 +187,12 @@ function buildLeadPayload(lead: GenericObject, event: AriveWebhookEvent): Record
     Company: `${householdBaseName} - Household`,
     Street: toPropertyStringOrNull(streetAddress),
     City: findByKeyValues(address, ["city", "addressCity"]) ?? findByKeyValues(subjectProperty, ["city"]),
-    State: findByKeyValues(address, ["state", "addressState"]) ?? findByKeyValues(subjectProperty, ["state"]),
+    State: fullStateName,
     PostalCode:
       findByKeyValues(address, ["postalCode", "zipCode", "zip", "addressPostalCode"]) ??
       findByKeyValues(subjectProperty, ["postalCode", "zipCode"]),
-    Property_Address__c: toPropertyStringOrTbd(streetAddress)
+    Property_Address__c: toPropertyStringOrTbd(streetAddress),
+    Property_State__c: fullStateName
   };
 }
 
