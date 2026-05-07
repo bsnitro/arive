@@ -5,6 +5,7 @@ import type { OutboundSystemService, ProcessingContext } from "./outbound-system
 
 type GenericObject = Record<string, unknown>;
 const DEFAULT_RLA_OWNER_ID = "0055w00000CWpTPAA1";
+const DEFAULT_BROKER_COMP_PERCENT = 2.375;
 
 // ─── SECTION 1: Type coercion utilities ──────────────────────────────────────
 //
@@ -133,6 +134,10 @@ function mapLoanPurpose(raw: string | null): string | null {
 // Passes lender name through as-is from Arive. Only strips sentinel non-values.
 function mapLenderName(raw: string | null): string | null {
   if (!raw || raw === "Undefined") return null;
+  if (raw === "Jmac Lending") return "JMAC Lending";
+  if (raw === "Pennymac" || raw === "PennyMac") return "PennyMac Financial";
+  if (raw === "Rocket Mortgage") return "Rocket Pro TPO";
+  if (raw === "Sierra Pacific") return "Sierra Pacific Mortgage";
   return raw;
 }
 
@@ -193,6 +198,39 @@ function mapLienPosition(raw: unknown): { numberValue: string | null; textValue:
   if (str === "FirstLien") return { numberValue: "1", textValue: "FirstLien" };
   if (str === "SecondLien") return { numberValue: "2", textValue: "SecondLien" };
   return { numberValue: null, textValue: null };
+}
+
+function getLenderPaidFlatFeeDeduction(
+  translatedLenderName: string | null,
+  transactionType: string | null,
+  tridOrApplicationDate: string | null
+): number | null {
+  const kindWindsorCutoff = "2026-03-31";
+  const tlsCutoff = "2026-04-02";
+  if (!translatedLenderName) return null;
+
+  if (translatedLenderName === "Kind Lending") {
+    if (!tridOrApplicationDate) return 750;
+    return tridOrApplicationDate < kindWindsorCutoff ? 150 : 750;
+  }
+  if (translatedLenderName === "Windsor Mortgage") {
+    if (!tridOrApplicationDate) return 1000;
+    if (tridOrApplicationDate < kindWindsorCutoff) return null;
+    return 1000;
+  }
+  if (translatedLenderName === "The Loan Store") {
+    if (!tridOrApplicationDate) return 750;
+    if (tridOrApplicationDate < tlsCutoff) return null;
+    return 750;
+  }
+  if (
+    translatedLenderName === "Rocket Pro TPO" &&
+    Boolean(transactionType && transactionType.toLowerCase().includes("purchase"))
+  ) {
+    return 150;
+  }
+  if (translatedLenderName === "Plaza Home Mortgage") return 150;
+  return null;
 }
 
 function normalizeAriveStage(value: string): string {
@@ -511,10 +549,19 @@ export class SalesforceLoanHandler implements OutboundSystemService {
     const firstMortgagePayment = toNumberValue(product.principalAndInterest) ?? toNumberValue(loan.firstMortgagePrincipalAndInterestMonthlyAmt);
     const monthlyMortgageInsurance = toStringValue(product.monthlyMortgageInsurance) ?? toStringValue(loan.mIPremiumMonthlyAmt);
     const firstBrokerFeeAmount = getFirstBrokerFeeAmount(fees);
-    const brokerRevenue = firstBrokerFeeAmount ?? toNumberValue(loan.grossLoanRevenue);
     const compensationType = resolveCompensationType(findByKeyValues(product, ["compensation"]) ?? findByKeyValues(loan, ["compensationType"]));
-    const brokerFeePercent = toNumberValue(loan.brokerFee);
     const lenderNameRaw = findByKeyValues(loan, ["lenderName"]) ?? findByKeyValues(product, ["lenderName"]);
+    const translatedLenderName = mapLenderName(lenderNameRaw);
+    const transactionType = findByKeyValues(loan, ["transactionType", "loanPurpose"]);
+    const tridOrApplicationDate = tridDate ?? applicationDate;
+    const flatFeeDeduction =
+      compensationType === "Lender Paid"
+        ? getLenderPaidFlatFeeDeduction(translatedLenderName, transactionType, tridOrApplicationDate)
+        : null;
+    const calculatedBrokerCompPercent =
+      firstBrokerFeeAmount !== null && loanAmount !== null && loanAmount > 0
+        ? ((Math.max(firstBrokerFeeAmount - (flatFeeDeduction ?? 0), 0) / loanAmount) * 100)
+        : null;
 
     // ── Salesforce record lookup ───────────────────────────────────────────────
     const existingId = await this.findExistingRla(applicationExtId, losId);
@@ -590,6 +637,17 @@ export class SalesforceLoanHandler implements OutboundSystemService {
     }
 
     const isLoanAppSubmitted = event.triggers.includes("LOAN_APP_SUBMITTED");
+    const shouldUseBrokerCompDefault =
+      event.triggers.includes("LOAN_CREATED") || event.triggers.includes("LOAN_APP_SUBMITTED");
+    const resolvedBrokerCompPercent = calculatedBrokerCompPercent ?? (shouldUseBrokerCompDefault ? DEFAULT_BROKER_COMP_PERCENT : null);
+    const brokerRevenueFromCompensation =
+      toNumberValue(loan.compensation) ??
+      toNumberValue(loan.compensationAmount) ??
+      toNumberValue(loan.compensationAmt) ??
+      toNumberValue(product.compensation);
+    const brokerRevenueFromPercent =
+      loanAmount !== null && resolvedBrokerCompPercent !== null ? loanAmount * (resolvedBrokerCompPercent / 100) : null;
+    const brokerRevenue = brokerRevenueFromCompensation ?? brokerRevenueFromPercent;
 
     // ── RLA payload ───────────────────────────────────────────────────────────
     const rlaPayload: Record<string, unknown> = {
@@ -636,9 +694,9 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       Bottom_End_Debt_to_Income__c: toSalesforcePercent(loan.frontEndDTI),
 
       // Lender & compensation
-      Lender_Name__c: mapLenderName(lenderNameRaw),
+      Lender_Name__c: translatedLenderName,
       Compensation_Type__c: compensationType,
-      Broker_Compensation_Percentage__c: brokerFeePercent,
+      Broker_Compensation_Percentage__c: resolvedBrokerCompPercent ?? undefined,
       Listed_Revenue__c: brokerRevenue,
 
       // Lock
