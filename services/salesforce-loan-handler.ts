@@ -84,7 +84,14 @@ function toDateValue(value: unknown): string | null {
   const str = toStringValue(value);
   if (!str) return null;
   const candidate = str.includes("T") ? str.split("T")[0] : str;
-  return /^\d{4}-\d{2}-\d{2}$/.test(candidate) ? candidate : null;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(candidate)) return candidate;
+
+  // Fallback for date-like strings returned in other formats.
+  const parsed = new Date(str);
+  if (!Number.isNaN(parsed.getTime())) {
+    return parsed.toISOString().split("T")[0] ?? null;
+  }
+  return null;
 }
 
 function toSalesforcePercent(value: unknown): number | null {
@@ -113,6 +120,29 @@ function findByKeyValues(root: GenericObject, keys: string[]): string | null {
   for (const key of keys) {
     const value = toStringValue(root[key]);
     if (value) return value;
+  }
+  return null;
+}
+
+function normalizeKeyName(value: string): string {
+  return value.replace(/[_\s-]+/g, "").toLowerCase();
+}
+
+function getKeyDateValue(keyDates: unknown, keys: string[]): unknown {
+  const objectDates = asObject(keyDates);
+  if (objectDates) {
+    for (const key of keys) {
+      if (objectDates[key] !== undefined) return objectDates[key];
+    }
+  }
+
+  const keySet = new Set(keys.map((k) => normalizeKeyName(k)));
+  for (const itemRaw of asArray(keyDates)) {
+    const item = asObject(itemRaw);
+    if (!item) continue;
+    const name = toStringValue(item.name ?? item.key ?? item.type);
+    if (!name || !keySet.has(normalizeKeyName(name))) continue;
+    return item.value ?? item.date ?? item.dateValue ?? item.timestamp ?? null;
   }
   return null;
 }
@@ -347,6 +377,46 @@ function getFirstBrokerFeeAmount(fees: unknown[]): number | null {
   return null;
 }
 
+function toIntegerValue(value: unknown): number | null {
+  if (typeof value === "number" && Number.isFinite(value)) return Math.trunc(value);
+  if (typeof value === "string" && value.trim().length > 0) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? Math.trunc(parsed) : null;
+  }
+  return null;
+}
+
+function findContactWithLowestRef(contacts: unknown[], contactType: string, role: string | null): GenericObject | null {
+  let result: GenericObject | null = null;
+  let lowestRef: number | null = null;
+
+  for (const contactRaw of contacts) {
+    const contact = asObject(contactRaw);
+    if (!contact) continue;
+    const type = toStringValue(contact.contactType);
+    if (!type || type.toLowerCase() !== contactType.toLowerCase()) continue;
+
+    if (role !== null) {
+      const contactRole = toStringValue(contact.role);
+      if (!contactRole || contactRole.toLowerCase() !== role.toLowerCase()) continue;
+    }
+
+    const refNum = toIntegerValue(contact.contactRef);
+    if (refNum === null) continue;
+    if (lowestRef === null || refNum < lowestRef) {
+      lowestRef = refNum;
+      result = contact;
+    }
+  }
+
+  return result;
+}
+
+function buildFullName(firstName: unknown, lastName: unknown): string | null {
+  const parts = [toStringValue(firstName), toStringValue(lastName)].filter(Boolean) as string[];
+  return parts.length > 0 ? parts.join(" ") : null;
+}
+
 // ─── SECTION 4: Borrower field builders ──────────────────────────────────────
 //
 // WHY isPlaceholderBorrower EXISTS:
@@ -518,21 +588,27 @@ export class SalesforceLoanHandler implements OutboundSystemService {
     const propertyStreetAddress = toPropertyStringOrNull(subjectProperty?.addressLineText ?? subjectProperty?.street1);
 
     // ── Key dates ──────────────────────────────────────────────────────────────
-    const keyDates = asObject(loan.keyDates);
-    const tridDate = toDateValue(keyDates?.tridDate);
+    const keyDates = loan.keyDates;
+    const tridDate = toDateValue(getKeyDateValue(keyDates, ["tridDate", "TridDate"]));
     const applicationDate = toDateValue(loan.applicationDate ?? loan.createDateTime);
-    const initialLeSentDate = toDateValue(keyDates?.initialLESentDate);
-    const mostRecentLeSentDate = toDateValue(keyDates?.mostRecentLESentDate);
-    const initialCdSentDate = toDateValue(keyDates?.initialCDSentDate);
-    const mostRecentCdSentDate = toDateValue(keyDates?.mostRecentCDSentDate);
-    const revisedCdSentDate = toDateValue(keyDates?.revisedCDSentDate);
+    const initialLeSentDate = toDateValue(getKeyDateValue(keyDates, ["initialLESentDate", "InitialLESentDate"]));
+    const mostRecentLeSentDate = toDateValue(getKeyDateValue(keyDates, ["mostRecentLESentDate", "MostRecentLESentDate"]));
+    const initialCdSentDate = toDateValue(getKeyDateValue(keyDates, ["initialCDSentDate", "InitialCDSentDate"]));
+    const mostRecentCdSentDate = toDateValue(getKeyDateValue(keyDates, ["mostRecentCDSentDate", "MostRecentCDSentDate"]));
+    const revisedCdSentDate = toDateValue(getKeyDateValue(keyDates, ["revisedCDSentDate", "RevisedCDSentDate"]));
     const disclosuresSentDate = mostRecentLeSentDate ?? initialLeSentDate;
     const latestCdSentDate = revisedCdSentDate ?? (initialCdSentDate ? mostRecentCdSentDate : null);
     const closingDisclosureSentDate = latestCdSentDate ?? initialCdSentDate;
     const estimatedClosingDate =
-      toDateValue(keyDates?.closingContingency) ??
-      toDateValue(keyDates?.earliestClosingDate) ??
-      toDateValue(keyDates?.estimatedFundingDate);
+      toDateValue(getKeyDateValue(keyDates, ["closingContingency", "ClosingContingency"])) ??
+      toDateValue(getKeyDateValue(keyDates, ["earliestClosingDate", "EarliestClosingDate"])) ??
+      toDateValue(getKeyDateValue(keyDates, ["estimatedFundingDate", "EstimatedFundingDate"]));
+
+    // ── Loan contacts ──────────────────────────────────────────────────────────
+    const contacts = asArray(loan.contacts);
+    const titleAgent = findContactWithLowestRef(contacts, "TitleAgent", null);
+    const buyerAgent = findContactWithLowestRef(contacts, "RealEstateAgent", "Buyer");
+    const sellerAgent = findContactWithLowestRef(contacts, "RealEstateAgent", "Seller");
 
     // ── Loan financials ────────────────────────────────────────────────────────
     const loanAmount = toNumberValue(loan.loanAmount) ?? toNumberValue(loan.totalLoanAmount);
@@ -751,19 +827,33 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       First_Time_Homebuyer__c: toBooleanValue(loan.firstTimeHomeBuyer) ?? toBooleanValue(primaryBorrower?.firstTimeHomeBuyer) ?? false,
 
       // Key dates
-      Appraisal_Order_Date__c: toDateValue(keyDates?.appraisalOrderedDate),
-      Appraisal_Received_Date__c: toDateValue(keyDates?.appraisalDeliveryDate),
-      Appraisal_Contingency_Date__c: toDateValue(keyDates?.appraisalContingency),
-      Approval_Contingency_Date__c: toDateValue(keyDates?.loanContingency),
-      Title_Order_Date__c: toDateValue(keyDates?.titleOrderedDate),
-      Purchase_Contract_Date__c: toDateValue(keyDates?.salesContractDate),
+      Appraisal_Order_Date__c: toDateValue(getKeyDateValue(keyDates, ["appraisalOrderedDate", "AppraisalOrderedDate"])),
+      Appraisal_Received_Date__c: toDateValue(getKeyDateValue(keyDates, ["appraisalDeliveryDate", "AppraisalDeliveryDate"])),
+      Appraisal_Contingency_Date__c: toDateValue(getKeyDateValue(keyDates, ["appraisalContingency", "AppraisalContingency"])),
+      Approval_Contingency_Date__c: toDateValue(getKeyDateValue(keyDates, ["loanContingency", "LoanContingency"])),
+      Title_Order_Date__c: toDateValue(getKeyDateValue(keyDates, ["titleOrderedDate", "TitleOrderedDate"])),
+      Purchase_Contract_Date__c: toDateValue(getKeyDateValue(keyDates, ["salesContractDate", "ContractDate", "SalesContractDate"])),
       Disclosures_Sent_Date__c: disclosuresSentDate,
       Closing_Disclosure_Send_Date__c: closingDisclosureSentDate,
       Estimated_Closing_Date__c: estimatedClosingDate,
-      Closing_Date__c: toDateValue(keyDates?.closingContingency),
-      Initial_CD_Signature_Date__c: toDateValue(keyDates?.initialCDSignedDate),
-      Initial_Credit_Pull_Date__c: toDateValue(keyDates?.creditOrderDate),
-      Last_Credit_Pull_Date__c: toDateValue(keyDates?.creditExpirationDate),
+      Closing_Date__c: toDateValue(getKeyDateValue(keyDates, ["closingContingency", "ClosingContingency"])),
+      Initial_CD_Signature_Date__c: toDateValue(getKeyDateValue(keyDates, ["initialCDSignedDate", "InitialCDSignedDate"])),
+      Initial_Credit_Pull_Date__c: toDateValue(getKeyDateValue(keyDates, ["creditOrderDate", "CreditOrderDate"])),
+      Last_Credit_Pull_Date__c: toDateValue(getKeyDateValue(keyDates, ["creditExpirationDate", "CreditExpirationDate"])),
+
+      // Contacts (Title Agent, Buyer Agent, Seller Agent)
+      Title_Company_Name__c: toStringValue(titleAgent?.companyName),
+      Title_Company_Email_Address__c: toStringValue(titleAgent?.email),
+      Buyer_Agent_Company__c: toStringValue(buyerAgent?.companyName),
+      Buyer_Agent_Email__c: toStringValue(buyerAgent?.email),
+      Buyer_Agent_Phone__c: toStringValue(buyerAgent?.phone),
+      Buyer_Agent_Name__c: buildFullName(buyerAgent?.firstName, buyerAgent?.lastName),
+      Buyer_s_Real_Estate_Agent__c: buyerAgent ? undefined : null,
+      Seller_Agent_Company__c: toStringValue(sellerAgent?.companyName),
+      Seller_Agent_Email__c: toStringValue(sellerAgent?.email),
+      Seller_Agent_Phone__c: toStringValue(sellerAgent?.phone),
+      Seller_Agent_Name__c: buildFullName(sellerAgent?.firstName, sellerAgent?.lastName),
+      Seller_s_Real_Estate_Agent__c: sellerAgent ? undefined : null,
 
       // Loan team
       Loan_Officer__c: findByKeyValues(loan, ["loanOriginatorName"]) ?? teamOriginatorName,
