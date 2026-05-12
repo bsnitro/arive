@@ -1,5 +1,13 @@
 import { z } from "zod";
 
+const yesNoSchema = z.preprocess((value) => {
+  if (typeof value !== "string") return value;
+  const normalized = value.trim().toLowerCase();
+  if (normalized === "yes") return "Yes";
+  if (normalized === "no") return "No";
+  return value;
+}, z.enum(["Yes", "No"]));
+
 const EnvSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   ARIVE_API_KEY: z.string().min(1),
@@ -25,7 +33,9 @@ const EnvSchema = z.object({
   SALESFORCE_PASSWORD: z.string().optional(),
   SALESFORCE_SECURITY_TOKEN: z.string().optional(),
   SALESFORCE_PRIVATE_KEY: z.string().optional(),
-  SALESFORCE_PRIVATE_KEY_PATH: z.string().optional()
+  SALESFORCE_PRIVATE_KEY_PATH: z.string().optional(),
+  LEAD_SYNC: yesNoSchema.default("No"),
+  LOG_VIEW: yesNoSchema.default("No")
 });
 
 export type AppEnv = z.infer<typeof EnvSchema>;

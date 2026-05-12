@@ -6,6 +6,7 @@ import type { OutboundSystemService, ProcessingContext } from "./outbound-system
 type GenericObject = Record<string, unknown>;
 const DEFAULT_RLA_OWNER_ID = "0055w00000CWpTPAA1";
 const DEFAULT_BROKER_COMP_PERCENT = 2.375;
+const LENDING_BORROWER_RECORD_TYPE_ID = "0125w000000BR5PAAW";
 
 // ─── SECTION 1: Type coercion utilities ──────────────────────────────────────
 //
@@ -209,6 +210,22 @@ function mapChannel(raw: string | null): string {
   if (!raw) return "Brokered";
   if (raw.toLowerCase() === "broker") return "Brokered";
   return raw;
+}
+
+function mapStateToFullName(raw: string | null): string | null {
+  if (!raw) return null;
+  const normalized = raw.trim().toUpperCase();
+  const stateMap: Record<string, string> = {
+    AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California", CO: "Colorado", CT: "Connecticut",
+    DE: "Delaware", FL: "Florida", GA: "Georgia", HI: "Hawaii", ID: "Idaho", IL: "Illinois", IN: "Indiana",
+    IA: "Iowa", KS: "Kansas", KY: "Kentucky", LA: "Louisiana", ME: "Maine", MD: "Maryland", MA: "Massachusetts",
+    MI: "Michigan", MN: "Minnesota", MS: "Mississippi", MO: "Missouri", MT: "Montana", NE: "Nebraska", NV: "Nevada",
+    NH: "New Hampshire", NJ: "New Jersey", NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota",
+    OH: "Ohio", OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania", RI: "Rhode Island", SC: "South Carolina",
+    SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont", VA: "Virginia", WA: "Washington",
+    WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming", DC: "District of Columbia"
+  };
+  return stateMap[normalized] ?? raw;
 }
 
 // Arive propertyUsageType values → Salesforce Occupancy_Type__c
@@ -519,7 +536,19 @@ function buildCoBorrowerFields(borrower: GenericObject | null): Record<string, u
 export class SalesforceLoanHandler implements OutboundSystemService {
   readonly name = "salesforce-loan-sync";
 
-  constructor(private readonly salesforceAuthClient: SalesforceAuth) {}
+  constructor(
+    private readonly salesforceAuthClient: SalesforceAuth,
+    private readonly options: { leadSyncEnabled: boolean; logViewEnabled: boolean }
+  ) {}
+
+  private logView(message: string, data?: unknown): void {
+    if (!this.options.logViewEnabled) return;
+    if (data !== undefined) {
+      console.log(`[LOG_VIEW] ${message}: ${JSON.stringify(data, null, 2)}`);
+      return;
+    }
+    console.log(`[LOG_VIEW] ${message}`);
+  }
 
   // Looks up an existing RLA record by ApplicationExtIdentifier__c (Arive sysGUID)
   // then falls back to LOS_ID__c (Arive loan ID).
@@ -550,6 +579,86 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       return DEFAULT_RLA_OWNER_ID;
     }
     return ownerId;
+  }
+
+  private async ensureLeadForLoan(
+    event: AriveWebhookEvent,
+    loan: GenericObject,
+    primaryBorrower: GenericObject | null,
+    subjectProperty: GenericObject | null
+  ): Promise<void> {
+    this.logView("Lead pre-sync check started", { sysGUID: event.sysGUID });
+    const borrowerEmail =
+      findByKeyValues(primaryBorrower ?? {}, ["email", "emailAddressText"]) ??
+      findByKeyValues(loan, ["borrowerEmail", "emailAddressText"]);
+    if (!borrowerEmail) {
+      logger.warn("Skipping lead pre-create for loan because borrower email is missing.", { sysGUID: event.sysGUID });
+      this.logView("Lead pre-sync skipped: borrower email missing", { sysGUID: event.sysGUID });
+      return;
+    }
+
+    const existingLeads = await this.salesforceAuthClient.query(
+      `SELECT Id, Status, IsConverted FROM Lead WHERE Email = '${escapeSoql(borrowerEmail)}' ORDER BY LastModifiedDate DESC LIMIT 10`
+    );
+    const hasEligibleLead = existingLeads.records.some((record) => {
+      const status = toStringValue(record.Status);
+      return record.IsConverted === false && status === "Application";
+    });
+    if (hasEligibleLead) {
+      this.logView("Lead pre-sync: eligible existing lead found", {
+        sysGUID: event.sysGUID,
+        borrowerEmail
+      });
+      return;
+    }
+
+    const ownerId = await this.resolveRlaOwnerId(loan);
+    const firstName = toStringValue(primaryBorrower?.firstName);
+    const lastName = toStringValue(primaryBorrower?.lastName) ?? "Unknown";
+    const householdBaseName = [firstName, lastName].filter(Boolean).join(" ").trim() || "Borrower";
+    const streetAddress = toPropertyStringOrNull(subjectProperty?.addressLineText ?? subjectProperty?.street1);
+    const stateRaw = toPropertyStringOrNull(subjectProperty?.state);
+    const leadPayload: Record<string, unknown> = {
+      RecordTypeId: LENDING_BORROWER_RECORD_TYPE_ID,
+      External_ID__c: String(event.sysGUID),
+      External_System__c: "ARIVE",
+      Response_to_Advertising__c: "ARIVE POS",
+      Status: "Application",
+      LeadSource: "Self Gen",
+      Lead_Sub_Source__c: "Auto-Generated",
+      OwnerId: ownerId,
+      FirstName: firstName,
+      LastName: lastName,
+      Email: borrowerEmail,
+      Phone: findByKeyValues(primaryBorrower ?? {}, ["homePhone", "phone"]),
+      MobilePhone: findByKeyValues(primaryBorrower ?? {}, ["mobilePhone10digit", "workPhone"]),
+      Company: `${householdBaseName} - Household`,
+      Street: streetAddress,
+      City: toPropertyStringOrNull(subjectProperty?.city),
+      State: mapStateToFullName(stateRaw),
+      PostalCode: toPropertyStringOrNull(subjectProperty?.postalCode ?? subjectProperty?.zipCode),
+      Property_Address__c: toPropertyStringOrTbd(streetAddress),
+      Property_State__c: mapStateToFullName(stateRaw)
+    };
+
+    const createResult = await this.salesforceAuthClient.createRecord("Lead", leadPayload);
+    if (!createResult.success || !createResult.id) {
+      throw new Error(`Failed to create Lead during loan sync: ${JSON.stringify(createResult.errors)}`);
+    }
+    console.log(
+      `[LeadFromLoan] Created lead ${createResult.id} for loan sysGUID=${event.sysGUID} email=${borrowerEmail} before RLA sync.`
+    );
+    logger.info("Created Lead during loan sync pre-check.", {
+      leadId: createResult.id,
+      sysGUID: event.sysGUID,
+      borrowerEmail
+    });
+    this.logView("Lead pre-sync created lead", {
+      leadId: createResult.id,
+      sysGUID: event.sysGUID,
+      borrowerEmail,
+      leadPayload
+    });
   }
 
   async handleEvent(event: AriveWebhookEvent, context: ProcessingContext): Promise<void> {
@@ -586,6 +695,16 @@ export class SalesforceLoanHandler implements OutboundSystemService {
     const subjectProperty = asObject(loan.subjectProperty);
     const propertyAddress = composePropertyAddress(subjectProperty);
     const propertyStreetAddress = toPropertyStringOrNull(subjectProperty?.addressLineText ?? subjectProperty?.street1);
+
+    // Ensure a Salesforce Lead exists in expected pre-conversion state before RLA sync.
+    if (this.options.leadSyncEnabled) {
+      await this.ensureLeadForLoan(event, loan, primaryBorrower, subjectProperty);
+    } else {
+      this.logView("Lead pre-sync disabled by LEAD_SYNC=No", {
+        sysGUID: event.sysGUID,
+        triggers: event.triggers
+      });
+    }
 
     // ── Key dates ──────────────────────────────────────────────────────────────
     const keyDates = loan.keyDates;
@@ -697,6 +816,13 @@ export class SalesforceLoanHandler implements OutboundSystemService {
         milestoneCurrentName__c: currentMilestone,
         LoanSubStatus__c: loanSubStatus,
         Pre_Approval_Date__c: preApprovalDate
+      });
+      this.logView("LOAN_STAGE_CHANGED update payload", {
+        existingId,
+        stageCode,
+        currentMilestone,
+        loanSubStatus,
+        preApprovalDate
       });
       if (!stageUpdate.success) {
         throw new Error(`Failed to update ResidentialLoanApplication__c ${existingId}: ${JSON.stringify(stageUpdate.errors)}`);
@@ -865,8 +991,15 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       ...buildPrimaryBorrowerFields(primaryBorrower),
       ...buildCoBorrowerFields(coBorrower)
     };
+    this.logView("RLA payload built", {
+      existingId,
+      sysGUID: event.sysGUID,
+      triggers: event.triggers,
+      payload: rlaPayload
+    });
 
     if (!existingId) {
+      this.logView("RLA create path", { sysGUID: event.sysGUID, applicationExtId, losId });
       const createResult = await this.salesforceAuthClient.createRecord("ResidentialLoanApplication__c", rlaPayload);
       if (!createResult.success || !createResult.id) {
         throw new Error(`Failed to create ResidentialLoanApplication__c: ${JSON.stringify(createResult.errors)}`);
@@ -877,6 +1010,7 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       return;
     }
 
+    this.logView("RLA update path", { id: existingId, sysGUID: event.sysGUID, applicationExtId, losId });
     const updateResult = await this.salesforceAuthClient.updateRecord("ResidentialLoanApplication__c", existingId, rlaPayload);
     if (!updateResult.success) {
       throw new Error(`Failed to update ResidentialLoanApplication__c ${existingId}: ${JSON.stringify(updateResult.errors)}`);

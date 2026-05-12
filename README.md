@@ -43,6 +43,8 @@ src/
    - `ARIVE_SECRET_ID`
    - `ARIVE_BASE_URL` (e.g. `https://gwapiconnect.myarive.com/api`)
    - `ARIVE_WEBHOOK_SECRET` (optional; only needed if signature verification is enabled)
+   - `LEAD_SYNC` (`Yes` or `No`) - enables/disables pre-RLA loan lead sync check
+   - `LOG_VIEW` (`Yes` or `No`) - enables detailed debug payload/update logs
 3. Run checks:
    - `npm run typecheck`
    - `npm run lint`
