@@ -26,7 +26,10 @@ export function bootstrapApp() {
   );
 
   const salesforceAuthClient = new SalesforceAuth();
-  const salesforceLoanSyncService = new SalesforceLoanHandler(salesforceAuthClient);
+  const salesforceLoanSyncService = new SalesforceLoanHandler(salesforceAuthClient, {
+    leadSyncEnabled: env.LEAD_SYNC === "Yes",
+    logViewEnabled: env.LOG_VIEW === "Yes"
+  });
   const salesforceLeadSyncService = new SalesforceLeadHandler(salesforceAuthClient);
   const ariveLoanAppSubmittedPatchService = new AriveLoanAppSubmittedPatchService(ariveLoansClient);
   const outboundServices = [
