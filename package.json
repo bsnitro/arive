@@ -17,6 +17,7 @@
     "test:webhook:lead:updated": "tsx scripts/test-webhook-lead-updated.ts",
     "test:webhook:lead:deleted": "tsx scripts/test-webhook-lead-deleted.ts",
     "test:webhook:loan:app-submitted": "tsx scripts/test-webhook-loan-app-submitted.ts",
+    "test:webhook:loan:stage-changed": "tsx scripts/test-webhook-loan-stage-changed.ts",
     "test": "vitest run"
   },
   "dependencies": {

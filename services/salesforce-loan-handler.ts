@@ -311,11 +311,12 @@ function mapAriveStageToCurrentMilestone(stageCode: string | null): string | nul
 function mapAriveStageToLoanSubStatus(stageCode: string | null): string | null {
   if (!stageCode) return null;
   const explicitMap: Record<string, string> = {
-    APPLICATION_INTAKE: "APPLICATION_INTAKE",
-    QUALIFICATION: "QUALIFICATION",
+    APPLICATION_INTAKE: "Application Intake",
+    QUALIFICATION: "Qualification",
+    PREAPPROVED: "Preapproved",
     LOAN_SETUP: "Application Submitted",
     DISCLOSURE_SENT: "Application Submitted",
-    RE_SUBMITTAL: "RE_SUBMITTAL"
+    RE_SUBMITTAL: "Resubmitted"
   };
   return explicitMap[stageCode] ?? null;
 }
@@ -427,6 +428,24 @@ function findContactWithLowestRef(contacts: unknown[], contactType: string, role
   }
 
   return result;
+}
+
+// Finds the first matching entry from loan.businessContacts using Arive's role/subType fields.
+// role:    "TITLE_AGENT" | "REAL_ESTATE_AGENT"
+// subType: "BUYERS_AGENT" | "SELLERS_AGENT" | null (null matches any subType)
+function findBusinessContact(contacts: unknown[], role: string, subType: string | null): GenericObject | null {
+  for (const contactRaw of contacts) {
+    const contact = asObject(contactRaw);
+    if (!contact) continue;
+    const contactRole = toStringValue(contact.role);
+    if (!contactRole || contactRole.toUpperCase() !== role.toUpperCase()) continue;
+    if (subType !== null) {
+      const contactSubType = toStringValue(contact.subType);
+      if (!contactSubType || contactSubType.toUpperCase() !== subType.toUpperCase()) continue;
+    }
+    return contact;
+  }
+  return null;
 }
 
 function buildFullName(firstName: unknown, lastName: unknown): string | null {
@@ -724,10 +743,28 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       toDateValue(getKeyDateValue(keyDates, ["estimatedFundingDate", "EstimatedFundingDate"]));
 
     // ── Loan contacts ──────────────────────────────────────────────────────────
-    const contacts = asArray(loan.contacts);
-    const titleAgent = findContactWithLowestRef(contacts, "TitleAgent", null);
-    const buyerAgent = findContactWithLowestRef(contacts, "RealEstateAgent", "Buyer");
-    const sellerAgent = findContactWithLowestRef(contacts, "RealEstateAgent", "Seller");
+    const contacts = asArray(loan.businessContacts);
+    logger.info("Loan contacts raw from Arive.", {
+      sysGUID: event.sysGUID,
+      contactCount: contacts.length,
+      contactSummary: contacts.map((c) => {
+        const obj = asObject(c);
+        return obj
+          ? { role: obj.role, subType: obj.subType, firstName: obj.firstName, lastName: obj.lastName }
+          : c;
+      })
+    });
+
+    const titleAgent = findBusinessContact(contacts, "TITLE_AGENT", null);
+    const buyerAgent = findBusinessContact(contacts, "REAL_ESTATE_AGENT", "BUYERS_AGENT");
+    const sellerAgent = findBusinessContact(contacts, "REAL_ESTATE_AGENT", "SELLERS_AGENT");
+
+    logger.info("Resolved loan contacts.", {
+      sysGUID: event.sysGUID,
+      titleAgent: titleAgent ?? null,
+      buyerAgent: buyerAgent ?? null,
+      sellerAgent: sellerAgent ?? null
+    });
 
     // ── Loan financials ────────────────────────────────────────────────────────
     const loanAmount = toNumberValue(loan.loanAmount) ?? toNumberValue(loan.totalLoanAmount);
@@ -812,28 +849,56 @@ export class SalesforceLoanHandler implements OutboundSystemService {
         });
         return;
       }
+      const contactUpdateFields = {
+        Title_Company_Name__c: toStringValue(titleAgent?.companyName),
+        Title_Company_Email_Address__c: toStringValue(titleAgent?.emailAddressText),
+        Buyer_Agent_Company__c: toStringValue(buyerAgent?.companyName),
+        Buyer_Agent_Email__c: toStringValue(buyerAgent?.emailAddressText),
+        Buyer_Agent_Phone__c: toStringValue(buyerAgent?.mobilePhone10digit),
+        Buyer_Agent_Name__c: buildFullName(buyerAgent?.firstName, buyerAgent?.lastName),
+        Buyer_s_Real_Estate_Agent__c: buyerAgent ? undefined : null,
+        Seller_Agent_Company__c: toStringValue(sellerAgent?.companyName),
+        Seller_Agent_Email__c: toStringValue(sellerAgent?.emailAddressText),
+        Seller_Agent_Phone__c: toStringValue(sellerAgent?.mobilePhone10digit),
+        Seller_Agent_Name__c: buildFullName(sellerAgent?.firstName, sellerAgent?.lastName),
+        Seller_s_Real_Estate_Agent__c: sellerAgent ? undefined : null
+      };
+      logger.info("LOAN_STAGE_CHANGED contact fields being sent to Salesforce.", {
+        sysGUID: event.sysGUID,
+        existingId,
+        ...contactUpdateFields
+      });
+
       const stageUpdate = await this.salesforceAuthClient.updateRecord("ResidentialLoanApplication__c", existingId, {
         milestoneCurrentName__c: currentMilestone,
         LoanSubStatus__c: loanSubStatus,
-        Pre_Approval_Date__c: preApprovalDate
+        Pre_Approval_Date__c: preApprovalDate,
+        // Contacts — synced on every stage change since Arive has no dedicated contact-update event
+        ...contactUpdateFields
       });
       this.logView("LOAN_STAGE_CHANGED update payload", {
         existingId,
         stageCode,
         currentMilestone,
         loanSubStatus,
-        preApprovalDate
+        preApprovalDate,
+        titleAgent,
+        buyerAgent,
+        sellerAgent
       });
       if (!stageUpdate.success) {
         throw new Error(`Failed to update ResidentialLoanApplication__c ${existingId}: ${JSON.stringify(stageUpdate.errors)}`);
       }
-      logger.info("Updated ResidentialLoanApplication__c milestone for LOAN_STAGE_CHANGED.", {
+      logger.info("Updated ResidentialLoanApplication__c milestone and contacts for LOAN_STAGE_CHANGED.", {
         id: existingId,
         applicationExtId,
         losId,
         stageCode,
         currentMilestone,
-        loanSubStatus
+        loanSubStatus,
+        hasBuyerAgent: Boolean(buyerAgent),
+        hasSellerAgent: Boolean(sellerAgent),
+        hasTitleAgent: Boolean(titleAgent)
       });
       return;
     }
@@ -969,15 +1034,15 @@ export class SalesforceLoanHandler implements OutboundSystemService {
 
       // Contacts (Title Agent, Buyer Agent, Seller Agent)
       Title_Company_Name__c: toStringValue(titleAgent?.companyName),
-      Title_Company_Email_Address__c: toStringValue(titleAgent?.email),
+      Title_Company_Email_Address__c: toStringValue(titleAgent?.emailAddressText),
       Buyer_Agent_Company__c: toStringValue(buyerAgent?.companyName),
-      Buyer_Agent_Email__c: toStringValue(buyerAgent?.email),
-      Buyer_Agent_Phone__c: toStringValue(buyerAgent?.phone),
+      Buyer_Agent_Email__c: toStringValue(buyerAgent?.emailAddressText),
+      Buyer_Agent_Phone__c: toStringValue(buyerAgent?.mobilePhone10digit),
       Buyer_Agent_Name__c: buildFullName(buyerAgent?.firstName, buyerAgent?.lastName),
       Buyer_s_Real_Estate_Agent__c: buyerAgent ? undefined : null,
       Seller_Agent_Company__c: toStringValue(sellerAgent?.companyName),
-      Seller_Agent_Email__c: toStringValue(sellerAgent?.email),
-      Seller_Agent_Phone__c: toStringValue(sellerAgent?.phone),
+      Seller_Agent_Email__c: toStringValue(sellerAgent?.emailAddressText),
+      Seller_Agent_Phone__c: toStringValue(sellerAgent?.mobilePhone10digit),
       Seller_Agent_Name__c: buildFullName(sellerAgent?.firstName, sellerAgent?.lastName),
       Seller_s_Real_Estate_Agent__c: sellerAgent ? undefined : null,
 
