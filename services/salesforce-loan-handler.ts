@@ -811,7 +811,8 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       }
 
       const archivedUpdate = await this.salesforceAuthClient.updateRecord("ResidentialLoanApplication__c", existingId, {
-        LoanSubStatus__c: "Archived in LOS"
+        LoanSubStatus__c: "Archived in LOS",
+        Cross_Object_Sync__c: true
       });
       if (!archivedUpdate.success) {
         throw new Error(`Failed to update ResidentialLoanApplication__c ${existingId}: ${JSON.stringify(archivedUpdate.errors)}`);
@@ -850,6 +851,7 @@ export class SalesforceLoanHandler implements OutboundSystemService {
         return;
       }
       const contactUpdateFields = {
+        Cross_Object_Sync__c: true,
         Title_Company_Name__c: toStringValue(titleAgent?.companyName),
         Title_Company_Email_Address__c: toStringValue(titleAgent?.emailAddressText),
         Buyer_Agent_Company__c: toStringValue(buyerAgent?.companyName),
@@ -918,6 +920,8 @@ export class SalesforceLoanHandler implements OutboundSystemService {
 
     // ── RLA payload ───────────────────────────────────────────────────────────
     const rlaPayload: Record<string, unknown> = {
+
+      Cross_Object_Sync__c: true,
 
       // Identifiers
       OwnerId: rlaOwnerId,
