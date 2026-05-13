@@ -422,6 +422,69 @@ class SalesforceAuth {
     }
   }
 
+  /**
+   * Executes anonymous Apex via the Tooling API.
+   * Requires the connected-app user to have the "Author Apex" system permission.
+   */
+  async executeAnonymousApex(apexCode: string): Promise<{ success: boolean; exceptionMessage: string | null; exceptionStackTrace: string | null }> {
+    if (!this.isAuthenticated) {
+      await this.authenticate();
+    }
+    try {
+      const url = `${this.instanceUrl}/services/data/v58.0/tooling/executeAnonymous/?anonymousBody=${encodeURIComponent(apexCode)}`;
+      const response = await this.client.get(url);
+      return {
+        success: response.data.success === true,
+        exceptionMessage: response.data.exceptionMessage ?? null,
+        exceptionStackTrace: response.data.exceptionStackTrace ?? null
+      };
+    } catch (error: any) {
+      if (error.response?.status === 401) {
+        this.isAuthenticated = false;
+        await this.authenticate();
+        return this.executeAnonymousApex(apexCode);
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Converts a Salesforce Lead via anonymous Apex (Database.convertLead).
+   * Returns the resulting Account, Contact, and Opportunity IDs on success.
+   */
+  async convertLead(leadId: string): Promise<{ success: boolean; accountId: string | null; contactId: string | null; opportunityId: string | null; errors: string[] }> {
+    const apex = [
+      `Lead l = [SELECT Id, IsConverted FROM Lead WHERE Id = '${leadId}' LIMIT 1];`,
+      `if (!l.IsConverted) {`,
+      `  Database.LeadConvert lc = new Database.LeadConvert();`,
+      `  lc.setLeadId(l.Id);`,
+      `  lc.setDoNotCreateOpportunity(false);`,
+      `  LeadStatus cs = [SELECT ApiName FROM LeadStatus WHERE IsConverted = true LIMIT 1];`,
+      `  lc.setConvertedStatus(cs.ApiName);`,
+      `  Database.LeadConvertResult lcr = Database.convertLead(lc);`,
+      `  if (!lcr.isSuccess()) { throw new DmlException(lcr.getErrors()[0].getMessage()); }`,
+      `}`
+    ].join(" ");
+
+    const result = await this.executeAnonymousApex(apex);
+    if (!result.success) {
+      console.error(`❌ [SalesforceAuth] convertLead failed for ${leadId}:`, result.exceptionMessage);
+      return { success: false, accountId: null, contactId: null, opportunityId: null, errors: [result.exceptionMessage ?? "Unknown error"] };
+    }
+
+    // Query the converted IDs now that the lead is converted
+    const q = `SELECT ConvertedAccountId, ConvertedContactId, ConvertedOpportunityId FROM Lead WHERE Id = '${leadId}' LIMIT 1`;
+    const queryResult = await this.query(q);
+    const record: any = queryResult.records[0] ?? {};
+    return {
+      success: true,
+      accountId: record.ConvertedAccountId ?? null,
+      contactId: record.ConvertedContactId ?? null,
+      opportunityId: record.ConvertedOpportunityId ?? null,
+      errors: []
+    };
+  }
+
   async testConnection(): Promise<boolean> {
     try {
       const result = await this.query('SELECT Id FROM User LIMIT 1');

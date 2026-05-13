@@ -605,32 +605,91 @@ export class SalesforceLoanHandler implements OutboundSystemService {
     loan: GenericObject,
     primaryBorrower: GenericObject | null,
     subjectProperty: GenericObject | null
-  ): Promise<void> {
+  ): Promise<{ accountId: string | null; opportunityId: string | null }> {
+    const nullResult = { accountId: null, opportunityId: null };
     this.logView("Lead pre-sync check started", { sysGUID: event.sysGUID });
+
     const borrowerEmail =
       findByKeyValues(primaryBorrower ?? {}, ["email", "emailAddressText"]) ??
       findByKeyValues(loan, ["borrowerEmail", "emailAddressText"]);
-    if (!borrowerEmail) {
-      logger.warn("Skipping lead pre-create for loan because borrower email is missing.", { sysGUID: event.sysGUID });
-      this.logView("Lead pre-sync skipped: borrower email missing", { sysGUID: event.sysGUID });
-      return;
+
+    // The loan's sysGUID differs from the original lead's sysGUID (they change when a lead is
+    // converted to a loan in Arive). We therefore look up leads by borrower email, NOT by
+    // External_ID__c. We also search by External_ID__c = loan sysGUID to catch any orphaned
+    // duplicate leads created by earlier runs of this handler before this fix was in place.
+    const emailClause = borrowerEmail ? `Email = '${escapeSoql(borrowerEmail)}'` : null;
+    const extIdClause = `External_ID__c = '${escapeSoql(String(event.sysGUID))}'`;
+    const whereClause = emailClause ? `(${emailClause} OR ${extIdClause})` : extIdClause;
+
+    if (!emailClause) {
+      logger.warn("Borrower email missing from loan payload; falling back to External_ID__c lead lookup.", { sysGUID: event.sysGUID });
     }
 
     const existingLeads = await this.salesforceAuthClient.query(
-      `SELECT Id, Status, IsConverted FROM Lead WHERE Email = '${escapeSoql(borrowerEmail)}' ORDER BY LastModifiedDate DESC LIMIT 10`
+      `SELECT Id, Status, IsConverted, ConvertedAccountId, ConvertedOpportunityId, Email FROM Lead WHERE ${whereClause} ORDER BY LastModifiedDate DESC LIMIT 10`
     );
-    const hasEligibleLead = existingLeads.records.some((record) => {
-      const status = toStringValue(record.Status);
-      return record.IsConverted === false && status === "Application";
-    });
-    if (hasEligibleLead) {
-      this.logView("Lead pre-sync: eligible existing lead found", {
+
+    // ── Case 1: Already converted ──────────────────────────────────────────────
+    // Return the existing converted IDs so the RLA can be linked without re-converting.
+    const convertedLead = existingLeads.records.find((r) => r.IsConverted === true);
+    if (convertedLead) {
+      logger.info("Lead already converted; returning existing Account/Opportunity IDs.", {
         sysGUID: event.sysGUID,
-        borrowerEmail
+        leadId: convertedLead.Id,
+        accountId: convertedLead.ConvertedAccountId,
+        opportunityId: convertedLead.ConvertedOpportunityId
       });
-      return;
+      return {
+        accountId: toStringValue(convertedLead.ConvertedAccountId),
+        opportunityId: toStringValue(convertedLead.ConvertedOpportunityId)
+      };
     }
 
+    // ── Case 2: Unconverted lead exists ────────────────────────────────────────
+    // Update status to "Application" if needed, then convert to create the
+    // Account, Contact, and Opportunity that will be linked to the RLA.
+    const existingLead = existingLeads.records.find((r) => r.IsConverted === false) ?? null;
+    if (existingLead) {
+      const leadId = toStringValue(existingLead.Id);
+      if (!leadId) return nullResult;
+
+      if (toStringValue(existingLead.Status) !== "Application") {
+        const updateResult = await this.salesforceAuthClient.updateRecord("Lead", leadId, { Status: "Application" });
+        if (!updateResult.success) {
+          logger.warn("Failed to update existing Lead status to Application before conversion.", {
+            leadId,
+            sysGUID: event.sysGUID,
+            errors: updateResult.errors
+          });
+        } else {
+          logger.info("Updated existing Lead to Application status for conversion.", {
+            leadId,
+            sysGUID: event.sysGUID,
+            previousStatus: existingLead.Status
+          });
+        }
+      }
+
+      const convertResult = await this.salesforceAuthClient.convertLead(leadId);
+      if (!convertResult.success) {
+        logger.warn("Lead conversion failed; RLA will be created without Account/Opportunity link.", {
+          leadId,
+          sysGUID: event.sysGUID,
+          errors: convertResult.errors
+        });
+        return nullResult;
+      }
+      logger.info("Lead converted successfully.", {
+        leadId,
+        sysGUID: event.sysGUID,
+        accountId: convertResult.accountId,
+        contactId: convertResult.contactId,
+        opportunityId: convertResult.opportunityId
+      });
+      return { accountId: convertResult.accountId, opportunityId: convertResult.opportunityId };
+    }
+
+    // ── Case 3: No lead found — create one and convert ─────────────────────────
     const ownerId = await this.resolveRlaOwnerId(loan);
     const firstName = toStringValue(primaryBorrower?.firstName);
     const lastName = toStringValue(primaryBorrower?.lastName) ?? "Unknown";
@@ -664,20 +723,29 @@ export class SalesforceLoanHandler implements OutboundSystemService {
     if (!createResult.success || !createResult.id) {
       throw new Error(`Failed to create Lead during loan sync: ${JSON.stringify(createResult.errors)}`);
     }
-    console.log(
-      `[LeadFromLoan] Created lead ${createResult.id} for loan sysGUID=${event.sysGUID} email=${borrowerEmail} before RLA sync.`
-    );
     logger.info("Created Lead during loan sync pre-check.", {
       leadId: createResult.id,
       sysGUID: event.sysGUID,
       borrowerEmail
     });
-    this.logView("Lead pre-sync created lead", {
+    this.logView("Lead pre-sync created lead", { leadId: createResult.id, sysGUID: event.sysGUID, borrowerEmail, leadPayload });
+
+    const convertResult = await this.salesforceAuthClient.convertLead(createResult.id);
+    if (!convertResult.success) {
+      logger.warn("Lead conversion failed after creation; RLA will be created without Account/Opportunity link.", {
+        leadId: createResult.id,
+        sysGUID: event.sysGUID,
+        errors: convertResult.errors
+      });
+      return nullResult;
+    }
+    logger.info("Newly created Lead converted successfully.", {
       leadId: createResult.id,
       sysGUID: event.sysGUID,
-      borrowerEmail,
-      leadPayload
+      accountId: convertResult.accountId,
+      opportunityId: convertResult.opportunityId
     });
+    return { accountId: convertResult.accountId, opportunityId: convertResult.opportunityId };
   }
 
   async handleEvent(event: AriveWebhookEvent, context: ProcessingContext): Promise<void> {
@@ -715,9 +783,14 @@ export class SalesforceLoanHandler implements OutboundSystemService {
     const propertyAddress = composePropertyAddress(subjectProperty);
     const propertyStreetAddress = toPropertyStringOrNull(subjectProperty?.addressLineText ?? subjectProperty?.street1);
 
-    // Ensure a Salesforce Lead exists in expected pre-conversion state before RLA sync.
+    // Ensure a Salesforce Lead exists, is set to Application status, and is converted
+    // (creating the Account, Contact, and Opportunity to be linked to the RLA).
+    let convertedAccountId: string | null = null;
+    let convertedOpportunityId: string | null = null;
     if (this.options.leadSyncEnabled) {
-      await this.ensureLeadForLoan(event, loan, primaryBorrower, subjectProperty);
+      const leadResult = await this.ensureLeadForLoan(event, loan, primaryBorrower, subjectProperty);
+      convertedAccountId = leadResult.accountId;
+      convertedOpportunityId = leadResult.opportunityId;
     } else {
       this.logView("Lead pre-sync disabled by LEAD_SYNC=No", {
         sysGUID: event.sysGUID,
@@ -929,6 +1002,10 @@ export class SalesforceLoanHandler implements OutboundSystemService {
       ApplicationExtIdentifier__c: applicationExtId,
       Loan_Number__c: lenderLoanIdentifier ?? ariveLoanIdStr,
       API_Details__c: `Loan updated by API ${new Date().toISOString()}`,
+
+      // Converted lead associations (Account and Opportunity created during lead conversion)
+      Account__c: convertedAccountId ?? undefined,
+      PipelineId__c: convertedOpportunityId ?? undefined,
 
       // Loan status
       Status__c: findByKeyValues(currentLoanStatus, ["status"]),
