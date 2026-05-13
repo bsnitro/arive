@@ -328,6 +328,24 @@ class SalesforceAuth {
         return this.updateRecord(objectType, recordId, recordData);
       }
 
+      // RECORD_IN_USE_BY_WORKFLOW means a Process Builder flow tried to ConvertLead while the
+      // Lead record was still locked from a preceding transaction (e.g. ensureLeadForLoan).
+      // Retry once after a short delay — the lock is always released within a few seconds.
+      const isWorkflowLock = Array.isArray(error.response?.data) &&
+        error.response.data.some(
+          (e: any) =>
+            e.errorCode === "CANNOT_EXECUTE_FLOW_TRIGGER" &&
+            typeof e.message === "string" &&
+            e.message.includes("RECORD_IN_USE_BY_WORKFLOW")
+        );
+      if (isWorkflowLock) {
+        console.warn(
+          `⚠️  [SalesforceAuth] RECORD_IN_USE_BY_WORKFLOW on ${objectType} ${recordId} — retrying in 3 s...`
+        );
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        return this.updateRecord(objectType, recordId, recordData);
+      }
+
       // Log 4xx/5xx so production logs show the actual Salesforce error
       if (error.response?.status) {
         console.error(`❌ [SalesforceAuth] updateRecord failed: ${objectType} ${recordId}`);
