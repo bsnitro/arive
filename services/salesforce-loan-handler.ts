@@ -612,13 +612,21 @@ export class SalesforceLoanHandler implements OutboundSystemService {
     const borrowerEmail =
       findByKeyValues(primaryBorrower ?? {}, ["email", "emailAddressText"]) ??
       findByKeyValues(loan, ["borrowerEmail", "emailAddressText"]);
-    if (!borrowerEmail) {
-      logger.warn("Skipping lead pre-create for loan because borrower email is missing.", { sysGUID: event.sysGUID });
-      return nullResult;
+
+    // The loan's sysGUID differs from the original lead's sysGUID (they change when a lead is
+    // converted to a loan in Arive). We therefore look up leads by borrower email, NOT by
+    // External_ID__c. We also search by External_ID__c = loan sysGUID to catch any orphaned
+    // duplicate leads created by earlier runs of this handler before this fix was in place.
+    const emailClause = borrowerEmail ? `Email = '${escapeSoql(borrowerEmail)}'` : null;
+    const extIdClause = `External_ID__c = '${escapeSoql(String(event.sysGUID))}'`;
+    const whereClause = emailClause ? `(${emailClause} OR ${extIdClause})` : extIdClause;
+
+    if (!emailClause) {
+      logger.warn("Borrower email missing from loan payload; falling back to External_ID__c lead lookup.", { sysGUID: event.sysGUID });
     }
 
     const existingLeads = await this.salesforceAuthClient.query(
-      `SELECT Id, Status, IsConverted, ConvertedAccountId, ConvertedOpportunityId FROM Lead WHERE Email = '${escapeSoql(borrowerEmail)}' ORDER BY LastModifiedDate DESC LIMIT 10`
+      `SELECT Id, Status, IsConverted, ConvertedAccountId, ConvertedOpportunityId, Email FROM Lead WHERE ${whereClause} ORDER BY LastModifiedDate DESC LIMIT 10`
     );
 
     // ── Case 1: Already converted ──────────────────────────────────────────────
